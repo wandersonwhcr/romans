@@ -16,6 +16,15 @@ exec { "apt-get : autoremove":
     command => "apt-get autoremove -q -y",
 }
 
+exec { "apt-get : https-update":
+    command => "apt-get update",
+}
+
+package { "apt-get : https":
+    name    => "apt-transport-https",
+    require => Exec["apt-get : https-update"],
+}
+
 package { "vim":
     name => "vim",
 }
