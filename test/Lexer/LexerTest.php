@@ -25,5 +25,7 @@ class LexerTest extends TestCase
     public function testTokenize()
     {
         $this->assertSame([Grammar::T_I], $this->lexer->tokenize('I'));
+        $this->assertSame([Grammar::T_V], $this->lexer->tokenize('V'));
+        $this->assertSame([Grammar::T_X], $this->lexer->tokenize('X'));
     }
 }

@@ -17,6 +17,6 @@ class Lexer
      */
     public function tokenize(string $content) : array
     {
-        return [Grammar::T_I];
+        return [$content];
     }
 }
