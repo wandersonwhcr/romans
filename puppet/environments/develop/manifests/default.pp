@@ -57,6 +57,16 @@ package { "php : cli":
     ],
 }
 
+package { "php : xml":
+    name    => "php-xml",
+    require => Package["php : cli"],
+}
+
+package { "php : mbstring":
+    name    => "php-mbstring",
+    require => Package["php : cli"],
+}
+
 exec { "composer":
     creates => "/usr/bin/composer",
     command => "curl https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer",

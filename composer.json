@@ -2,5 +2,8 @@
     "name": "wandersonwhcr/romans",
     "description": "A Simple PHP Roman Numerals Library",
     "type": "library",
-    "keywords": ["roman-numerals"]
+    "keywords": ["roman-numerals"],
+    "require-dev": {
+        "phpunit/phpunit": "6.1.*"
+    }
 }
