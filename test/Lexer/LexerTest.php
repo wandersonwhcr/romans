@@ -4,6 +4,7 @@ namespace RomansTest\Lexer;
 
 use PHPUnit\Framework\TestCase;
 use Romans\Grammar\Grammar;
+use Romans\Lexer\Exception as LexerException;
 use Romans\Lexer\Lexer;
 
 /**
@@ -27,6 +28,16 @@ class LexerTest extends TestCase
         $this->assertSame([Grammar::T_I], $this->lexer->tokenize('I'));
         $this->assertSame([Grammar::T_V], $this->lexer->tokenize('V'));
         $this->assertSame([Grammar::T_X], $this->lexer->tokenize('X'));
+    }
+
+    /**
+     * Test Invalid Token
+     */
+    public function testInvalidToken()
+    {
+        $this->expectException(LexerException::class);
+
+        $this->lexer->tokenize('.');
     }
 
     /**
