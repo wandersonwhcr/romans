@@ -71,4 +71,12 @@ class LexerTest extends TestCase
 
         $this->assertSame([Grammar::T_CD, Grammar::T_XC, Grammar::T_IX], $this->lexer->tokenize('CDXCIX'));
     }
+
+    /**
+     * Test Tokenize With Simple And Lookahead
+     */
+    public function testTokenizeWithSimpleAndLookahead()
+    {
+        $this->assertSame([Grammar::T_CD, Grammar::T_L, Grammar::T_X, Grammar::T_IX], $this->lexer->tokenize('CDLXIX'));
+    }
 }
