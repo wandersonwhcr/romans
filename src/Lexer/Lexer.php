@@ -63,7 +63,7 @@ class Lexer
             $current = $content[$i];
 
             if (! isset($numerals[$current])) {
-                throw new Exception('Unknown Token');
+                throw new Exception(sprintf('Unknown token "%s" at position %d', $current, $i));
             }
 
             $result[] = $current;

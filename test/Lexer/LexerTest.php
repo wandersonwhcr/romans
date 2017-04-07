@@ -49,4 +49,15 @@ class LexerTest extends TestCase
         $this->assertSame([Grammar::T_V, Grammar::T_I, Grammar::T_I], $this->lexer->tokenize('VII'));
         $this->assertSame([Grammar::T_X, Grammar::T_V, Grammar::T_I], $this->lexer->tokenize('XVI'));
     }
+
+    /**
+     * Test Invalid Token Message
+     */
+    public function testInvalidTokenMessage()
+    {
+        $this->expectException(LexerException::class);
+        $this->expectExceptionMessage('Unknown token "." at position 2');
+
+        $this->lexer->tokenize('XV.I');
+    }
 }
