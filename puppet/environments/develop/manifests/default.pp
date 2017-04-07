@@ -56,3 +56,8 @@ package { "php : cli":
         Exec["apt-get : update"],
     ],
 }
+
+exec { "composer":
+    creates => "/usr/bin/composer",
+    command => "curl https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer",
+}
