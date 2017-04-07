@@ -15,3 +15,15 @@ exec { "apt-get : update":
 exec { "apt-get : autoremove":
     command => "apt-get autoremove -q -y",
 }
+
+package { "vim":
+    name => "vim",
+}
+
+package { "git":
+    name => "git",
+}
+
+package { "unzip":
+    name => "unzip",
+}
