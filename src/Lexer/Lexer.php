@@ -17,6 +17,13 @@ class Lexer
      */
     public function tokenize(string $content) : array
     {
-        return [$content];
+        $length = strlen($content);
+        $result = [];
+
+        for ($i = 0; $i < $length; $i++) {
+            $result[] = $content[$i];
+        }
+
+        return $result;
     }
 }
