@@ -56,17 +56,28 @@ class Lexer
         $tokens   = $this->getGrammar()->getTokens();
         $numerals = array_flip($tokens);
 
-        $length = strlen($content);
-        $result = [];
+        $length   = strlen($content);
+        $position = 0;
+        $result   = [];
 
-        for ($i = 0; $i < $length; $i++) {
-            $current = $content[$i];
+        while ($position < $length) {
+            $current = $content[$position];
 
             if (! isset($numerals[$current])) {
-                throw new Exception(sprintf('Unknown token "%s" at position %d', $current, $i));
+                throw new Exception(sprintf('Unknown token "%s" at position %d', $current, $position));
+            }
+
+            // Lookahead
+            if ($position + 1 < $length) {
+                $next = $content[$position + 1];
+                if (isset($numerals[$current . $next])) {
+                    $current  = $current . $next;
+                    $position = $position + 1;
+                }
             }
 
             $result[] = $current;
+            $position = $position + 1;
         }
 
         return $result;

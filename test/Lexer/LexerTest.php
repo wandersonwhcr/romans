@@ -60,4 +60,15 @@ class LexerTest extends TestCase
 
         $this->lexer->tokenize('XV.I');
     }
+
+    /**
+     * Test Tokenize with Lookahead
+     */
+    public function testTokenizeWithLookahead()
+    {
+        $this->assertSame([Grammar::T_IV], $this->lexer->tokenize('IV'));
+        $this->assertSame([Grammar::T_IX], $this->lexer->tokenize('IX'));
+
+        $this->assertSame([Grammar::T_CD, Grammar::T_XC, Grammar::T_IX], $this->lexer->tokenize('CDXCIX'));
+    }
 }
