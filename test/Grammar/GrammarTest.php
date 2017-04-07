@@ -18,6 +18,27 @@ class GrammarTest extends TestCase
     {
         $reflection = new ReflectionClass(Grammar::class);
 
-        $this->assertTrue($reflection->hasConstant('T_I'));
+        $numerals = [
+            'I',
+            'IV',
+            'V',
+            'IX',
+            'X',
+            'XL',
+            'L',
+            'XC',
+            'C',
+            'CD',
+            'D',
+            'CM',
+            'M',
+        ];
+
+        foreach ($numerals as $numeral) {
+            $token = 'T_' . $numeral;
+
+            $this->assertTrue($reflection->hasConstant($token));
+            $this->assertSame($numeral, $reflection->getConstant($token));
+        }
     }
 }
