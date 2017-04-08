@@ -52,8 +52,9 @@ class Parser
      */
     public function parse(array $tokens) : int
     {
-        $values = $this->buildGrammarTokenValues();
-        $result = 0;
+        $values    = $this->buildGrammarTokenValues();
+        $result    = 0;
+        $lastValue = null;
 
         foreach ($tokens as $position => $token) {
             if (! is_string($token)) {
@@ -64,7 +65,14 @@ class Parser
                 throw new Exception(sprintf('Unknown token "%s" at position %d', $token, $position));
             }
 
-            $result = $result + $values[$token];
+            $value = $values[$token];
+
+            if (isset($lastValue) && $lastValue < $value) {
+                throw new Exception('Invalid Roman Number');
+            }
+
+            $result    = $result + $value;
+            $lastValue = $value;
         }
 
         return $result;
