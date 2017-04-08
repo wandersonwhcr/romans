@@ -39,4 +39,14 @@ class ParserTest extends TestCase
         $this->assertSame(5, $this->parser->parse([Grammar::T_V]));
         $this->assertSame(10, $this->parser->parse([Grammar::T_X]));
     }
+
+    /**
+     * Test Parse with Multiple Tokens
+     */
+    public function testParseWithMultipleTokens()
+    {
+        $this->assertSame(6, $this->parser->parse([Grammar::T_V, Grammar::T_I]));
+        $this->assertSame(13, $this->parser->parse([Grammar::T_X, Grammar::T_I, Grammar::T_I, Grammar::T_I]));
+        $this->assertSame(111, $this->parser->parse([Grammar::T_C, Grammar::T_X, Grammar::T_I]));
+    }
 }
