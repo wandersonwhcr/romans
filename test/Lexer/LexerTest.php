@@ -79,4 +79,12 @@ class LexerTest extends TestCase
     {
         $this->assertSame([Grammar::T_CD, Grammar::T_L, Grammar::T_X, Grammar::T_IX], $this->lexer->tokenize('CDLXIX'));
     }
+
+    /**
+     * Test Tokenize With Empty Input
+     */
+    public function testTokenizeWithEmptyInput()
+    {
+        $this->assertSame([], $this->lexer->tokenize(''));
+    }
 }
