@@ -21,6 +21,17 @@ class LexerTest extends TestCase
     }
 
     /**
+     * Test Grammar
+     */
+    public function testGrammar()
+    {
+        $grammar = new Grammar();
+
+        $this->assertSame($this->lexer, $this->lexer->setGrammar($grammar));
+        $this->assertSame($grammar, $this->lexer->getGrammar());
+    }
+
+    /**
      * Test Tokenize
      */
     public function testTokenize()
