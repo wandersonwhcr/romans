@@ -20,6 +20,17 @@ class ParserTest extends TestCase
     }
 
     /**
+     * Test Grammar
+     */
+    public function testGrammar()
+    {
+        $grammar = new Grammar();
+
+        $this->assertSame($this->parser, $this->parser->setGrammar($grammar));
+        $this->assertSame($grammar, $this->parser->getGrammar());
+    }
+
+    /**
      * Test Parse
      */
     public function testParse()

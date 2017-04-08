@@ -2,11 +2,15 @@
 
 namespace Romans\Parser;
 
+use Romans\Grammar\GrammarAwareTrait;
+
 /**
  * Parser
  */
 class Parser
 {
+    use GrammarAwareTrait;
+
     /**
      * Parse Tokens
      *
