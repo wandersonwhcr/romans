@@ -55,7 +55,11 @@ class Parser
         $values = $this->buildGrammarTokenValues();
         $result = 0;
 
-        foreach ($tokens as $token) {
+        foreach ($tokens as $position => $token) {
+            if (! is_string($token)) {
+                throw new Exception(sprintf('Invalid token type "%s" at position %d', gettype($token), $position));
+            }
+
             $result = $result + $values[$token];
         }
 

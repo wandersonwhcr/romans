@@ -4,6 +4,7 @@ namespace RomansTest\Parser;
 
 use PHPUnit\Framework\TestCase;
 use Romans\Grammar\Grammar;
+use Romans\Parser\Exception as ParserException;
 use Romans\Parser\Parser;
 
 /**
@@ -57,5 +58,16 @@ class ParserTest extends TestCase
     {
         $this->assertSame(9, $this->parser->parse([Grammar::T_IX]));
         $this->assertSame(99, $this->parser->parse([Grammar::T_XC, Grammar::T_IX]));
+    }
+
+    /**
+     * Test Invalid Tokens
+     */
+    public function testInvalidTokens()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid token type "integer" at position 1');
+
+        $this->parser->parse([Grammar::T_X, 0, Grammar::T_I]);
     }
 }
