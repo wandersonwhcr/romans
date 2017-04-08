@@ -36,5 +36,7 @@ class ParserTest extends TestCase
     public function testParse()
     {
         $this->assertSame(1, $this->parser->parse([Grammar::T_I]));
+        $this->assertSame(5, $this->parser->parse([Grammar::T_V]));
+        $this->assertSame(10, $this->parser->parse([Grammar::T_X]));
     }
 }
