@@ -3,17 +3,14 @@
 namespace Romans\Lexer;
 
 use Romans\Grammar\Grammar;
+use Romans\Grammar\GrammarAwareTrait;
 
 /**
  * Roman Numerals Lexer
  */
 class Lexer
 {
-    /**
-     * Grammar
-     * @type Grammar
-     */
-    private $grammar;
+    use GrammarAwareTrait;
 
     /**
      * Default Constructor
@@ -21,28 +18,6 @@ class Lexer
     public function __construct()
     {
         $this->setGrammar(new Grammar());
-    }
-
-    /**
-     * Set Grammar
-     *
-     * @param  Grammar $grammar Grammar Object
-     * @return self    Fluent Interface
-     */
-    public function setGrammar(Grammar $grammar) : self
-    {
-        $this->grammar = $grammar;
-        return $this;
-    }
-
-    /**
-     * Get Grammar
-     *
-     * @return Grammar Grammar Object
-     */
-    public function getGrammar() : Grammar
-    {
-        return $this->grammar;
     }
 
     /**
