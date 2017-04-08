@@ -60,6 +60,10 @@ class Parser
                 throw new Exception(sprintf('Invalid token type "%s" at position %d', gettype($token), $position));
             }
 
+            if (! isset($values[$token])) {
+                throw new Exception(sprintf('Unknown token "%s" at position %d', $token, $position));
+            }
+
             $result = $result + $values[$token];
         }
 
