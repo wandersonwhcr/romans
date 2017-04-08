@@ -49,4 +49,13 @@ class ParserTest extends TestCase
         $this->assertSame(13, $this->parser->parse([Grammar::T_X, Grammar::T_I, Grammar::T_I, Grammar::T_I]));
         $this->assertSame(111, $this->parser->parse([Grammar::T_C, Grammar::T_X, Grammar::T_I]));
     }
+
+    /**
+     * Test Parse with Lookahead Tokens
+     */
+    public function testParseWithLookaheadTokens()
+    {
+        $this->assertSame(9, $this->parser->parse([Grammar::T_IX]));
+        $this->assertSame(99, $this->parser->parse([Grammar::T_XC, Grammar::T_IX]));
+    }
 }
