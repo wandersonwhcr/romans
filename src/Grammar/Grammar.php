@@ -7,6 +7,7 @@ namespace Romans\Grammar;
  */
 class Grammar
 {
+    const T_N  = 'N';
     const T_I  = 'I';
     const T_IV = 'IV';
     const T_V  = 'V';
@@ -29,6 +30,7 @@ class Grammar
     public function getTokens() : array
     {
         return [
+            'T_N'  => self::T_N,
             'T_I'  => self::T_I,
             'T_IV' => self::T_IV,
             'T_V'  => self::T_V,
@@ -53,6 +55,7 @@ class Grammar
     public function getValues()
     {
         return [
+            'T_N'  => 0,
             'T_I'  => 1,
             'T_IV' => 4,
             'T_V'  => 5,
