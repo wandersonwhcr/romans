@@ -4,6 +4,7 @@ namespace RomansTest\Filter;
 
 use PHPUnit\Framework\TestCase;
 use Romans\Filter\IntToRoman;
+use Romans\Grammar\Grammar;
 
 /**
  * Int to Roman Test
@@ -16,6 +17,17 @@ class IntToRomanTest extends TestCase
     protected function setUp()
     {
         $this->filter = new IntToRoman();
+    }
+
+    /**
+     * Test Constructor
+     */
+    public function testConstructor()
+    {
+        $grammar = new Grammar();
+        $filter  = new IntToRoman($grammar);
+
+        $this->assertSame($grammar, $filter->getGrammar());
     }
 
     /**
