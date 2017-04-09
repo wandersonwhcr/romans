@@ -1,6 +1,7 @@
 {
     "name": "wandersonwhcr/romans",
     "description": "A Simple PHP Roman Numerals Library",
+    "license": "MIT",
     "type": "library",
     "keywords": ["roman-numerals"],
     "autoload": {
