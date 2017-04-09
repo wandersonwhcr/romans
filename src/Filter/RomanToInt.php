@@ -1,0 +1,96 @@
+<?php
+
+namespace Romans\Filter;
+
+use Romans\Grammar\Grammar;
+use Romans\Lexer\Lexer;
+use Romans\Parser\Parser;
+
+/**
+ * Roman to Int
+ */
+class RomanToInt
+{
+    /**
+     * Lexer
+     * @type Lexer
+     */
+    private $lexer;
+
+    /**
+     * Parser
+     * @type Parser
+     */
+    private $parser;
+
+    /**
+     * Default Constructor
+     *
+     * @param Grammar $grammar Grammar Object
+     */
+    public function __construct(Grammar $grammar = null)
+    {
+        if (! isset($grammar)) {
+            $grammar = new Grammar();
+        }
+
+        $this
+            ->setLexer(new Lexer($grammar))
+            ->setParser(new Parser($grammar));
+    }
+
+    /**
+     * Set Lexer
+     *
+     * @param  Lexer $lexer Lexer Object
+     * @return self  Fluent Interface
+     */
+    public function setLexer(Lexer $lexer) : self
+    {
+        $this->lexer = $lexer;
+        return $this;
+    }
+
+    /**
+     * Get Lexer
+     *
+     * @return Lexer Lexer Object
+     */
+    public function getLexer() : Lexer
+    {
+        return $this->lexer;
+    }
+
+    /**
+     * Set Parser
+     *
+     * @param  Parser $parser Parser Object
+     * @return self   Fluent Interface
+     */
+    public function setParser(Parser $parser) : self
+    {
+        $this->parser = $parser;
+        return $this;
+    }
+
+    /**
+     * Get Parser
+     *
+     * @return Parser Parser Object
+     */
+    public function getParser() : Parser
+    {
+        return $this->parser;
+    }
+
+    /**
+     * Filter Roman Number to Integer
+     *
+     * @param  string $value Roman Number
+     * @return int    Integer Result
+     */
+    public function filter(string $value) : int
+    {
+        return $this->getParser()->parse($this->getLexer()->tokenize($value));
+    }
+}

@@ -44,4 +44,28 @@ class Grammar
             'T_M'  => self::T_M,
         ];
     }
+
+    /**
+     * Get Values
+     *
+     * @return array Values Available
+     */
+    public function getValues()
+    {
+        return [
+            'T_I'  => 1,
+            'T_IV' => 4,
+            'T_V'  => 5,
+            'T_IX' => 9,
+            'T_X'  => 10,
+            'T_XL' => 40,
+            'T_L'  => 50,
+            'T_XC' => 90,
+            'T_C'  => 100,
+            'T_CD' => 400,
+            'T_D'  => 500,
+            'T_CM' => 900,
+            'T_M'  => 1000,
+        ];
+    }
 }

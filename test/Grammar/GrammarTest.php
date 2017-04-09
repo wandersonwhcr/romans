@@ -16,6 +16,8 @@ class GrammarTest extends TestCase
      */
     protected function setUp()
     {
+        $this->grammar = new Grammar();
+
         $this->tokens = [
             'T_I'  => 'I',
             'T_IV' => 'IV',
@@ -30,6 +32,22 @@ class GrammarTest extends TestCase
             'T_D'  => 'D',
             'T_CM' => 'CM',
             'T_M'  => 'M',
+        ];
+
+        $this->values = [
+            'T_I'  => 1,
+            'T_IV' => 4,
+            'T_V'  => 5,
+            'T_IX' => 9,
+            'T_X'  => 10,
+            'T_XL' => 40,
+            'T_L'  => 50,
+            'T_XC' => 90,
+            'T_C'  => 100,
+            'T_CD' => 400,
+            'T_D'  => 500,
+            'T_CM' => 900,
+            'T_M'  => 1000,
         ];
     }
 
@@ -46,10 +64,19 @@ class GrammarTest extends TestCase
         }
     }
 
+    /**
+     * Test Available Tokens
+     */
     public function testAvailableTokens()
     {
-        $grammar = new Grammar();
+        $this->assertSame($this->tokens, $this->grammar->getTokens());
+    }
 
-        $this->assertSame($this->tokens, $grammar->getTokens());
+    /**
+     * Test Values
+     */
+    public function testValues()
+    {
+        $this->assertSame($this->values, $this->grammar->getValues());
     }
 }
