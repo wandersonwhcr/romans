@@ -44,7 +44,7 @@ class IntToRoman
         $result = '';
 
         foreach ($values as $token => $current) {
-            while ($value >= $current) {
+            while ($current > 0 && $value >= $current) {
                 $value  = $value - $current;
                 $result = $result . $tokens[$token];
             }
