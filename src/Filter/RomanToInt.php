@@ -87,6 +87,6 @@ class RomanToInt
      */
     public function filter(string $value) : int
     {
-        return 1;
+        return $this->getParser()->parse($this->getLexer()->tokenize($value));
     }
 }

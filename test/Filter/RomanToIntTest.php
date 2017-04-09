@@ -40,5 +40,35 @@ class RomanToIntTest extends TestCase
     public function testFilter()
     {
         $this->assertSame(1, $this->filter->filter('I'));
+        $this->assertSame(5, $this->filter->filter('V'));
+        $this->assertSame(10, $this->filter->filter('X'));
+    }
+
+    /**
+     * Test Filter with Multiple
+     */
+    public function testFilterWithMultiple()
+    {
+        $this->assertSame(68, $this->filter->filter('LXVIII'));
+        $this->assertSame(1537, $this->filter->filter('MDXXXVII'));
+    }
+
+    /**
+     * Test Filter with Lookahead
+     */
+    public function testFilterWithLookahead()
+    {
+        $this->assertSame(4, $this->filter->filter('IV'));
+        $this->assertSame(9, $this->filter->filter('IX'));
+        $this->assertSame(40, $this->filter->filter('XL'));
+    }
+
+    /**
+     * Test Filter with Multiple Lookahead
+     */
+    public function testFilterWithMultipleLookahead()
+    {
+        $this->assertSame(469, $this->filter->filter('CDLXIX'));
+        $this->assertSame(1999, $this->filter->filter('MCMXCIX'));
     }
 }
