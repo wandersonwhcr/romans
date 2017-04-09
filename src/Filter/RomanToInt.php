@@ -2,11 +2,80 @@
 
 namespace Romans\Filter;
 
+use Romans\Lexer\Lexer;
+use Romans\Parser\Parser;
+
 /**
  * Roman to Int
  */
 class RomanToInt
 {
+    /**
+     * Lexer
+     * @type Lexer
+     */
+    private $lexer;
+
+    /**
+     * Parser
+     * @type Parser
+     */
+    private $parser;
+
+    /**
+     * Default Constructor
+     */
+    public function __construct()
+    {
+        $this
+            ->setLexer(new Lexer())
+            ->setParser(new Parser());
+    }
+
+    /**
+     * Set Lexer
+     *
+     * @param  Lexer $lexer Lexer Object
+     * @return self  Fluent Interface
+     */
+    public function setLexer(Lexer $lexer) : self
+    {
+        $this->lexer = $lexer;
+        return $this;
+    }
+
+    /**
+     * Get Lexer
+     *
+     * @return Lexer Lexer Object
+     */
+    public function getLexer() : Lexer
+    {
+        return $this->lexer;
+    }
+
+    /**
+     * Set Parser
+     *
+     * @param  Parser $parser Parser Object
+     * @return self   Fluent Interface
+     */
+    public function setParser(Parser $parser) : self
+    {
+        $this->parser = $parser;
+        return $this;
+    }
+
+    /**
+     * Get Parser
+     *
+     * @return Parser Parser Object
+     */
+    public function getParser() : Parser
+    {
+        return $this->parser;
+    }
+
     /**
      * Filter Roman Number to Integer
      *
