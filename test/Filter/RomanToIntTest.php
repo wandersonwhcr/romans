@@ -4,6 +4,7 @@ namespace RomansTest\Filter;
 
 use PHPUnit\Framework\TestCase;
 use Romans\Filter\RomanToInt;
+use Romans\Grammar\Grammar;
 use Romans\Lexer\Lexer;
 use Romans\Parser\Parser;
 
@@ -25,13 +26,14 @@ class RomanToIntTest extends TestCase
      */
     public function testConstructor()
     {
-        $this->assertInstanceOf(Lexer::class, $this->filter->getLexer());
-        $this->assertInstanceOf(Parser::class, $this->filter->getParser());
+        $grammar = new Grammar();
+        $filter  = new RomanToInt($grammar);
 
-        $this->assertSame(
-            $this->filter->getLexer()->getGrammar(),
-            $this->filter->getParser()->getGrammar()
-        );
+        $this->assertInstanceOf(Lexer::class, $filter->getLexer());
+        $this->assertInstanceOf(Parser::class, $filter->getParser());
+
+        $this->assertSame($grammar, $filter->getLexer()->getGrammar());
+        $this->assertSame($grammar, $filter->getParser()->getGrammar());
     }
 
     /**
