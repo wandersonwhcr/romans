@@ -64,6 +64,30 @@ $tokens = [
 $result = $parser->parse($tokens); // 1999
 ```
 
+### Exception Handling
+
+The filter `RomanToInt` uses Lexer to tokenize the input and Parser to build the
+Integer number. When some error is found, the Lexer or Parser throw Exceptions
+to notify the problem.
+
+```php
+use Romans\Filter\RomanToInt;
+use Romans\Lexer\Exception as LexerException;
+use Romans\Parser\Exception as ParserException;
+
+$filter = new RomanToInt();
+
+try {
+    $filter->filter($input);
+} catch (LexerException $e) {
+    // Unknown Token
+} catch (ParserException $e) {
+    // Invalid Token Type (Not String)
+    // Unknown Token
+    // Invalid Roman Number
+}
+```
+
 ## References
 
 * Rapid Tables: [How to Convert Roman Numerals to Numbers](http://www.rapidtables.com/convert/number/how-roman-numerals-to-number.htm)
