@@ -27,6 +27,11 @@ class RomanToIntTest extends TestCase
     {
         $this->assertInstanceOf(Lexer::class, $this->filter->getLexer());
         $this->assertInstanceOf(Parser::class, $this->filter->getParser());
+
+        $this->assertSame(
+            $this->filter->getLexer()->getGrammar(),
+            $this->filter->getParser()->getGrammar()
+        );
     }
 
     /**

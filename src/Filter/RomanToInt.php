@@ -2,6 +2,7 @@
 
 namespace Romans\Filter;
 
+use Romans\Grammar\Grammar;
 use Romans\Lexer\Lexer;
 use Romans\Parser\Parser;
 
@@ -27,9 +28,11 @@ class RomanToInt
      */
     public function __construct()
     {
+        $grammar = new Grammar();
+
         $this
-            ->setLexer(new Lexer())
-            ->setParser(new Parser());
+            ->setLexer(new Lexer($grammar))
+            ->setParser(new Parser($grammar));
     }
 
     /**
