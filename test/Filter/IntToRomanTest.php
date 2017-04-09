@@ -64,10 +64,7 @@ class IntToRomanTest extends TestCase
      */
     public function testFilterWithZero()
     {
-        $this->expectException(FilterException::class);
-        $this->expectExceptionMessage('Invalid integer: 0');
-
-        $this->filter->filter(0);
+        $this->assertSame('N', $this->filter->filter(0));
     }
 
     /**

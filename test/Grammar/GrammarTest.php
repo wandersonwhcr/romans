@@ -19,6 +19,7 @@ class GrammarTest extends TestCase
         $this->grammar = new Grammar();
 
         $this->tokens = [
+            'T_N'  => 'N',
             'T_I'  => 'I',
             'T_IV' => 'IV',
             'T_V'  => 'V',
@@ -35,6 +36,7 @@ class GrammarTest extends TestCase
         ];
 
         $this->values = [
+            'T_N'  => 0,
             'T_I'  => 1,
             'T_IV' => 4,
             'T_V'  => 5,

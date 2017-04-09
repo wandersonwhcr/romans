@@ -114,4 +114,34 @@ class ParserTest extends TestCase
 
         $this->parser->parse([Grammar::T_X, Grammar::T_X, Grammar::T_C]);
     }
+
+    /**
+     * Test Parse with Zero
+     */
+    public function testParseWithZero()
+    {
+        $this->assertSame(0, $this->parser->parse([Grammar::T_N]));
+    }
+
+    /**
+     * Test Invalid Syntax with Zero
+     */
+    public function testInvalidSyntaxWithZero()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+
+        $this->parser->parse([Grammar::T_N, Grammar::T_I]);
+    }
+
+    /**
+     * Test Another Invalid Syntax with Zero
+     */
+    public function testAnotherInvalidSyntaxWithZero()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+
+        $this->parser->parse([Grammar::T_I, Grammar::T_N]);
+    }
 }
