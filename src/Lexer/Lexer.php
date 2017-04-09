@@ -14,10 +14,16 @@ class Lexer
 
     /**
      * Default Constructor
+     *
+     * @param Grammar $grammar Grammar Object
      */
-    public function __construct()
+    public function __construct(Grammar $grammar = null)
     {
-        $this->setGrammar(new Grammar());
+        if (! isset($grammar)) {
+            $grammar = new Grammar();
+        }
+
+        $this->setGrammar($grammar);
     }
 
     /**
