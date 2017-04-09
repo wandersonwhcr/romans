@@ -58,7 +58,7 @@ $tokens = [
     1 => 'CM', // Grammar::T_CM
     2 => 'XC', // Grammar::T_XC
     3 => 'IX', // Grammar::T_IX
-]
+];
 */
 
 $result = $parser->parse($tokens); // 1999
