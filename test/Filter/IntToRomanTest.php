@@ -39,4 +39,22 @@ class IntToRomanTest extends TestCase
         $this->assertSame('V', $this->filter->filter(5));
         $this->assertSame('X', $this->filter->filter(10));
     }
+
+    /**
+     * Test Filter with Multiple Tokens Result
+     */
+    public function testFilterWithMultipleTokensResult()
+    {
+        $this->assertSame('III', $this->filter->filter(3));
+        $this->assertSame('DLV', $this->filter->filter(555));
+    }
+
+    /**
+     * Test Filter with Lookahead
+     */
+    public function testFilterWithLookahead()
+    {
+        $this->assertSame('CDLXIX', $this->filter->filter(469));
+        $this->assertSame('MCMXCIX', $this->filter->filter(1999));
+    }
 }

@@ -42,7 +42,7 @@ class IntToRoman
         foreach ($values as $token => $current) {
             while ($value >= $current) {
                 $value  = $value - $current;
-                $result = $tokens[$token];
+                $result = $result . $tokens[$token];
             }
         }
 
