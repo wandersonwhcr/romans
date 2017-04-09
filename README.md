@@ -35,3 +35,31 @@ stable version.
     }
 }
 ```
+
+## Advanced Usage
+
+The `Romans` package uses a Lexer-Parser approach to convert Roman number to
+Integer, using a Grammar Token library.
+
+```php
+use Romans\Grammar\Grammar;
+use Romans\Lexer\Lexer;
+use Romans\Parser\Parser;
+
+$grammar = new Grammar();
+$lexer   = new Lexer($grammar);
+$parser  = new Parser($grammar);
+
+$tokens = $lexer->tokenize('MCMXCIX');
+
+/*
+$tokens = [
+    0 => 'M',  // Grammar::T_M
+    1 => 'CM', // Grammar::T_CM
+    2 => 'XC', // Grammar::T_XC
+    3 => 'IX', // Grammar::T_IX
+]
+*/
+
+$result = $parser->parse($tokens); // 1999
+```
