@@ -73,4 +73,12 @@ class RomanToIntTest extends TestCase
         $this->assertSame(469, $this->filter->filter('CDLXIX'));
         $this->assertSame(1999, $this->filter->filter('MCMXCIX'));
     }
+
+    /**
+     * Test Filter with Zero
+     */
+    public function testFilterWithZero()
+    {
+        $this->assertSame(0, $this->filter->filter('N'));
+    }
 }
