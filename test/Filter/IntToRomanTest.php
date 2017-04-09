@@ -3,6 +3,7 @@
 namespace RomansTest\Filter;
 
 use PHPUnit\Framework\TestCase;
+use Romans\Filter\Exception as FilterException;
 use Romans\Filter\IntToRoman;
 use Romans\Grammar\Grammar;
 
@@ -56,5 +57,27 @@ class IntToRomanTest extends TestCase
     {
         $this->assertSame('CDLXIX', $this->filter->filter(469));
         $this->assertSame('MCMXCIX', $this->filter->filter(1999));
+    }
+
+    /**
+     * Test Filter with Zero
+     */
+    public function testFilterWithZero()
+    {
+        $this->expectException(FilterException::class);
+        $this->expectExceptionMessage('Invalid integer: 0');
+
+        $this->filter->filter(0);
+    }
+
+    /**
+     * Test Filter with Negative
+     */
+    public function testFilterWithNegative()
+    {
+        $this->expectException(FilterException::class);
+        $this->expectExceptionMessage('Invalid integer: -1');
+
+        $this->filter->filter(-1);
     }
 }

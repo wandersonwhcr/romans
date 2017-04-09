@@ -34,6 +34,10 @@ class IntToRoman
      */
     public function filter(int $value) : string
     {
+        if ($value <= 0) {
+            throw new Exception(sprintf('Invalid integer: %d', $value));
+        }
+
         $tokens = $this->getGrammar()->getTokens();
         $values = array_reverse($this->getGrammar()->getValues());
 
