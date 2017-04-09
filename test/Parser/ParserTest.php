@@ -114,4 +114,12 @@ class ParserTest extends TestCase
 
         $this->parser->parse([Grammar::T_X, Grammar::T_X, Grammar::T_C]);
     }
+
+    /**
+     * Test Parse with Zero
+     */
+    public function testParseWithZero()
+    {
+        $this->assertSame(0, $this->parser->parse([Grammar::T_N]));
+    }
 }
