@@ -8,6 +8,12 @@ A Simple PHP Roman Numerals Library
 use Romans\Filter\RomanToInt;
 
 $filter = new RomanToInt();
-
 $result = $filter->filter('MCMXCIX'); // 1999
+```
+
+```php
+use Romans\Filter\IntToRoman;
+
+$filter = new IntToRoman();
+$result = $filter->filter(1999); // MCMXCIX
 ```
