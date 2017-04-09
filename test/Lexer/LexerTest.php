@@ -109,4 +109,12 @@ class LexerTest extends TestCase
     {
         $this->assertSame([], $this->lexer->tokenize(''));
     }
+
+    /**
+     * Test Tokenize with Zero
+     */
+    public function testTokenizeWithZero()
+    {
+        $this->assertSame([Grammar::T_N], $this->lexer->tokenize('N'));
+    }
 }
