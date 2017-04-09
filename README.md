@@ -108,3 +108,8 @@ $result = $filter->filter(0); // N
 
 * Rapid Tables: [How to Convert Roman Numerals to Numbers](http://www.rapidtables.com/convert/number/how-roman-numerals-to-number.htm)
 * Wikipedia: [Zero in Roman Numerals](https://en.wikipedia.org/wiki/Roman_numerals#Zero)
+
+## License
+
+This package is opensource and available under license MIT described in
+[LICENSE](https://github.com/wandersonwhcr/romans/blob/master/LICENSE).
