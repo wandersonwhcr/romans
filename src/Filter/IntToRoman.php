@@ -34,6 +34,18 @@ class IntToRoman
      */
     public function filter(int $value) : string
     {
-        return 'I';
+        $tokens = $this->getGrammar()->getTokens();
+        $values = array_reverse($this->getGrammar()->getValues());
+
+        $result = '';
+
+        foreach ($values as $token => $current) {
+            while ($value >= $current) {
+                $value  = $value - $current;
+                $result = $tokens[$token];
+            }
+        }
+
+        return $result;
     }
 }

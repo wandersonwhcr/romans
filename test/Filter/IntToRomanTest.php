@@ -36,5 +36,7 @@ class IntToRomanTest extends TestCase
     public function testFilter()
     {
         $this->assertSame('I', $this->filter->filter(1));
+        $this->assertSame('V', $this->filter->filter(5));
+        $this->assertSame('X', $this->filter->filter(10));
     }
 }
