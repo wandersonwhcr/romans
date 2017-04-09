@@ -88,6 +88,22 @@ try {
 }
 ```
 
+### Zero
+
+The zero value is represented as `string` `"N"`, the initial of _nulla_ or of
+_nihil_, the Latin word for "nothing" (see references).
+
+```php
+use Romans\Filter\RomanToInt;
+use Romans\Filter\IntToRoman;
+
+$filter = new RomanToInt();
+$result = $filter->filter('N'); // 0 (Zero)
+
+$filter = new IntToRoman();
+$result = $filter->filter(0); // N
+```
+
 ## References
 
 * Rapid Tables: [How to Convert Roman Numerals to Numbers](http://www.rapidtables.com/convert/number/how-roman-numerals-to-number.htm)
