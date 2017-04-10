@@ -135,6 +135,17 @@ class ParserTest extends TestCase
     }
 
     /**
+     * Test Invalid Syntax with Empty
+     */
+    public function testInvalidSyntaxWithEmpty()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+
+        $this->parser->parse([]);
+    }
+
+    /**
      * Test Another Invalid Syntax with Zero
      */
     public function testAnotherInvalidSyntaxWithZero()
