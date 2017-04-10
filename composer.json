@@ -2,7 +2,7 @@
     "name": "wandersonwhcr/romans",
     "description": "A Simple PHP Roman Numerals Library",
     "type": "library",
-    "keywords": ["roman-numerals"],
+    "keywords": ["filter", "validator", "roman", "roman-number", "roman-numeral", "converter", "format"],
     "autoload": {
         "psr-4": {
             "Romans\\": "src"
