@@ -2,6 +2,8 @@
 
 A Simple PHP Roman Numerals Library
 
+[![Build Status](https://travis-ci.org/wandersonwhcr/romans.svg?branch=master)](https://travis-ci.org/wandersonwhcr/romans)
+
 ## Usage
 
 This library includes a simple couple of filters to convert a `string` with
