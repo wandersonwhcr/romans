@@ -31,7 +31,7 @@ stable version.
 ```json
 {
     "require": {
-        "wandersonwhcr/romans": "1.0.*"
+        "wandersonwhcr/romans": "^1.0"
     }
 }
 ```
