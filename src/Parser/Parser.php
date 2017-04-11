@@ -45,8 +45,13 @@ class Parser
 
         $result    = 0;
         $lastValue = null;
+        $length    = count($tokens);
 
-        if (count($tokens) === 1) {
+        if ($length === 0) {
+            throw new Exception('Invalid Roman Number');
+        }
+
+        if ($length === 1) {
             $token = current($tokens);
             $value = $values[$tokensAvailable[$token]];
 
