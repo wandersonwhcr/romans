@@ -3,7 +3,7 @@
     "description": "A Simple PHP Roman Numerals Library",
     "license": "MIT",
     "type": "library",
-    "keywords": ["roman-numerals"],
+    "keywords": ["filter", "validator", "roman", "roman-number", "roman-numeral", "converter", "format"],
     "autoload": {
         "psr-4": {
             "Romans\\": "src"
