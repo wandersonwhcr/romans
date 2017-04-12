@@ -18,8 +18,9 @@
         "php": "^7.0"
     },
     "require-dev": {
+        "phpmd/phpmd": "2.6.*",
         "phpunit/phpunit": "6.1.*",
-        "phpmd/phpmd": "2.6.*"
+        "sebastian/phpcpd": "3.0.*"
     },
     "extra": {
         "branch-alias": {
