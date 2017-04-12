@@ -4,6 +4,7 @@ A Simple PHP Roman Numerals Library
 
 [![Build Status](https://travis-ci.org/wandersonwhcr/romans.svg?branch=master)](https://travis-ci.org/wandersonwhcr/romans)
 [![Latest Stable Version](https://poser.pugx.org/wandersonwhcr/romans/v/stable?format=flat)](https://packagist.org/packages/wandersonwhcr/romans)
+[![License](https://poser.pugx.org/wandersonwhcr/romans/license?format=flat)](https://packagist.org/packages/wandersonwhcr/romans)
 
 ## Usage
 
