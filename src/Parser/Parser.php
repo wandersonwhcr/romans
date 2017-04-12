@@ -13,12 +13,6 @@ class Parser
     use GrammarAwareTrait;
 
     /**
-     * Grammar
-     * @type Grammar
-     */
-    private $grammar;
-
-    /**
      * Default Constructor
      *
      * @param Grammar $grammar Grammar Object
