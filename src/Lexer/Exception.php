@@ -9,4 +9,5 @@ use Exception as BaseException;
  */
 class Exception extends BaseException
 {
+    const UNKNOWN_TOKEN = 1;
 }
