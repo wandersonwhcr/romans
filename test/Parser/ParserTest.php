@@ -155,4 +155,26 @@ class ParserTest extends TestCase
 
         $this->parser->parse([Grammar::T_I, Grammar::T_N]);
     }
+
+    /**
+     * Test Parse with One Unknown Token
+     */
+    public function testParseWithOneUnknownToken()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Unknown token "." at position 0');
+
+        $this->parser->parse(['.']);
+    }
+
+    /**
+     * Test Parse with One Invalid Token
+     */
+    public function testParseWithOneInvalidToken()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid token type "integer" at position 0');
+
+        $this->parser->parse([0]);
+    }
 }

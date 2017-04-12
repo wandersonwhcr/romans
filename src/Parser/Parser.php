@@ -51,16 +51,6 @@ class Parser
             throw new Exception('Invalid Roman Number');
         }
 
-        if ($length === 1) {
-            $token = current($tokens);
-            $value = $values[$tokensAvailable[$token]];
-
-            if ($value === 0) {
-                // Special Case: One Token with Nulla
-                return 0;
-            }
-        }
-
         foreach ($tokens as $position => $token) {
             if (! is_string($token)) {
                 throw new Exception(sprintf('Invalid token type "%s" at position %d', gettype($token), $position));
@@ -72,7 +62,9 @@ class Parser
 
             $value = $values[$tokensAvailable[$token]];
 
-            if ($value === 0) {
+            // $value === 0 && $length === 1? One Token with Nulla
+
+            if ($value === 0 && $length !== 1) {
                 throw new Exception('Invalid Roman Number');
             }
 
