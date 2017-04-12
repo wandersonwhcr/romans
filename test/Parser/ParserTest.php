@@ -80,7 +80,12 @@ class ParserTest extends TestCase
         $this->expectExceptionMessage('Invalid token type "integer" at position 1');
         $this->expectExceptionCode(ParserException::INVALID_TOKEN_TYPE);
 
-        $this->parser->parse([Grammar::T_X, 0, Grammar::T_I]);
+        try {
+            $this->parser->parse([Grammar::T_X, 0, Grammar::T_I]);
+        } catch (ParserException $e) {
+            $this->assertSame(1, $e->getPosition());
+            throw $e;
+        }
     }
 
     /**
@@ -92,7 +97,12 @@ class ParserTest extends TestCase
         $this->expectExceptionMessage('Unknown token "." at position 1');
         $this->expectExceptionCode(ParserException::UNKNOWN_TOKEN);
 
-        $this->parser->parse([Grammar::T_X, '.', Grammar::T_I]);
+        try {
+            $this->parser->parse([Grammar::T_X, '.', Grammar::T_I]);
+        } catch (ParserException $e) {
+            $this->assertSame(1, $e->getPosition());
+            throw $e;
+        }
     }
 
     /**

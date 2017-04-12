@@ -63,17 +63,25 @@ class Parser
 
         foreach ($tokens as $position => $token) {
             if (! is_string($token)) {
-                throw new Exception(
+                $exception = new Exception(
                     sprintf('Invalid token type "%s" at position %d', gettype($token), $position),
                     Exception::INVALID_TOKEN_TYPE
                 );
+
+                $exception->setPosition($position);
+
+                throw $exception;
             }
 
             if (! isset($tokensAvailable[$token])) {
-                throw new Exception(
+                $exception = new Exception(
                     sprintf('Unknown token "%s" at position %d', $token, $position),
                     Exception::UNKNOWN_TOKEN
                 );
+
+                $exception->setPosition($position);
+
+                throw $exception;
             }
 
             $value = $values[$tokensAvailable[$token]];
