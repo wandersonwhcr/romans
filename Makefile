@@ -13,4 +13,5 @@ optimize: install
 .PHONY: test
 test:
 	php vendor/bin/phpunit
+	php vendor/bin/phpcpd src
 	php vendor/bin/phpmd src text phpmd.xml
