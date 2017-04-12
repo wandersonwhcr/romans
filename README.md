@@ -70,7 +70,7 @@ $result = $parser->parse($tokens); // 1999
 
 The filter `RomanToInt` uses Lexer to tokenize the input and Parser to build the
 Integer number. When some error is found, the Lexer or Parser throw Exceptions
-to notify the problem.
+to notify the problem with specific code.
 
 ```php
 use Romans\Filter\RomanToInt;
@@ -82,11 +82,11 @@ $filter = new RomanToInt();
 try {
     $filter->filter($input);
 } catch (LexerException $e) {
-    // Unknown Token
+    // Unknown Token (LexerException::UNKNOWN_TOKEN)
 } catch (ParserException $e) {
-    // Invalid Token Type (Not String)
-    // Unknown Token
-    // Invalid Roman Number
+    // Invalid Token Type (Not String) (ParserException::INVALID_TOKEN_TYPE)
+    // Unknown Token (ParserException::UNKNOWN_TOKEN)
+    // Invalid Roman (ParserException::INVALID_ROMAN)
 }
 ```
 

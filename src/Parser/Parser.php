@@ -48,7 +48,7 @@ class Parser
         $length    = count($tokens);
 
         if ($length === 0) {
-            throw new Exception('Invalid Roman Number');
+            throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
         }
 
         if ($length === 1) {
@@ -63,21 +63,35 @@ class Parser
 
         foreach ($tokens as $position => $token) {
             if (! is_string($token)) {
-                throw new Exception(sprintf('Invalid token type "%s" at position %d', gettype($token), $position));
+                $exception = new Exception(
+                    sprintf('Invalid token type "%s" at position %d', gettype($token), $position),
+                    Exception::INVALID_TOKEN_TYPE
+                );
+
+                $exception->setPosition($position);
+
+                throw $exception;
             }
 
             if (! isset($tokensAvailable[$token])) {
-                throw new Exception(sprintf('Unknown token "%s" at position %d', $token, $position));
+                $exception = new Exception(
+                    sprintf('Unknown token "%s" at position %d', $token, $position),
+                    Exception::UNKNOWN_TOKEN
+                );
+
+                $exception->setPosition($position);
+
+                throw $exception;
             }
 
             $value = $values[$tokensAvailable[$token]];
 
             if ($value === 0) {
-                throw new Exception('Invalid Roman Number');
+                throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
             }
 
             if (isset($lastValue) && $lastValue < $value) {
-                throw new Exception('Invalid Roman Number');
+                throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
             }
 
             $result    = $result + $value;

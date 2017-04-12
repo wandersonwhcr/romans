@@ -74,6 +74,7 @@ class IntToRomanTest extends TestCase
     {
         $this->expectException(FilterException::class);
         $this->expectExceptionMessage('Invalid integer: -1');
+        $this->expectExceptionCode(FilterException::INVALID_INTEGER);
 
         $this->filter->filter(-1);
     }
