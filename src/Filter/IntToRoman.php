@@ -35,7 +35,7 @@ class IntToRoman
     public function filter(int $value) : string
     {
         if ($value < 0) {
-            throw new Exception(sprintf('Invalid integer: %d', $value));
+            throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);
         }
 
         $tokens = $this->getGrammar()->getTokens();
