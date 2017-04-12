@@ -103,7 +103,7 @@ $filter = new IntToRoman();
 try {
     $filter->filter($input);
 } catch (FilterException $e) {
-    // Invalid Integer (< 0)
+    // Invalid Integer (< 0) (FilterException::INVALID_INTEGER)
 }
 ```
 
