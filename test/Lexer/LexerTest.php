@@ -85,6 +85,7 @@ class LexerTest extends TestCase
         try {
             $this->lexer->tokenize('XV.I');
         } catch (LexerException $e) {
+            $this->assertSame('.', $e->getToken());
             $this->assertSame(2, $e->getPosition());
             throw $e;
         }

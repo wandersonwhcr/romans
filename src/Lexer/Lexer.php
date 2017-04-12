@@ -50,7 +50,9 @@ class Lexer
                     Exception::UNKNOWN_TOKEN
                 );
 
-                $exception->setPosition($position);
+                $exception
+                    ->setToken($current)
+                    ->setPosition($position);
 
                 throw $exception;
             }

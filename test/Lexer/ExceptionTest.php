@@ -28,6 +28,30 @@ class ExceptionTest extends TestCase
     }
 
     /**
+     * Test Token
+     */
+    public function testToken()
+    {
+        $this->assertNull($this->exception->getToken());
+
+        $this->assertSame($this->exception, $this->exception->setToken('.'));
+        $this->assertSame('.', $this->exception->getToken());
+
+        $this->assertSame($this->exception, $this->exception->setToken(null));
+        $this->assertNull($this->exception->getToken());
+    }
+
+    /**
+     * Test Token with Invalid Type
+     */
+    public function testTokenWithInvalidType()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->exception->setToken(0);
+    }
+
+    /**
      * Test Position
      */
     public function testPosition()

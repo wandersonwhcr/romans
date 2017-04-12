@@ -15,16 +15,50 @@ class Exception extends BaseException
     const INVALID_ROMAN      = 4;
 
     /**
+     * Token
+     * @type string|null
+     */
+    private $token;
+
+    /**
      * Position
      * @type int|null
      */
     private $position;
 
     /**
+     * Set Token
+     *
+     * @param  string|null $token Token Value
+     * @return self        Fluent Interface
+     */
+    public function setToken($token) : self
+    {
+        if (! (is_string($token) || is_null($token))) {
+            throw new InvalidArgumentException(
+                sprintf('Invalid $token type: "%s". Must be "string" or "null"', gettype($token))
+            );
+        }
+
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * Get Token
+     *
+     * @return string|null Token Value
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
      * Set Position
      *
-     * @param  int|null  $position Position Value
-     * @return self Fluent Interface
+     * @param  int|null $position Position Value
+     * @return self     Fluent Interface
      */
     public function setPosition($position) : self
     {

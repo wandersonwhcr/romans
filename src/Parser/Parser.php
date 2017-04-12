@@ -63,7 +63,9 @@ class Parser
                     Exception::UNKNOWN_TOKEN
                 );
 
-                $exception->setPosition($position);
+                $exception
+                    ->setToken($token)
+                    ->setPosition($position);
 
                 throw $exception;
             }
