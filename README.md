@@ -90,6 +90,23 @@ try {
 }
 ```
 
+You can use this structure to validate Roman numbers, adding a _try..catch_
+block to check if `$input` is valid. Also, you can validate if an Integer can be
+filtered to Roman using a `IntToRoman` filter.
+
+```php
+use Romans\Filter\IntToRoman;
+use Romans\Filter\Exception as FilterException;
+
+$filter = new IntToRoman();
+
+try {
+    $filter->filter($input);
+} catch (FilterException $e) {
+    // Invalid Integer (< 0)
+}
+```
+
 ### Zero
 
 The zero value is represented as `string` `"N"`, the initial of _nulla_ or of
