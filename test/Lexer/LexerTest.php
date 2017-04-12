@@ -82,7 +82,12 @@ class LexerTest extends TestCase
         $this->expectExceptionMessage('Unknown token "." at position 2');
         $this->expectExceptionCode(LexerException::UNKNOWN_TOKEN);
 
-        $this->lexer->tokenize('XV.I');
+        try {
+            $this->lexer->tokenize('XV.I');
+        } catch (LexerException $e) {
+            $this->assertSame(2, $e->getPosition());
+            throw $e;
+        }
     }
 
     /**
