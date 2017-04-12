@@ -45,7 +45,10 @@ class Lexer
             $current = $content[$position];
 
             if (! isset($numerals[$current])) {
-                throw new Exception(sprintf('Unknown token "%s" at position %d', $current, $position));
+                throw new Exception(
+                    sprintf('Unknown token "%s" at position %d', $current, $position),
+                    Exception::UNKNOWN_TOKEN
+                );
             }
 
             // Lookahead

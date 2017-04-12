@@ -58,6 +58,7 @@ class LexerTest extends TestCase
     public function testInvalidToken()
     {
         $this->expectException(LexerException::class);
+        $this->expectExceptionCode(LexerException::UNKNOWN_TOKEN);
 
         $this->lexer->tokenize('.');
     }
@@ -79,6 +80,7 @@ class LexerTest extends TestCase
     {
         $this->expectException(LexerException::class);
         $this->expectExceptionMessage('Unknown token "." at position 2');
+        $this->expectExceptionCode(LexerException::UNKNOWN_TOKEN);
 
         $this->lexer->tokenize('XV.I');
     }
