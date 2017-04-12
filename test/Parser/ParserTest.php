@@ -83,6 +83,7 @@ class ParserTest extends TestCase
         try {
             $this->parser->parse([Grammar::T_X, 0, Grammar::T_I]);
         } catch (ParserException $e) {
+            $this->assertNull($e->getToken());
             $this->assertSame(1, $e->getPosition());
             throw $e;
         }
@@ -100,6 +101,7 @@ class ParserTest extends TestCase
         try {
             $this->parser->parse([Grammar::T_X, '.', Grammar::T_I]);
         } catch (ParserException $e) {
+            $this->assertSame('.', $e->getToken());
             $this->assertSame(1, $e->getPosition());
             throw $e;
         }
