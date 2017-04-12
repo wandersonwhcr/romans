@@ -16,3 +16,4 @@ test:
 	php vendor/bin/phpunit
 	php vendor/bin/phpcpd src
 	php vendor/bin/phpmd src text phpmd.xml
+	php vendor/bin/phpcs
