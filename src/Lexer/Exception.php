@@ -12,6 +12,10 @@ class Exception extends BaseException
 {
     const UNKNOWN_TOKEN = 1;
 
+    /**
+     * Position
+     * @type int|null
+     */
     private $position;
 
     /**
