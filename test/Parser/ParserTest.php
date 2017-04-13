@@ -196,4 +196,16 @@ class ParserTest extends TestCase
 
         $this->parser->parse([0]);
     }
+
+    /**
+     * Test Parse with Two Tokens with Lookahead
+     */
+    public function testParseWithTwoTokensWithLookahead()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+        $this->expectExceptionCode(ParserException::INVALID_ROMAN);
+
+        $this->parser->parse([Grammar::T_IX, Grammar::T_IX]);
+    }
 }
