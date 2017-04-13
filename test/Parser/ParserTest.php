@@ -220,4 +220,32 @@ class ParserTest extends TestCase
 
         $this->parser->parse([Grammar::T_IX, Grammar::T_V]);
     }
+
+    /**
+     * Test Parse with Four Simple Tokens in Sequence
+     */
+    public function testParseWithFourSimpleTokensInSequence()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+        $this->expectExceptionCode(ParserException::INVALID_ROMAN);
+
+        $this->parser->parse([Grammar::T_I, Grammar::T_I, Grammar::T_I, Grammar::T_I]);
+    }
+
+    /**
+     * Test Parse with Tokens in Sequence for Thousands
+     */
+    public function testParseWithTokensInSequenceForThousands()
+    {
+        $this->assertSame(4000, $this->parser->parse([Grammar::T_M, Grammar::T_M, Grammar::T_M, Grammar::T_M]));
+
+        $this->assertSame(5000, $this->parser->parse([
+            Grammar::T_M,
+            Grammar::T_M,
+            Grammar::T_M,
+            Grammar::T_M,
+            Grammar::T_M,
+        ]));
+    }
 }
