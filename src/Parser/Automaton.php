@@ -125,6 +125,11 @@ class Automaton
                     ->setState(self::STATE_G)
                     ->setPosition($this->getPosition() + 1)
                     ->setValue($this->getValue() + 1000);
+            } elseif ($tokens[$this->getPosition()] === self::TOKEN_D) {
+                $this
+                    ->setState(self::STATE_E)
+                    ->setPosition($this->getPosition() + 1)
+                    ->setValue($this->getValue() + 500);
             } elseif ($tokens[$this->getPosition()] === self::TOKEN_N) {
                 $this
                     ->setState(self::STATE_Z)
