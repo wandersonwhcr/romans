@@ -16,6 +16,7 @@ class Automaton
     const STATE_F = 'F';
     const STATE_G = 'G';
 
+    const TOKEN_N = 'N';
     const TOKEN_I = 'I';
     const TOKEN_V = 'V';
     const TOKEN_X = 'X';

@@ -38,6 +38,7 @@ class AutomatonTest extends TestCase
      */
     public function testTokens()
     {
+        $this->assertSame(Automaton::TOKEN_N, 'N');
         $this->assertSame(Automaton::TOKEN_I, 'I');
         $this->assertSame(Automaton::TOKEN_V, 'V');
         $this->assertSame(Automaton::TOKEN_X, 'X');
