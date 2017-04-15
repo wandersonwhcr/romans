@@ -57,11 +57,20 @@ class AutomatonTest extends TestCase
     }
 
     /**
+     * Test Initial Value
+     */
+    public function testInitialValue()
+    {
+        $this->assertSame(0, $this->automaton->getValue());
+    }
+
+    /**
      * Test Zero
      */
     public function testZero()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Automaton::TOKEN_N]));
         $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
+        $this->assertSame(0, $this->automaton->getValue());
     }
 }

@@ -32,6 +32,12 @@ class Automaton
     private $state = self::STATE_G;
 
     /**
+     * Value
+     * @type int
+     */
+    private $value = 0;
+
+    /**
      * Set State
      *
      * @param  string $state State Value
@@ -51,6 +57,28 @@ class Automaton
     public function getState() : string
     {
         return $this->state;
+    }
+
+    /**
+     * Set Value
+     *
+     * @param  int  $value Value
+     * @return self Fluent Interface
+     */
+    protected function setValue(int $value) : self
+    {
+        $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * Get Value
+     *
+     * @return int Value
+     */
+    public function getValue() : int
+    {
+        return $this->value;
     }
 
     /**
