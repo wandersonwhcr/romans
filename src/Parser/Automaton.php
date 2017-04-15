@@ -89,7 +89,24 @@ class Automaton
      */
     public function read(array $tokens) : self
     {
-        $this->setState(self::STATE_Z);
+        $length   = count($tokens);
+        $position = 0;
+
+        while ($position < $length) {
+            if ($tokens[$position] === self::TOKEN_M) {
+                $position = $position + 1;
+
+                $this
+                    ->setValue($this->getValue() + 1000)
+                    ->setState(self::STATE_G);
+            } elseif ($tokens[$position] === self::TOKEN_N) {
+                $position = $position + 1;
+
+                $this
+                    ->setValue($this->getValue() + 0)
+                    ->setState(self::STATE_Z);
+            }
+        }
 
         return $this;
     }
