@@ -52,4 +52,17 @@ class Automaton
     {
         return $this->state;
     }
+
+    /**
+     * Read
+     *
+     * @param  string[] $tokens Tokens
+     * @return self     Fluent Interface
+     */
+    public function read(array $tokens) : self
+    {
+        $this->setState(self::STATE_Z);
+
+        return $this;
+    }
 }
