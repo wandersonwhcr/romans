@@ -19,37 +19,25 @@ class GrammarTest extends TestCase
         $this->grammar = new Grammar();
 
         $this->tokens = [
-            'T_N'  => 'N',
-            'T_I'  => 'I',
-            'T_IV' => 'IV',
-            'T_V'  => 'V',
-            'T_IX' => 'IX',
-            'T_X'  => 'X',
-            'T_XL' => 'XL',
-            'T_L'  => 'L',
-            'T_XC' => 'XC',
-            'T_C'  => 'C',
-            'T_CD' => 'CD',
-            'T_D'  => 'D',
-            'T_CM' => 'CM',
-            'T_M'  => 'M',
+            'T_N' => 'N',
+            'T_I' => 'I',
+            'T_V' => 'V',
+            'T_X' => 'X',
+            'T_L' => 'L',
+            'T_C' => 'C',
+            'T_D' => 'D',
+            'T_M' => 'M',
         ];
 
         $this->values = [
-            'T_N'  => 0,
-            'T_I'  => 1,
-            'T_IV' => 4,
-            'T_V'  => 5,
-            'T_IX' => 9,
-            'T_X'  => 10,
-            'T_XL' => 40,
-            'T_L'  => 50,
-            'T_XC' => 90,
-            'T_C'  => 100,
-            'T_CD' => 400,
-            'T_D'  => 500,
-            'T_CM' => 900,
-            'T_M'  => 1000,
+            'T_N' => 0,
+            'T_I' => 1,
+            'T_V' => 5,
+            'T_X' => 10,
+            'T_L' => 50,
+            'T_C' => 100,
+            'T_D' => 500,
+            'T_M' => 1000,
         ];
     }
 
