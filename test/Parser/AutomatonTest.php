@@ -57,6 +57,14 @@ class AutomatonTest extends TestCase
     }
 
     /**
+     * Test Initial Position
+     */
+    public function testInitialPosition()
+    {
+        $this->assertSame(0, $this->automaton->getPosition());
+    }
+
+    /**
      * Test Initial Value
      */
     public function testInitialValue()
@@ -71,6 +79,7 @@ class AutomatonTest extends TestCase
     {
         $this->assertSame($this->automaton, $this->automaton->read([Automaton::TOKEN_N]));
         $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
+        $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(0, $this->automaton->getValue());
     }
 
@@ -81,6 +90,7 @@ class AutomatonTest extends TestCase
     {
         $this->assertSame($this->automaton, $this->automaton->read([Automaton::TOKEN_M]));
         $this->assertSame(Automaton::STATE_G, $this->automaton->getState());
+        $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(1000, $this->automaton->getValue());
     }
 }

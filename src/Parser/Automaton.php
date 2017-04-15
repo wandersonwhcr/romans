@@ -32,6 +32,12 @@ class Automaton
     private $state = self::STATE_G;
 
     /**
+     * Position
+     * @type int
+     */
+    private $position = 0;
+
+    /**
      * Value
      * @type int
      */
@@ -57,6 +63,28 @@ class Automaton
     public function getState() : string
     {
         return $this->state;
+    }
+
+    /**
+     * Set Position
+     *
+     * @param  int  $value Position Value
+     * @return self Fluent Interface
+     */
+    protected function setPosition(int $position) : self
+    {
+        $this->position = $position;
+        return $this;
+    }
+
+    /**
+     * Get Position
+     *
+     * @return int Position Value
+     */
+    public function getPosition() : int
+    {
+        return $this->position;
     }
 
     /**
@@ -89,22 +117,19 @@ class Automaton
      */
     public function read(array $tokens) : self
     {
-        $length   = count($tokens);
-        $position = 0;
+        $length = count($tokens);
 
-        while ($position < $length) {
-            if ($tokens[$position] === self::TOKEN_M) {
-                $position = $position + 1;
-
+        while ($this->getPosition() < $length) {
+            if ($tokens[$this->getPosition()] === self::TOKEN_M) {
                 $this
-                    ->setValue($this->getValue() + 1000)
-                    ->setState(self::STATE_G);
-            } elseif ($tokens[$position] === self::TOKEN_N) {
-                $position = $position + 1;
-
+                    ->setState(self::STATE_G)
+                    ->setPosition($this->getPosition() + 1)
+                    ->setValue($this->getValue() + 1000);
+            } elseif ($tokens[$this->getPosition()] === self::TOKEN_N) {
                 $this
-                    ->setValue($this->getValue() + 0)
-                    ->setState(self::STATE_Z);
+                    ->setState(self::STATE_Z)
+                    ->setPosition($this->getPosition() + 1)
+                    ->setValue($this->getValue() + 0);
             }
         }
 
