@@ -23,4 +23,32 @@ class Automaton
     const TOKEN_C = 'C';
     const TOKEN_D = 'D';
     const TOKEN_M = 'M';
+
+    /**
+     * State
+     * @type string
+     */
+    private $state = self::STATE_G;
+
+    /**
+     * Set State
+     *
+     * @param  string $state State Value
+     * @return self   Fluent Interface
+     */
+    protected function setState(string $state) : self
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+    /**
+     * Get State
+     *
+     * @return string State Value
+     */
+    public function getState() : string
+    {
+        return $this->state;
+    }
 }

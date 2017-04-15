@@ -46,4 +46,12 @@ class AutomatonTest extends TestCase
         $this->assertSame(Automaton::TOKEN_D, 'D');
         $this->assertSame(Automaton::TOKEN_M, 'M');
     }
+
+    /**
+     * Test Initial State
+     */
+    public function testInitialState()
+    {
+        $this->assertSame(Automaton::STATE_G, $this->automaton->getState());
+    }
 }
