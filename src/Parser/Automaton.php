@@ -120,17 +120,19 @@ class Automaton
         $length = count($tokens);
 
         while ($this->getPosition() < $length) {
-            if ($tokens[$this->getPosition()] === self::TOKEN_M) {
+            $token = $tokens[$this->getPosition()];
+
+            if ($token === self::TOKEN_M) {
                 $this
                     ->setState(self::STATE_G)
                     ->setPosition($this->getPosition() + 1)
                     ->setValue($this->getValue() + 1000);
-            } elseif ($tokens[$this->getPosition()] === self::TOKEN_D) {
+            } elseif ($token === self::TOKEN_D) {
                 $this
                     ->setState(self::STATE_E)
                     ->setPosition($this->getPosition() + 1)
                     ->setValue($this->getValue() + 500);
-            } elseif ($tokens[$this->getPosition()] === self::TOKEN_N) {
+            } elseif ($token === self::TOKEN_N) {
                 $this
                     ->setState(self::STATE_Z)
                     ->setPosition($this->getPosition() + 1)
