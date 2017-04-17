@@ -110,6 +110,21 @@ class Automaton
     }
 
     /**
+     * Reset Counters
+     *
+     * @return self Fluent Interface
+     */
+    protected function reset() : self
+    {
+        $this
+            ->setState(self::STATE_G)
+            ->setPosition(0)
+            ->setValue(0);
+
+        return $this;
+    }
+
+    /**
      * Read
      *
      * @param  string[] $tokens Tokens
@@ -117,6 +132,8 @@ class Automaton
      */
     public function read(array $tokens) : self
     {
+        $this->reset();
+
         $length = count($tokens);
 
         while ($this->getPosition() < $length) {
@@ -146,9 +163,21 @@ class Automaton
                     ->setState(self::STATE_E);
             } elseif ($state === self::STATE_E && $token === self::TOKEN_C) {
                 $this
-                    ->setState(self::STATE_D)
                     ->setPosition($this->getPosition() + 1)
                     ->setValue($this->getValue() + 100);
+
+                // lookahead +1
+                if ($this->getPosition() < $length) {
+                    $token = $tokens[$this->getPosition()];
+                    if ($token === self::TOKEN_C) {
+                        $this
+                            ->setPosition($this->getPosition() + 1)
+                            ->setValue($this->getValue() + 100);
+                    }
+                }
+
+                $this
+                    ->setState(self::STATE_D);
             } else {
                 $exception = new Exception('Invalid Roman', Exception::INVALID_ROMAN);
 
