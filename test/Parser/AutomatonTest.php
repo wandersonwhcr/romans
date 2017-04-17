@@ -4,6 +4,7 @@ namespace RomansTest\Parser;
 
 use PHPUnit\Framework\TestCase;
 use Romans\Parser\Automaton;
+use Romans\Parser\Exception as ParserException;
 
 /**
  * Automaton Test
@@ -108,5 +109,17 @@ class AutomatonTest extends TestCase
         $this->assertSame(Automaton::STATE_E, $this->automaton->getState());
         $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(500, $this->automaton->getValue());
+    }
+
+    /**
+     * Test Invalid Transition
+     */
+    public function testInvalidTransition()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+        $this->expectExceptionCode(ParserException::INVALID_ROMAN);
+
+        $this->automaton->read([Automaton::TOKEN_D, Automaton::TOKEN_M]);
     }
 }

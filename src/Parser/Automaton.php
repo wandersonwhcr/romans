@@ -120,23 +120,35 @@ class Automaton
         $length = count($tokens);
 
         while ($this->getPosition() < $length) {
+            $state = $this->getState();
             $token = $tokens[$this->getPosition()];
 
-            if ($token === self::TOKEN_M) {
-                $this
-                    ->setState(self::STATE_G)
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 1000);
-            } elseif ($token === self::TOKEN_D) {
-                $this
-                    ->setState(self::STATE_E)
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 500);
-            } elseif ($token === self::TOKEN_N) {
+            if ($state === self::STATE_G && $token === self::TOKEN_N) {
                 $this
                     ->setState(self::STATE_Z)
                     ->setPosition($this->getPosition() + 1)
                     ->setValue($this->getValue() + 0);
+            } elseif ($state === self::STATE_G && $token === self::TOKEN_M) {
+                $this
+                    ->setState(self::STATE_G)
+                    ->setPosition($this->getPosition() + 1)
+                    ->setValue($this->getValue() + 1000);
+            } elseif ($state === self::STATE_G) {
+                $this
+                    ->setState(self::STATE_F);
+            } elseif ($state === self::STATE_F && $token === self::TOKEN_D) {
+                $this
+                    ->setState(self::STATE_E)
+                    ->setPosition($this->getPosition() + 1)
+                    ->setValue($this->getValue() + 500);
+            } else {
+                $exception = new Exception('Invalid Roman', Exception::INVALID_ROMAN);
+
+                $exception
+                    ->setToken($token)
+                    ->setPosition($this->getPosition());
+
+                throw $exception;
             }
         }
 
