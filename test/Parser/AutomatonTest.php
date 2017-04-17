@@ -207,4 +207,15 @@ class AutomatonTest extends TestCase
 
         $this->automaton->read([Automaton::TOKEN_X, Automaton::TOKEN_X, Automaton::TOKEN_X, Automaton::TOKEN_X]);
     }
+
+    /**
+     * Test Token V
+     */
+    public function testTokenV()
+    {
+        $this->assertSame($this->automaton, $this->automaton->read([Automaton::TOKEN_V]));
+        $this->assertSame(Automaton::STATE_A, $this->automaton->getState());
+        $this->assertSame(1, $this->automaton->getPosition());
+        $this->assertSame(5, $this->automaton->getValue());
+    }
 }
