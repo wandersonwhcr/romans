@@ -141,6 +141,14 @@ class Automaton
                     ->setState(self::STATE_E)
                     ->setPosition($this->getPosition() + 1)
                     ->setValue($this->getValue() + 500);
+            } elseif ($state === self::STATE_F) {
+                $this
+                    ->setState(self::STATE_E);
+            } elseif ($state === self::STATE_E && $token === self::TOKEN_C) {
+                $this
+                    ->setState(self::STATE_D)
+                    ->setPosition($this->getPosition() + 1)
+                    ->setValue($this->getValue() + 100);
             } else {
                 $exception = new Exception('Invalid Roman', Exception::INVALID_ROMAN);
 
