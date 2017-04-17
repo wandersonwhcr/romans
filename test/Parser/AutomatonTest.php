@@ -218,4 +218,41 @@ class AutomatonTest extends TestCase
         $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(5, $this->automaton->getValue());
     }
+
+    /**
+     * Test Token I
+     */
+    public function testTokenI()
+    {
+        $this->assertSame($this->automaton, $this->automaton->read([Automaton::TOKEN_I]));
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
+        $this->assertSame(1, $this->automaton->getPosition());
+        $this->assertSame(1, $this->automaton->getValue());
+
+        $this->assertSame($this->automaton, $this->automaton->read([Automaton::TOKEN_I, Automaton::TOKEN_I]));
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
+        $this->assertSame(2, $this->automaton->getPosition());
+        $this->assertSame(2, $this->automaton->getValue());
+
+        $this->assertSame($this->automaton, $this->automaton->read([
+            Automaton::TOKEN_I,
+            Automaton::TOKEN_I,
+            Automaton::TOKEN_I,
+        ]));
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
+        $this->assertSame(3, $this->automaton->getPosition());
+        $this->assertSame(3, $this->automaton->getValue());
+    }
+
+    /**
+     * Test Invalid Four Tokens I
+     */
+    public function testInvalidFourTokensI()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+        $this->expectExceptionCode(ParserException::INVALID_ROMAN);
+
+        $this->automaton->read([Automaton::TOKEN_I, Automaton::TOKEN_I, Automaton::TOKEN_I, Automaton::TOKEN_I]);
+    }
 }
