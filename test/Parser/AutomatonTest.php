@@ -147,4 +147,16 @@ class AutomatonTest extends TestCase
         $this->assertSame(3, $this->automaton->getPosition());
         $this->assertSame(300, $this->automaton->getValue());
     }
+
+    /**
+     * Test Invalid Four Tokens C
+     */
+    public function testInvalidFourTokensC()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+        $this->expectExceptionCode(ParserException::INVALID_ROMAN);
+
+        $this->automaton->read([Automaton::TOKEN_C, Automaton::TOKEN_C, Automaton::TOKEN_C, Automaton::TOKEN_C]);
+    }
 }
