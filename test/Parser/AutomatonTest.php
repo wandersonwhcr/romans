@@ -137,5 +137,14 @@ class AutomatonTest extends TestCase
         $this->assertSame(Automaton::STATE_D, $this->automaton->getState());
         $this->assertSame(2, $this->automaton->getPosition());
         $this->assertSame(200, $this->automaton->getValue());
+
+        $this->assertSame($this->automaton, $this->automaton->read([
+            Automaton::TOKEN_C,
+            Automaton::TOKEN_C,
+            Automaton::TOKEN_C,
+        ]));
+        $this->assertSame(Automaton::STATE_D, $this->automaton->getState());
+        $this->assertSame(3, $this->automaton->getPosition());
+        $this->assertSame(300, $this->automaton->getValue());
     }
 }

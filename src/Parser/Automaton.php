@@ -174,6 +174,16 @@ class Automaton
                             ->setPosition($this->getPosition() + 1)
                             ->setValue($this->getValue() + 100);
                     }
+
+                    // lookahed +2
+                    if ($this->getPosition() < $length) {
+                        $token = $tokens[$this->getPosition()];
+                        if ($token === self::TOKEN_C) {
+                            $this
+                                ->setPosition($this->getPosition() + 1)
+                                ->setValue($this->getValue() + 100);
+                        }
+                    }
                 }
 
                 $this
