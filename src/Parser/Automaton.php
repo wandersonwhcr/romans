@@ -156,16 +156,17 @@ class Automaton
      */
     protected function addTokenValue(string $token, string $modifier = null, int $quantity = 1) : self
     {
-        $values = array_combine($this->getGrammar()->getTokens(), $this->getGrammar()->getValues());
-
-        $tokenValue    = $values[$token];
-        $modifierValue = 0;
+        $tokens   = array_flip($this->getGrammar()->getTokens());
+        $values   = $this->getGrammar()->getValuesWithModifiers();
+        $elements = [];
 
         if (isset($modifier)) {
-            $modifierValue = $values[$modifier];
+            $elements[] = $tokens[$modifier];
         }
 
-        $this->addValue(($tokenValue - $modifierValue) * $quantity);
+        $elements[] = $tokens[$token];
+
+        $this->addValue((array_search($elements, $values)) * $quantity);
 
         return $this;
     }
