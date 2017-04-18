@@ -129,6 +129,31 @@ $filter = new IntToRoman();
 $result = $filter->filter(0); // N
 ```
 
+### Deterministic Finite Automaton (DFA)
+
+A DFA was developed to check if a string with Roman number is valid. This
+technique was choiced because some implementations simply convert the `$input`
+without checking some rules, like four chars sequentially.
+
+The current automaton definition is declared below.
+
+```plain
+M  = (Q, Σ, δ, q0, F)
+Q  = { z, a, b, c, d, e, f, g, h }
+Σ  = { I, V, X, L, C, D, M, N }
+q0 = h
+F  = { z }
+
+z -> $h
+a -> z | Iz  | IIz | IIIz
+b -> a | IVz | Va  | IXz
+c -> b | Xb  | XXb | XXXb
+d -> c | XLb | Lc  | XCb
+e -> d | Cd  | CCd | CCCd
+f -> e | CDd | De  | CMd
+g -> f | Nz  | Mg
+```
+
 ## References
 
 * Rapid Tables: [How to Convert Roman Numerals to Numbers](http://www.rapidtables.com/convert/number/how-roman-numerals-to-number.htm)
