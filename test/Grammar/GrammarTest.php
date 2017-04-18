@@ -39,6 +39,15 @@ class GrammarTest extends TestCase
             'T_D' => 500,
             'T_M' => 1000,
         ];
+
+        $this->modifiers = [
+            4   => ['T_I', 'T_V'],
+            9   => ['T_I', 'T_X'],
+            40  => ['T_X', 'T_L'],
+            90  => ['T_X', 'T_C'],
+            400 => ['T_C', 'T_D'],
+            900 => ['T_C', 'T_M'],
+        ];
     }
 
     /**
@@ -63,10 +72,34 @@ class GrammarTest extends TestCase
     }
 
     /**
+     * Test Modifiers
+     */
+    public function testModifiers()
+    {
+        $this->assertSame($this->modifiers, $this->grammar->getModifiers());
+    }
+
+    /**
      * Test Values
      */
     public function testValues()
     {
         $this->assertSame($this->values, $this->grammar->getValues());
+    }
+
+    /**
+     * Test Values with Modifiers
+     */
+    public function testValuesWithModifiers()
+    {
+        $values = array_map(function ($value) {
+            return [$value];
+        }, array_flip($this->values));
+
+        $valuesWithModifiers = $values + $this->modifiers; // merge and keep keys
+
+        ksort($valuesWithModifiers);
+
+        $this->assertSame($valuesWithModifiers, $this->grammar->getValuesWithModifiers());
     }
 }

@@ -53,4 +53,39 @@ class Grammar
             'T_M' => 1000,
         ];
     }
+
+    /**
+     * Get Modifiers
+     *
+     * @return array Modifiers Available
+     */
+    public function getModifiers()
+    {
+        return [
+            4   => ['T_I', 'T_V'],
+            9   => ['T_I', 'T_X'],
+            40  => ['T_X', 'T_L'],
+            90  => ['T_X', 'T_C'],
+            400 => ['T_C', 'T_D'],
+            900 => ['T_C', 'T_M'],
+        ];
+    }
+
+    /**
+     * Get Values with Modifiers
+     *
+     * @return array Values with Modifiers Available
+     */
+    public function getValuesWithModifiers()
+    {
+        $values = array_map(function ($value) {
+            return [$value];
+        }, array_flip($this->getValues()));
+
+        $valuesWithModifiers = $values + $this->getModifiers(); // merge and keep keys (append)
+
+        ksort($valuesWithModifiers);
+
+        return $valuesWithModifiers;
+    }
 }
