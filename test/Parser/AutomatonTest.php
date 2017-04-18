@@ -76,12 +76,12 @@ class AutomatonTest extends TestCase
     public function testTokenM()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_M]));
-        $this->assertSame(Automaton::STATE_G, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(1000, $this->automaton->getValue());
 
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_M, Grammar::T_M]));
-        $this->assertSame(Automaton::STATE_G, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(2, $this->automaton->getPosition());
         $this->assertSame(2000, $this->automaton->getValue());
     }
@@ -92,7 +92,7 @@ class AutomatonTest extends TestCase
     public function testTokenD()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_D]));
-        $this->assertSame(Automaton::STATE_E, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(500, $this->automaton->getValue());
     }
@@ -115,12 +115,12 @@ class AutomatonTest extends TestCase
     public function testTokenC()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_C]));
-        $this->assertSame(Automaton::STATE_D, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(100, $this->automaton->getValue());
 
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_C, Grammar::T_C]));
-        $this->assertSame(Automaton::STATE_D, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(2, $this->automaton->getPosition());
         $this->assertSame(200, $this->automaton->getValue());
 
@@ -129,7 +129,7 @@ class AutomatonTest extends TestCase
             Grammar::T_C,
             Grammar::T_C,
         ]));
-        $this->assertSame(Automaton::STATE_D, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(3, $this->automaton->getPosition());
         $this->assertSame(300, $this->automaton->getValue());
     }
@@ -152,7 +152,7 @@ class AutomatonTest extends TestCase
     public function testTokenL()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_L]));
-        $this->assertSame(Automaton::STATE_C, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(50, $this->automaton->getValue());
     }
@@ -163,12 +163,12 @@ class AutomatonTest extends TestCase
     public function testTokenX()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_X]));
-        $this->assertSame(Automaton::STATE_B, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(10, $this->automaton->getValue());
 
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_X, Grammar::T_X]));
-        $this->assertSame(Automaton::STATE_B, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(2, $this->automaton->getPosition());
         $this->assertSame(20, $this->automaton->getValue());
 
@@ -177,7 +177,7 @@ class AutomatonTest extends TestCase
             Grammar::T_X,
             Grammar::T_X,
         ]));
-        $this->assertSame(Automaton::STATE_B, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(3, $this->automaton->getPosition());
         $this->assertSame(30, $this->automaton->getValue());
     }
@@ -200,7 +200,7 @@ class AutomatonTest extends TestCase
     public function testTokenV()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_V]));
-        $this->assertSame(Automaton::STATE_A, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(1, $this->automaton->getPosition());
         $this->assertSame(5, $this->automaton->getValue());
     }
@@ -248,7 +248,7 @@ class AutomatonTest extends TestCase
     public function testTokenCTokenD()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_C, Grammar::T_D]));
-        $this->assertSame(Automaton::STATE_D, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(2, $this->automaton->getPosition());
         $this->assertSame(400, $this->automaton->getValue());
     }
@@ -259,7 +259,7 @@ class AutomatonTest extends TestCase
     public function testTokenCTokenM()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_C, Grammar::T_M]));
-        $this->assertSame(Automaton::STATE_D, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(2, $this->automaton->getPosition());
         $this->assertSame(900, $this->automaton->getValue());
     }
@@ -270,7 +270,7 @@ class AutomatonTest extends TestCase
     public function testTokenXTokenL()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_X, Grammar::T_L]));
-        $this->assertSame(Automaton::STATE_B, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(2, $this->automaton->getPosition());
         $this->assertSame(40, $this->automaton->getValue());
     }
@@ -281,7 +281,7 @@ class AutomatonTest extends TestCase
     public function testTokenXTokenC()
     {
         $this->assertSame($this->automaton, $this->automaton->read([Grammar::T_X, Grammar::T_C]));
-        $this->assertSame(Automaton::STATE_B, $this->automaton->getState());
+        $this->assertSame(Automaton::STATE_Z, $this->automaton->getState());
         $this->assertSame(2, $this->automaton->getPosition());
         $this->assertSame(90, $this->automaton->getValue());
     }

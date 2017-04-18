@@ -20,6 +20,7 @@ class Automaton
     const STATE_E = 'E';
     const STATE_F = 'F';
     const STATE_G = 'G';
+    const STATE_H = 'H';
 
     /**
      * State
@@ -194,17 +195,18 @@ class Automaton
     {
         $this->reset();
 
+        array_push($tokens, '$');
+
         $length = count($tokens);
 
-        while ($this->getPosition() < $length) {
-            $state = $this->getState();
+        while ($this->getState() !== self::STATE_Z) {
             $token = $tokens[$this->getPosition()];
 
-            switch ($state) {
+            switch ($this->getState()) {
                 case self::STATE_G:
                     if ($token === Grammar::T_N) {
                         $this
-                            ->setState(self::STATE_Z)
+                            ->setState(self::STATE_H)
                             ->addPosition(1);
                     } elseif ($token === Grammar::T_M) {
                         $this
@@ -329,12 +331,12 @@ class Automaton
                     } elseif ($token === Grammar::T_I && $this->getPosition() + 1 < $length) {
                         if ($tokens[$this->getPosition() + 1] === Grammar::T_V) {
                             $this
-                                ->setState(self::STATE_Z)
+                                ->setState(self::STATE_H)
                                 ->addPosition(2)
                                 ->addTokenValue(Grammar::T_V, Grammar::T_I);
                         } elseif ($tokens[$this->getPosition() + 1] === Grammar::T_X) {
                             $this
-                                ->setState(self::STATE_Z)
+                                ->setState(self::STATE_H)
                                 ->addPosition(2)
                                 ->addTokenValue(Grammar::T_X, Grammar::T_I);
                         } else {
@@ -352,30 +354,36 @@ class Automaton
                             if ($this->getPosition() + 2 < $length
                                 && $tokens[$this->getPosition() + 2] === Grammar::T_I) {
                                 $this
-                                    ->setState(self::STATE_Z)
+                                    ->setState(self::STATE_H)
                                     ->addPosition(3)
                                     ->addTokenValue(Grammar::T_I, null, 3);
                             } else {
                                 $this
-                                    ->setState(self::STATE_Z)
+                                    ->setState(self::STATE_H)
                                     ->addPosition(2)
                                     ->addTokenValue(Grammar::T_I, null, 2);
                             }
                         } else {
                             $this
-                                ->setState(self::STATE_Z)
+                                ->setState(self::STATE_H)
                                 ->addPosition(1)
                                 ->addTokenValue(Grammar::T_I);
                         }
                     } else {
-                        $this->setState(self::STATE_Z);
+                        $this->setState(self::STATE_H);
                     }
                     break;
 
-                default:
-                    throw (new Exception('Invalid Roman', Exception::INVALID_ROMAN))
-                        ->setPosition($this->getPosition())
-                        ->setToken($token);
+                case self::STATE_H:
+                    if ($token === '$') {
+                        // done!
+                        $this->setState(self::STATE_Z);
+                    } else {
+                        throw (new Exception('Invalid Roman', Exception::INVALID_ROMAN))
+                            ->setPosition($this->getPosition())
+                            ->setToken($token);
+                    }
+                    break;
             }
         }
 
