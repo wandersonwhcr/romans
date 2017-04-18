@@ -3,12 +3,15 @@
 namespace Romans\Parser;
 
 use Romans\Grammar\Grammar;
+use Romans\Grammar\GrammarAwareTrait;
 
 /**
  * Automaton
  */
 class Automaton
 {
+    use GrammarAwareTrait;
+
     const STATE_Z = 'Z';
     const STATE_A = 'A';
     const STATE_B = 'B';
@@ -38,10 +41,18 @@ class Automaton
 
     /**
      * Default Constructor
+     *
+     * @param Grammar $grammar Grammar Object
      */
-    public function __construct()
+    public function __construct(Grammar $grammar = null)
     {
-        $this->reset();
+        if (! isset($grammar)) {
+            $grammar = new Grammar();
+        }
+
+        $this
+            ->setGrammar($grammar)
+            ->reset();
     }
 
     /**
@@ -135,6 +146,30 @@ class Automaton
     }
 
     /**
+     * Add Token Value
+     *
+     * @param  string $token    Token
+     * @param  string $modifier Modifier Token
+     * @param  int    $quantity Quantity
+     * @return self   Fluent Interface
+     */
+    protected function addTokenValue(string $token, string $modifier = null, int $quantity = 1) : self
+    {
+        $values = array_combine($this->getGrammar()->getTokens(), $this->getGrammar()->getValues());
+
+        $tokenValue    = $values[$token];
+        $modifierValue = 0;
+
+        if (isset($modifier)) {
+            $modifierValue = $values[$modifier];
+        }
+
+        $this->addValue(($tokenValue - $modifierValue) * $quantity);
+
+        return $this;
+    }
+
+    /**
      * Reset Counters
      *
      * @return self Fluent Interface
@@ -175,7 +210,7 @@ class Automaton
                         $this
                             ->setState(self::STATE_G)
                             ->addPosition(1)
-                            ->addValue(1000);
+                            ->addTokenValue(Grammar::T_M);
                     } else {
                         $this->setState(self::STATE_F);
                     }
@@ -186,18 +221,18 @@ class Automaton
                         $this
                             ->setState(self::STATE_E)
                             ->addPosition(1)
-                            ->addValue(500);
+                            ->addTokenValue(Grammar::T_D);
                     } elseif ($token === Grammar::T_C && $this->getPosition() + 1 < $length) {
                         if ($tokens[$this->getPosition() + 1] === Grammar::T_D) {
                             $this
                                 ->setState(self::STATE_D)
                                 ->addPosition(2)
-                                ->addValue(400);
+                                ->addTokenValue(Grammar::T_D, Grammar::T_C);
                         } elseif ($tokens[$this->getPosition() + 1] === Grammar::T_M) {
                             $this
                                 ->setState(self::STATE_D)
                                 ->addPosition(2)
-                                ->addValue(900);
+                                ->addTokenValue(Grammar::T_M, Grammar::T_C);
                         } else {
                             $this->setState(self::STATE_E);
                         }
@@ -215,18 +250,18 @@ class Automaton
                                 $this
                                     ->setState(self::STATE_D)
                                     ->addPosition(3)
-                                    ->addValue(300);
+                                    ->addTokenValue(Grammar::T_C, null, 3);
                             } else {
                                 $this
                                     ->setState(self::STATE_D)
                                     ->addPosition(2)
-                                    ->addValue(200);
+                                    ->addTokenValue(Grammar::T_C, null, 2);
                             }
                         } else {
                             $this
                                 ->setState(self::STATE_D)
                                 ->addPosition(1)
-                                ->addValue(100);
+                                ->addTokenValue(Grammar::T_C);
                         }
                     } else {
                         $this->setState(self::STATE_D);
@@ -238,18 +273,18 @@ class Automaton
                         $this
                             ->setState(self::STATE_C)
                             ->addPosition(1)
-                            ->addValue(50);
+                            ->addTokenValue(Grammar::T_L);
                     } elseif ($token === Grammar::T_X && $this->getPosition() + 1 < $length) {
                         if ($tokens[$this->getPosition() + 1] === Grammar::T_L) {
                             $this
                                 ->setState(self::STATE_B)
                                 ->addPosition(2)
-                                ->addValue(40);
+                                ->addTokenValue(Grammar::T_L, Grammar::T_X);
                         } elseif ($tokens[$this->getPosition() + 1] === Grammar::T_C) {
                             $this
                                 ->setState(self::STATE_B)
                                 ->addPosition(2)
-                                ->addValue(90);
+                                ->addTokenValue(Grammar::T_C, Grammar::T_X);
                         } else {
                             $this->setState(self::STATE_C);
                         }
@@ -267,18 +302,18 @@ class Automaton
                                 $this
                                     ->setState(self::STATE_B)
                                     ->addPosition(3)
-                                    ->addValue(30);
+                                    ->addTokenValue(Grammar::T_X, null, 3);
                             } else {
                                 $this
                                     ->setState(self::STATE_B)
                                     ->addPosition(2)
-                                    ->addValue(20);
+                                    ->addTokenValue(Grammar::T_X, null, 2);
                             }
                         } else {
                             $this
                                 ->setState(self::STATE_B)
                                 ->addPosition(1)
-                                ->addValue(10);
+                                ->addTokenValue(Grammar::T_X);
                         }
                     } else {
                         $this->setState(self::STATE_B);
@@ -290,18 +325,18 @@ class Automaton
                         $this
                             ->setState(self::STATE_A)
                             ->addPosition(1)
-                            ->addValue(5);
+                            ->addTokenValue(Grammar::T_V);
                     } elseif ($token === Grammar::T_I && $this->getPosition() + 1 < $length) {
                         if ($tokens[$this->getPosition() + 1] === Grammar::T_V) {
                             $this
                                 ->setState(self::STATE_Z)
                                 ->addPosition(2)
-                                ->addValue(4);
+                                ->addTokenValue(Grammar::T_V, Grammar::T_I);
                         } elseif ($tokens[$this->getPosition() + 1] === Grammar::T_X) {
                             $this
                                 ->setState(self::STATE_Z)
                                 ->addPosition(2)
-                                ->addValue(9);
+                                ->addTokenValue(Grammar::T_X, Grammar::T_I);
                         } else {
                             $this->setState(self::STATE_A);
                         }
@@ -319,18 +354,18 @@ class Automaton
                                 $this
                                     ->setState(self::STATE_Z)
                                     ->addPosition(3)
-                                    ->addValue(3);
+                                    ->addTokenValue(Grammar::T_I, null, 3);
                             } else {
                                 $this
                                     ->setState(self::STATE_Z)
                                     ->addPosition(2)
-                                    ->addValue(2);
+                                    ->addTokenValue(Grammar::T_I, null, 2);
                             }
                         } else {
                             $this
                                 ->setState(self::STATE_Z)
                                 ->addPosition(1)
-                                ->addValue(1);
+                                ->addTokenValue(Grammar::T_I);
                         }
                     } else {
                         $this->setState(self::STATE_Z);
