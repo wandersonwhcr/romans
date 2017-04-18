@@ -2,6 +2,8 @@
 
 namespace Romans\Parser;
 
+use Romans\Grammar\Grammar;
+
 /**
  * Automaton
  */
@@ -15,15 +17,6 @@ class Automaton
     const STATE_E = 'E';
     const STATE_F = 'F';
     const STATE_G = 'G';
-
-    const TOKEN_N = 'N';
-    const TOKEN_I = 'I';
-    const TOKEN_V = 'V';
-    const TOKEN_X = 'X';
-    const TOKEN_L = 'L';
-    const TOKEN_C = 'C';
-    const TOKEN_D = 'D';
-    const TOKEN_M = 'M';
 
     /**
      * State
@@ -142,11 +135,11 @@ class Automaton
 
             switch ($state) {
                 case self::STATE_G:
-                    if ($token === self::TOKEN_N) {
+                    if ($token === Grammar::T_N) {
                         $this
                             ->setState(self::STATE_Z)
                             ->setPosition($this->getPosition() + 1);
-                    } elseif ($token === self::TOKEN_M) {
+                    } elseif ($token === Grammar::T_M) {
                         $this
                             ->setState(self::STATE_G)
                             ->setPosition($this->getPosition() + 1)
@@ -157,18 +150,18 @@ class Automaton
                     break;
 
                 case self::STATE_F:
-                    if ($token === self::TOKEN_D) {
+                    if ($token === Grammar::T_D) {
                         $this
                             ->setState(self::STATE_E)
                             ->setPosition($this->getPosition() + 1)
                             ->setValue($this->getValue() + 500);
-                    } elseif ($token === self::TOKEN_C && $this->getPosition() + 1 < $length) {
-                        if ($tokens[$this->getPosition() + 1] === self::TOKEN_D) {
+                    } elseif ($token === Grammar::T_C && $this->getPosition() + 1 < $length) {
+                        if ($tokens[$this->getPosition() + 1] === Grammar::T_D) {
                             $this
                                 ->setState(self::STATE_D)
                                 ->setPosition($this->getPosition() + 2)
                                 ->setValue($this->getValue() + 400);
-                        } elseif ($tokens[$this->getPosition() + 1] === self::TOKEN_M) {
+                        } elseif ($tokens[$this->getPosition() + 1] === Grammar::T_M) {
                             $this
                                 ->setState(self::STATE_D)
                                 ->setPosition($this->getPosition() + 2)
@@ -182,11 +175,11 @@ class Automaton
                     break;
 
                 case self::STATE_E:
-                    if ($token === self::TOKEN_C) {
+                    if ($token === Grammar::T_C) {
                         if ($this->getPosition() + 1 < $length
-                            && $tokens[$this->getPosition() + 1] === self::TOKEN_C) {
+                            && $tokens[$this->getPosition() + 1] === Grammar::T_C) {
                             if ($this->getPosition() + 2 < $length
-                                && $tokens[$this->getPosition() + 2] === self::TOKEN_C) {
+                                && $tokens[$this->getPosition() + 2] === Grammar::T_C) {
                                 $this
                                     ->setState(self::STATE_D)
                                     ->setPosition($this->getPosition() + 3)
@@ -209,18 +202,18 @@ class Automaton
                     break;
 
                 case self::STATE_D:
-                    if ($token === self::TOKEN_L) {
+                    if ($token === Grammar::T_L) {
                         $this
                             ->setState(self::STATE_C)
                             ->setPosition($this->getPosition() + 1)
                             ->setValue($this->getValue() + 50);
-                    } elseif ($token === self::TOKEN_X && $this->getPosition() + 1 < $length) {
-                        if ($tokens[$this->getPosition() + 1] === self::TOKEN_L) {
+                    } elseif ($token === Grammar::T_X && $this->getPosition() + 1 < $length) {
+                        if ($tokens[$this->getPosition() + 1] === Grammar::T_L) {
                             $this
                                 ->setState(self::STATE_B)
                                 ->setPosition($this->getPosition() + 2)
                                 ->setValue($this->getValue() + 40);
-                        } elseif ($tokens[$this->getPosition() + 1] === self::TOKEN_C) {
+                        } elseif ($tokens[$this->getPosition() + 1] === Grammar::T_C) {
                             $this
                                 ->setState(self::STATE_B)
                                 ->setPosition($this->getPosition() + 2)
@@ -234,11 +227,11 @@ class Automaton
                     break;
 
                 case self::STATE_C:
-                    if ($token === self::TOKEN_X) {
+                    if ($token === Grammar::T_X) {
                         if ($this->getPosition() + 1 < $length
-                            && $tokens[$this->getPosition() + 1] === self::TOKEN_X) {
+                            && $tokens[$this->getPosition() + 1] === Grammar::T_X) {
                             if ($this->getPosition() + 2 < $length
-                                && $tokens[$this->getPosition() + 2] === self::TOKEN_X) {
+                                && $tokens[$this->getPosition() + 2] === Grammar::T_X) {
                                 $this
                                     ->setState(self::STATE_B)
                                     ->setPosition($this->getPosition() + 3)
@@ -261,18 +254,18 @@ class Automaton
                     break;
 
                 case self::STATE_B:
-                    if ($token === self::TOKEN_V) {
+                    if ($token === Grammar::T_V) {
                         $this
                             ->setState(self::STATE_A)
                             ->setPosition($this->getPosition() + 1)
                             ->setValue($this->getValue() + 5);
-                    } elseif ($token === self::TOKEN_I && $this->getPosition() + 1 < $length) {
-                        if ($tokens[$this->getPosition() + 1] === self::TOKEN_V) {
+                    } elseif ($token === Grammar::T_I && $this->getPosition() + 1 < $length) {
+                        if ($tokens[$this->getPosition() + 1] === Grammar::T_V) {
                             $this
                                 ->setState(self::STATE_Z)
                                 ->setPosition($this->getPosition() + 2)
                                 ->setValue($this->getValue() + 4);
-                        } elseif ($tokens[$this->getPosition() + 1] === self::TOKEN_X) {
+                        } elseif ($tokens[$this->getPosition() + 1] === Grammar::T_X) {
                             $this
                                 ->setState(self::STATE_Z)
                                 ->setPosition($this->getPosition() + 2)
@@ -286,11 +279,11 @@ class Automaton
                     break;
 
                 case self::STATE_A:
-                    if ($token === self::TOKEN_I) {
+                    if ($token === Grammar::T_I) {
                         if ($this->getPosition() + 1 < $length
-                            && $tokens[$this->getPosition() + 1] === self::TOKEN_I) {
+                            && $tokens[$this->getPosition() + 1] === Grammar::T_I) {
                             if ($this->getPosition() + 2 < $length
-                                && $tokens[$this->getPosition() + 2] === self::TOKEN_I) {
+                                && $tokens[$this->getPosition() + 2] === Grammar::T_I) {
                                 $this
                                     ->setState(self::STATE_Z)
                                     ->setPosition($this->getPosition() + 3)
