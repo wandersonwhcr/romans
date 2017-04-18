@@ -14,7 +14,6 @@ class Automaton
 {
     use GrammarAwareTrait;
 
-    const STATE_Z = 'Z';
     const STATE_A = 'A';
     const STATE_B = 'B';
     const STATE_C = 'C';
@@ -22,7 +21,8 @@ class Automaton
     const STATE_E = 'E';
     const STATE_F = 'F';
     const STATE_G = 'G';
-    const STATE_H = 'H';
+    const STATE_Y = 'Y';
+    const STATE_Z = 'Z';
 
     /**
      * State
@@ -265,7 +265,7 @@ class Automaton
     {
         if ($this->getToken() === Grammar::T_N) {
             $this
-                ->setState(self::STATE_H)
+                ->setState(self::STATE_Y)
                 ->addPosition(1);
             return $this;
         }
@@ -439,7 +439,7 @@ class Automaton
 
         if ($this->getToken() === Grammar::T_I && $this->hasToken(1) && $this->getToken(1) === Grammar::T_V) {
             $this
-                ->setState(self::STATE_H)
+                ->setState(self::STATE_Y)
                 ->addPosition(2)
                 ->addTokenValue(Grammar::T_V, Grammar::T_I);
             return $this;
@@ -447,7 +447,7 @@ class Automaton
 
         if ($this->getToken() === Grammar::T_I && $this->hasToken(1) && $this->getToken(1) === Grammar::T_X) {
             $this
-                ->setState(self::STATE_H)
+                ->setState(self::STATE_Y)
                 ->addPosition(2)
                 ->addTokenValue(Grammar::T_X, Grammar::T_I);
             return $this;
@@ -468,27 +468,27 @@ class Automaton
             if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_I) {
                 if ($this->hasToken(2) && $this->getToken(2) === Grammar::T_I) {
                     $this
-                        ->setState(self::STATE_H)
+                        ->setState(self::STATE_Y)
                         ->addPosition(3)
                         ->addTokenValue(Grammar::T_I, null, 3);
                     return $this;
                 }
 
                 $this
-                    ->setState(self::STATE_H)
+                    ->setState(self::STATE_Y)
                     ->addPosition(2)
                     ->addTokenValue(Grammar::T_I, null, 2);
                 return $this;
             }
 
             $this
-                ->setState(self::STATE_H)
+                ->setState(self::STATE_Y)
                 ->addPosition(1)
                 ->addTokenValue(Grammar::T_I);
             return $this;
         }
 
-        $this->setState(self::STATE_H);
+        $this->setState(self::STATE_Y);
         return $this;
     }
 
@@ -528,7 +528,7 @@ class Automaton
                 $this->doTransitionFromA();
                 break;
 
-            case self::STATE_H:
+            case self::STATE_Y:
                 $this->doTransitionFromH();
                 break;
         }
