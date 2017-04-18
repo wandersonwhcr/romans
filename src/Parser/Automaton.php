@@ -214,6 +214,20 @@ class Automaton
                             ->setState(self::STATE_C)
                             ->setPosition($this->getPosition() + 1)
                             ->setValue($this->getValue() + 50);
+                    } elseif ($token === self::TOKEN_X && $this->getPosition() + 1 < $length) {
+                        if ($tokens[$this->getPosition() + 1] === self::TOKEN_L) {
+                            $this
+                                ->setState(self::STATE_B)
+                                ->setPosition($this->getPosition() + 2)
+                                ->setValue($this->getValue() + 40);
+                        } elseif ($tokens[$this->getPosition() + 1] === self::TOKEN_C) {
+                            $this
+                                ->setState(self::STATE_B)
+                                ->setPosition($this->getPosition() + 2)
+                                ->setValue($this->getValue() + 90);
+                        } else {
+                            $this->setState(self::STATE_C);
+                        }
                     } else {
                         $this->setState(self::STATE_C);
                     }
