@@ -22,19 +22,27 @@ class Automaton
      * State
      * @type string
      */
-    private $state = self::STATE_G;
+    private $state;
 
     /**
      * Position
      * @type int
      */
-    private $position = 0;
+    private $position;
 
     /**
      * Value
      * @type int
      */
-    private $value = 0;
+    private $value;
+
+    /**
+     * Default Constructor
+     */
+    public function __construct()
+    {
+        $this->reset();
+    }
 
     /**
      * Set State
