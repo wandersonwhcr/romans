@@ -7,6 +7,8 @@ use Romans\Grammar\GrammarAwareTrait;
 
 /**
  * Automaton
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class Automaton
 {
