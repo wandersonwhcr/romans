@@ -42,8 +42,9 @@ stable version.
 
 ## Advanced Usage
 
-The `Romans` package uses a Lexer-Parser approach to convert Roman number to
-Integer, using a Grammar Token library.
+The `Romans` package uses a Lexer-Parser approach and a Deterministic Finite
+Automaton (DFA) to convert Roman number to Integer, using a Grammar Token
+library.
 
 ```php
 use Romans\Grammar\Grammar;
@@ -132,6 +133,7 @@ $result = $filter->filter(0); // N
 
 * Rapid Tables: [How to Convert Roman Numerals to Numbers](http://www.rapidtables.com/convert/number/how-roman-numerals-to-number.htm)
 * Wikipedia: [Zero in Roman Numerals](https://en.wikipedia.org/wiki/Roman_numerals#Zero)
+* Wikipedia: [Deterministic Finite Automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)
 
 ## License
 
