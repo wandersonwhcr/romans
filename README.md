@@ -139,14 +139,15 @@ The current automaton definition is declared below.
 
 ```plain
 M  = (Q, Σ, δ, q0, F)
-Q  = { z, a, b, c, d, e, f, g, h }
+Q  = { a, b, c, d, e, f, g, y, z }
 Σ  = { I, V, X, L, C, D, M, N }
-q0 = h
+q0 = g
 F  = { z }
 
-z -> $h
-a -> z | Iz  | IIz | IIIz
-b -> a | IVz | Va  | IXz
+z -> ε
+y -> $z
+a -> y | Iy  | IIy | IIIy
+b -> a | IVy | Va  | IXy
 c -> b | Xb  | XXb | XXXb
 d -> c | XLb | Lc  | XCb
 e -> d | Cd  | CCd | CCCd
