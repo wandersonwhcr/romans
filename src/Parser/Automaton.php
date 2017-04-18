@@ -140,138 +140,140 @@ class Automaton
             $state = $this->getState();
             $token = $tokens[$this->getPosition()];
 
-            if ($state === self::STATE_G && $token === self::TOKEN_N) {
-                $this
-                    ->setState(self::STATE_Z)
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 0);
-            } elseif ($state === self::STATE_G && $token === self::TOKEN_M) {
-                $this
-                    ->setState(self::STATE_G)
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 1000);
-            } elseif ($state === self::STATE_G) {
-                $this
-                    ->setState(self::STATE_F);
-            } elseif ($state === self::STATE_F && $token === self::TOKEN_D) {
-                $this
-                    ->setState(self::STATE_E)
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 500);
-            } elseif ($state === self::STATE_F) {
-                $this
-                    ->setState(self::STATE_E);
-            } elseif ($state === self::STATE_E && $token === self::TOKEN_C) {
-                $this
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 100);
-
-                // lookahead +1
-                if ($this->getPosition() < $length) {
-                    $token = $tokens[$this->getPosition()];
-                    if ($token === self::TOKEN_C) {
+            switch ($state) {
+                case self::STATE_G:
+                    if ($token === self::TOKEN_N) {
                         $this
+                            ->setState(self::STATE_Z)
+                            ->setPosition($this->getPosition() + 1);
+                    } elseif ($token === self::TOKEN_M) {
+                        $this
+                            ->setState(self::STATE_G)
                             ->setPosition($this->getPosition() + 1)
-                            ->setValue($this->getValue() + 100);
+                            ->setValue($this->getValue() + 1000);
+                    } else {
+                        $this->setState(self::STATE_F);
                     }
+                    break;
 
-                    // lookahed +2
-                    if ($this->getPosition() < $length) {
-                        $token = $tokens[$this->getPosition()];
-                        if ($token === self::TOKEN_C) {
+                case self::STATE_F:
+                    if ($token === self::TOKEN_D) {
+                        $this
+                            ->setState(self::STATE_E)
+                            ->setPosition($this->getPosition() + 1)
+                            ->setValue($this->getValue() + 500);
+                    } else {
+                        $this->setState(self::STATE_E);
+                    }
+                    break;
+
+                case self::STATE_E:
+                    if ($token === self::TOKEN_C) {
+                        if ($this->getPosition() + 1 < $length
+                            && $tokens[$this->getPosition() + 1] === self::TOKEN_C) {
+                            if ($this->getPosition() + 2 < $length
+                                && $tokens[$this->getPosition() + 2] === self::TOKEN_C) {
+                                $this
+                                    ->setState(self::STATE_D)
+                                    ->setPosition($this->getPosition() + 3)
+                                    ->setValue($this->getValue() + 300);
+                            } else {
+                                $this
+                                    ->setState(self::STATE_D)
+                                    ->setPosition($this->getPosition() + 2)
+                                    ->setValue($this->getValue() + 200);
+                            }
+                        } else {
                             $this
+                                ->setState(self::STATE_D)
                                 ->setPosition($this->getPosition() + 1)
                                 ->setValue($this->getValue() + 100);
                         }
+                    } else {
+                        $this->setState(self::STATE_D);
                     }
-                }
+                    break;
 
-                $this
-                    ->setState(self::STATE_D);
-            } elseif ($state === self::STATE_E) {
-                $this
-                    ->setState(self::STATE_D);
-            } elseif ($state === self::STATE_D && $token === self::TOKEN_L) {
-                $this
-                    ->setState(self::STATE_C)
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 50);
-            } elseif ($state === self::STATE_D) {
-                $this
-                    ->setState(self::STATE_C);
-            } elseif ($state === self::STATE_C && $token === self::TOKEN_X) {
-                $this
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 10);
-
-                // lookahead +1
-                if ($this->getPosition() < $length) {
-                    $token = $tokens[$this->getPosition()];
-                    if ($token === self::TOKEN_X) {
+                case self::STATE_D:
+                    if ($token === self::TOKEN_L) {
                         $this
+                            ->setState(self::STATE_C)
                             ->setPosition($this->getPosition() + 1)
-                            ->setValue($this->getValue() + 10);
+                            ->setValue($this->getValue() + 50);
+                    } else {
+                        $this->setState(self::STATE_C);
                     }
+                    break;
 
-                    // lookahed +2
-                    if ($this->getPosition() < $length) {
-                        $token = $tokens[$this->getPosition()];
-                        if ($token === self::TOKEN_X) {
+                case self::STATE_C:
+                    if ($token === self::TOKEN_X) {
+                        if ($this->getPosition() + 1 < $length
+                            && $tokens[$this->getPosition() + 1] === self::TOKEN_X) {
+                            if ($this->getPosition() + 2 < $length
+                                && $tokens[$this->getPosition() + 2] === self::TOKEN_X) {
+                                $this
+                                    ->setState(self::STATE_B)
+                                    ->setPosition($this->getPosition() + 3)
+                                    ->setValue($this->getValue() + 30);
+                            } else {
+                                $this
+                                    ->setState(self::STATE_B)
+                                    ->setPosition($this->getPosition() + 2)
+                                    ->setValue($this->getValue() + 20);
+                            }
+                        } else {
                             $this
+                                ->setState(self::STATE_B)
                                 ->setPosition($this->getPosition() + 1)
                                 ->setValue($this->getValue() + 10);
                         }
+                    } else {
+                        $this->setState(self::STATE_B);
                     }
-                }
+                    break;
 
-                $this
-                    ->setState(self::STATE_B);
-            } elseif ($state === self::STATE_C) {
-                $this
-                    ->setState(self::STATE_B);
-            } elseif ($state === self::STATE_B && $token === self::TOKEN_V) {
-                $this
-                    ->setState(self::STATE_A)
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 5);
-            } elseif ($state === self::STATE_B) {
-                $this
-                    ->setState(self::STATE_A);
-            } elseif ($state === self::STATE_A && $token === self::TOKEN_I) {
-                $this
-                    ->setPosition($this->getPosition() + 1)
-                    ->setValue($this->getValue() + 1);
-
-                // lookahead +1
-                if ($this->getPosition() < $length) {
-                    $token = $tokens[$this->getPosition()];
-                    if ($token === self::TOKEN_I) {
+                case self::STATE_B:
+                    if ($token === self::TOKEN_V) {
                         $this
+                            ->setState(self::STATE_A)
                             ->setPosition($this->getPosition() + 1)
-                            ->setValue($this->getValue() + 1);
+                            ->setValue($this->getValue() + 5);
+                    } else {
+                        $this->setState(self::STATE_A);
                     }
+                    break;
 
-                    // lookahed +2
-                    if ($this->getPosition() < $length) {
-                        $token = $tokens[$this->getPosition()];
-                        if ($token === self::TOKEN_I) {
+                case self::STATE_A:
+                    if ($token === self::TOKEN_I) {
+                        if ($this->getPosition() + 1 < $length
+                            && $tokens[$this->getPosition() + 1] === self::TOKEN_I) {
+                            if ($this->getPosition() + 2 < $length
+                                && $tokens[$this->getPosition() + 2] === self::TOKEN_I) {
+                                $this
+                                    ->setState(self::STATE_Z)
+                                    ->setPosition($this->getPosition() + 3)
+                                    ->setValue($this->getValue() + 3);
+                            } else {
+                                $this
+                                    ->setState(self::STATE_Z)
+                                    ->setPosition($this->getPosition() + 2)
+                                    ->setValue($this->getValue() + 2);
+                            }
+                        } else {
                             $this
+                                ->setState(self::STATE_Z)
                                 ->setPosition($this->getPosition() + 1)
                                 ->setValue($this->getValue() + 1);
                         }
+                    } else {
+                        $this->setState(self::STATE_Z);
                     }
-                }
+                    break;
 
-                $this
-                    ->setState(self::STATE_Z);
-            } else {
-                $exception = new Exception('Invalid Roman', Exception::INVALID_ROMAN);
-
-                $exception
-                    ->setToken($token)
-                    ->setPosition($this->getPosition());
-
-                throw $exception;
+                default:
+                    throw (new Exception('Invalid Roman', Exception::INVALID_ROMAN))
+                        ->setPosition($this->getPosition())
+                        ->setToken($token);
             }
         }
 
