@@ -237,6 +237,24 @@ class Automaton
     }
 
     /**
+     * Do Transition from H
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransitionFromH() : self
+    {
+        if ($this->getToken() !== '$') {
+            throw (new Exception('Invalid Roman', Exception::INVALID_ROMAN))
+                ->setPosition($this->getPosition())
+                ->setToken($this->getToken());
+        }
+
+        // done!
+        $this->setState(self::STATE_Z);
+        return $this;
+    }
+
+    /**
      * Do Transition from G
      *
      * @return self Fluent Interface
@@ -247,15 +265,18 @@ class Automaton
             $this
                 ->setState(self::STATE_H)
                 ->addPosition(1);
-        } elseif ($this->getToken() === Grammar::T_M) {
+            return $this;
+        }
+
+        if ($this->getToken() === Grammar::T_M) {
             $this
                 ->setState(self::STATE_G)
                 ->addPosition(1)
                 ->addTokenValue(Grammar::T_M);
-        } else {
-            $this->setState(self::STATE_F);
+            return $this;
         }
 
+        $this->setState(self::STATE_F);
         return $this;
     }
 
@@ -271,24 +292,26 @@ class Automaton
                 ->setState(self::STATE_E)
                 ->addPosition(1)
                 ->addTokenValue(Grammar::T_D);
-        } elseif ($this->getToken() === Grammar::T_C && $this->hasToken(1)) {
-            if ($this->getToken(1) === Grammar::T_D) {
-                $this
-                    ->setState(self::STATE_D)
-                    ->addPosition(2)
-                    ->addTokenValue(Grammar::T_D, Grammar::T_C);
-            } elseif ($this->getToken(1) === Grammar::T_M) {
-                $this
-                    ->setState(self::STATE_D)
-                    ->addPosition(2)
-                    ->addTokenValue(Grammar::T_M, Grammar::T_C);
-            } else {
-                $this->setState(self::STATE_E);
-            }
-        } else {
-            $this->setState(self::STATE_E);
+            return $this;
         }
 
+        if ($this->getToken() === Grammar::T_C && $this->hasToken(1) && $this->getToken(1) === Grammar::T_D) {
+            $this
+                ->setState(self::STATE_D)
+                ->addPosition(2)
+                ->addTokenValue(Grammar::T_D, Grammar::T_C);
+            return $this;
+        }
+
+        if ($this->getToken() === Grammar::T_C && $this->hasToken(1) && $this->getToken(1) === Grammar::T_M) {
+            $this
+                ->setState(self::STATE_D)
+                ->addPosition(2)
+                ->addTokenValue(Grammar::T_M, Grammar::T_C);
+            return $this;
+        }
+
+        $this->setState(self::STATE_E);
         return $this;
     }
 
@@ -306,22 +329,24 @@ class Automaton
                         ->setState(self::STATE_D)
                         ->addPosition(3)
                         ->addTokenValue(Grammar::T_C, null, 3);
-                } else {
-                    $this
-                        ->setState(self::STATE_D)
-                        ->addPosition(2)
-                        ->addTokenValue(Grammar::T_C, null, 2);
+                    return $this;
                 }
-            } else {
+
                 $this
                     ->setState(self::STATE_D)
-                    ->addPosition(1)
-                    ->addTokenValue(Grammar::T_C);
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_C, null, 2);
+                return $this;
             }
-        } else {
-            $this->setState(self::STATE_D);
+
+            $this
+                ->setState(self::STATE_D)
+                ->addPosition(1)
+                ->addTokenValue(Grammar::T_C);
+            return $this;
         }
 
+        $this->setState(self::STATE_D);
         return $this;
     }
 
@@ -337,24 +362,26 @@ class Automaton
                 ->setState(self::STATE_C)
                 ->addPosition(1)
                 ->addTokenValue(Grammar::T_L);
-        } elseif ($this->getToken() === Grammar::T_X && $this->hasToken(1)) {
-            if ($this->getToken(1) === Grammar::T_L) {
-                $this
-                    ->setState(self::STATE_B)
-                    ->addPosition(2)
-                    ->addTokenValue(Grammar::T_L, Grammar::T_X);
-            } elseif ($this->getToken(1) === Grammar::T_C) {
-                $this
-                    ->setState(self::STATE_B)
-                    ->addPosition(2)
-                    ->addTokenValue(Grammar::T_C, Grammar::T_X);
-            } else {
-                $this->setState(self::STATE_C);
-            }
-        } else {
-            $this->setState(self::STATE_C);
+            return $this;
         }
 
+        if ($this->getToken() === Grammar::T_X && $this->hasToken(1) && $this->getToken(1) === Grammar::T_L) {
+            $this
+                ->setState(self::STATE_B)
+                ->addPosition(2)
+                ->addTokenValue(Grammar::T_L, Grammar::T_X);
+            return $this;
+        }
+
+        if ($this->getToken() === Grammar::T_X && $this->hasToken(1) && $this->getToken(1) === Grammar::T_C) {
+            $this
+                ->setState(self::STATE_B)
+                ->addPosition(2)
+                ->addTokenValue(Grammar::T_C, Grammar::T_X);
+            return $this;
+        }
+
+        $this->setState(self::STATE_C);
         return $this;
     }
 
@@ -372,22 +399,24 @@ class Automaton
                         ->setState(self::STATE_B)
                         ->addPosition(3)
                         ->addTokenValue(Grammar::T_X, null, 3);
-                } else {
-                    $this
-                        ->setState(self::STATE_B)
-                        ->addPosition(2)
-                        ->addTokenValue(Grammar::T_X, null, 2);
+                    return $this;
                 }
-            } else {
+
                 $this
                     ->setState(self::STATE_B)
-                    ->addPosition(1)
-                    ->addTokenValue(Grammar::T_X);
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_X, null, 2);
+                return $this;
             }
-        } else {
-            $this->setState(self::STATE_B);
+
+            $this
+                ->setState(self::STATE_B)
+                ->addPosition(1)
+                ->addTokenValue(Grammar::T_X);
+            return $this;
         }
 
+        $this->setState(self::STATE_B);
         return $this;
     }
 
@@ -403,24 +432,26 @@ class Automaton
                 ->setState(self::STATE_A)
                 ->addPosition(1)
                 ->addTokenValue(Grammar::T_V);
-        } elseif ($this->getToken() === Grammar::T_I && $this->hasToken(1)) {
-            if ($this->getToken(1) === Grammar::T_V) {
-                $this
-                    ->setState(self::STATE_H)
-                    ->addPosition(2)
-                    ->addTokenValue(Grammar::T_V, Grammar::T_I);
-            } elseif ($this->getToken(1) === Grammar::T_X) {
-                $this
-                    ->setState(self::STATE_H)
-                    ->addPosition(2)
-                    ->addTokenValue(Grammar::T_X, Grammar::T_I);
-            } else {
-                $this->setState(self::STATE_A);
-            }
-        } else {
-            $this->setState(self::STATE_A);
+            return $this;
         }
 
+        if ($this->getToken() === Grammar::T_I && $this->hasToken(1) && $this->getToken(1) === Grammar::T_V) {
+            $this
+                ->setState(self::STATE_H)
+                ->addPosition(2)
+                ->addTokenValue(Grammar::T_V, Grammar::T_I);
+            return $this;
+        }
+
+        if ($this->getToken() === Grammar::T_I && $this->hasToken(1) && $this->getToken(1) === Grammar::T_X) {
+            $this
+                ->setState(self::STATE_H)
+                ->addPosition(2)
+                ->addTokenValue(Grammar::T_X, Grammar::T_I);
+            return $this;
+        }
+
+        $this->setState(self::STATE_A);
         return $this;
     }
 
@@ -438,20 +469,66 @@ class Automaton
                         ->setState(self::STATE_H)
                         ->addPosition(3)
                         ->addTokenValue(Grammar::T_I, null, 3);
-                } else {
-                    $this
-                        ->setState(self::STATE_H)
-                        ->addPosition(2)
-                        ->addTokenValue(Grammar::T_I, null, 2);
+                    return $this;
                 }
-            } else {
+
                 $this
                     ->setState(self::STATE_H)
-                    ->addPosition(1)
-                    ->addTokenValue(Grammar::T_I);
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_I, null, 2);
+                return $this;
             }
-        } else {
-            $this->setState(self::STATE_H);
+
+            $this
+                ->setState(self::STATE_H)
+                ->addPosition(1)
+                ->addTokenValue(Grammar::T_I);
+            return $this;
+        }
+
+        $this->setState(self::STATE_H);
+        return $this;
+    }
+
+    /**
+     * Do Transition
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransition() : self
+    {
+        switch ($this->getState()) {
+            case self::STATE_G:
+                $this->doTransitionFromG();
+                break;
+
+            case self::STATE_F:
+                $this->doTransitionFromF();
+                break;
+
+            case self::STATE_E:
+                $this->doTransitionFromE();
+                break;
+
+            case self::STATE_D:
+                $this->doTransitionFromD();
+                break;
+
+            case self::STATE_C:
+                $this->doTransitionFromC();
+                break;
+
+            case self::STATE_B:
+                $this->doTransitionFromB();
+                break;
+
+            case self::STATE_A:
+                $this->doTransitionFromA();
+                break;
+
+            case self::STATE_H:
+                $this->doTransitionFromH();
+                break;
         }
 
         return $this;
@@ -472,46 +549,7 @@ class Automaton
             ->reset();
 
         while ($this->getState() !== self::STATE_Z) {
-            switch ($this->getState()) {
-                case self::STATE_G:
-                    $this->doTransitionFromG();
-                    break;
-
-                case self::STATE_F:
-                    $this->doTransitionFromF();
-                    break;
-
-                case self::STATE_E:
-                    $this->doTransitionFromE();
-                    break;
-
-                case self::STATE_D:
-                    $this->doTransitionFromD();
-                    break;
-
-                case self::STATE_C:
-                    $this->doTransitionFromC();
-                    break;
-
-                case self::STATE_B:
-                    $this->doTransitionFromB();
-                    break;
-
-                case self::STATE_A:
-                    $this->doTransitionFromA();
-                    break;
-
-                case self::STATE_H:
-                    if ($this->getToken() === '$') {
-                        // done!
-                        $this->setState(self::STATE_Z);
-                    } else {
-                        throw (new Exception('Invalid Roman', Exception::INVALID_ROMAN))
-                            ->setPosition($this->getPosition())
-                            ->setToken($this->getToken());
-                    }
-                    break;
-            }
+            $this->doTransition();
         }
 
         return $this;
