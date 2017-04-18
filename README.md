@@ -58,10 +58,13 @@ $tokens = $lexer->tokenize('MCMXCIX');
 
 /*
 $tokens = [
-    0 => 'M',  // Grammar::T_M
-    1 => 'CM', // Grammar::T_CM
-    2 => 'XC', // Grammar::T_XC
-    3 => 'IX', // Grammar::T_IX
+    0 => 'M'  // Grammar::T_M
+    1 => 'C', // Grammar::T_C
+    2 => 'M', // Grammar::T_M
+    3 => 'X', // Grammar::T_X
+    4 => 'C', // Grammar::T_C
+    5 => 'I', // Grammar::T_I
+    6 => 'X', // Grammar::T_X
 ];
 */
 
