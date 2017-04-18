@@ -237,6 +237,227 @@ class Automaton
     }
 
     /**
+     * Do Transition from G
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransitionFromG() : self
+    {
+        if ($this->getToken() === Grammar::T_N) {
+            $this
+                ->setState(self::STATE_H)
+                ->addPosition(1);
+        } elseif ($this->getToken() === Grammar::T_M) {
+            $this
+                ->setState(self::STATE_G)
+                ->addPosition(1)
+                ->addTokenValue(Grammar::T_M);
+        } else {
+            $this->setState(self::STATE_F);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Do Transition from F
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransitionFromF() : self
+    {
+        if ($this->getToken() === Grammar::T_D) {
+            $this
+                ->setState(self::STATE_E)
+                ->addPosition(1)
+                ->addTokenValue(Grammar::T_D);
+        } elseif ($this->getToken() === Grammar::T_C && $this->hasToken(1)) {
+            if ($this->getToken(1) === Grammar::T_D) {
+                $this
+                    ->setState(self::STATE_D)
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_D, Grammar::T_C);
+            } elseif ($this->getToken(1) === Grammar::T_M) {
+                $this
+                    ->setState(self::STATE_D)
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_M, Grammar::T_C);
+            } else {
+                $this->setState(self::STATE_E);
+            }
+        } else {
+            $this->setState(self::STATE_E);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Do Transition from E
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransitionFromE() : self
+    {
+        if ($this->getToken() === Grammar::T_C) {
+            if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_C) {
+                if ($this->hasToken(2) && $this->getToken(2) === Grammar::T_C) {
+                    $this
+                        ->setState(self::STATE_D)
+                        ->addPosition(3)
+                        ->addTokenValue(Grammar::T_C, null, 3);
+                } else {
+                    $this
+                        ->setState(self::STATE_D)
+                        ->addPosition(2)
+                        ->addTokenValue(Grammar::T_C, null, 2);
+                }
+            } else {
+                $this
+                    ->setState(self::STATE_D)
+                    ->addPosition(1)
+                    ->addTokenValue(Grammar::T_C);
+            }
+        } else {
+            $this->setState(self::STATE_D);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Do Transition from D
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransitionFromD() : self
+    {
+        if ($this->getToken() === Grammar::T_L) {
+            $this
+                ->setState(self::STATE_C)
+                ->addPosition(1)
+                ->addTokenValue(Grammar::T_L);
+        } elseif ($this->getToken() === Grammar::T_X && $this->hasToken(1)) {
+            if ($this->getToken(1) === Grammar::T_L) {
+                $this
+                    ->setState(self::STATE_B)
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_L, Grammar::T_X);
+            } elseif ($this->getToken(1) === Grammar::T_C) {
+                $this
+                    ->setState(self::STATE_B)
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_C, Grammar::T_X);
+            } else {
+                $this->setState(self::STATE_C);
+            }
+        } else {
+            $this->setState(self::STATE_C);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Do Transition from C
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransitionFromC() : self
+    {
+        if ($this->getToken() === Grammar::T_X) {
+            if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_X) {
+                if ($this->hasToken(2) && $this->getToken(2) === Grammar::T_X) {
+                    $this
+                        ->setState(self::STATE_B)
+                        ->addPosition(3)
+                        ->addTokenValue(Grammar::T_X, null, 3);
+                } else {
+                    $this
+                        ->setState(self::STATE_B)
+                        ->addPosition(2)
+                        ->addTokenValue(Grammar::T_X, null, 2);
+                }
+            } else {
+                $this
+                    ->setState(self::STATE_B)
+                    ->addPosition(1)
+                    ->addTokenValue(Grammar::T_X);
+            }
+        } else {
+            $this->setState(self::STATE_B);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Do Transition from B
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransitionFromB() : self
+    {
+        if ($this->getToken() === Grammar::T_V) {
+            $this
+                ->setState(self::STATE_A)
+                ->addPosition(1)
+                ->addTokenValue(Grammar::T_V);
+        } elseif ($this->getToken() === Grammar::T_I && $this->hasToken(1)) {
+            if ($this->getToken(1) === Grammar::T_V) {
+                $this
+                    ->setState(self::STATE_H)
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_V, Grammar::T_I);
+            } elseif ($this->getToken(1) === Grammar::T_X) {
+                $this
+                    ->setState(self::STATE_H)
+                    ->addPosition(2)
+                    ->addTokenValue(Grammar::T_X, Grammar::T_I);
+            } else {
+                $this->setState(self::STATE_A);
+            }
+        } else {
+            $this->setState(self::STATE_A);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Do Transition From A
+     *
+     * @return self Fluent Interface
+     */
+    private function doTransitionFromA() : self
+    {
+        if ($this->getToken() === Grammar::T_I) {
+            if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_I) {
+                if ($this->hasToken(2) && $this->getToken(2) === Grammar::T_I) {
+                    $this
+                        ->setState(self::STATE_H)
+                        ->addPosition(3)
+                        ->addTokenValue(Grammar::T_I, null, 3);
+                } else {
+                    $this
+                        ->setState(self::STATE_H)
+                        ->addPosition(2)
+                        ->addTokenValue(Grammar::T_I, null, 2);
+                }
+            } else {
+                $this
+                    ->setState(self::STATE_H)
+                    ->addPosition(1)
+                    ->addTokenValue(Grammar::T_I);
+            }
+        } else {
+            $this->setState(self::STATE_H);
+        }
+
+        return $this;
+    }
+
+    /**
      * Read
      *
      * @param  string[] $tokens Tokens
@@ -250,173 +471,34 @@ class Automaton
             ->setTokens($tokens)
             ->reset();
 
-        $length = count($tokens);
-
         while ($this->getState() !== self::STATE_Z) {
             switch ($this->getState()) {
                 case self::STATE_G:
-                    if ($this->getToken() === Grammar::T_N) {
-                        $this
-                            ->setState(self::STATE_H)
-                            ->addPosition(1);
-                    } elseif ($this->getToken() === Grammar::T_M) {
-                        $this
-                            ->setState(self::STATE_G)
-                            ->addPosition(1)
-                            ->addTokenValue(Grammar::T_M);
-                    } else {
-                        $this->setState(self::STATE_F);
-                    }
+                    $this->doTransitionFromG();
                     break;
 
                 case self::STATE_F:
-                    if ($this->getToken() === Grammar::T_D) {
-                        $this
-                            ->setState(self::STATE_E)
-                            ->addPosition(1)
-                            ->addTokenValue(Grammar::T_D);
-                    } elseif ($this->getToken() === Grammar::T_C && $this->hasToken(1)) {
-                        if ($this->getToken(1) === Grammar::T_D) {
-                            $this
-                                ->setState(self::STATE_D)
-                                ->addPosition(2)
-                                ->addTokenValue(Grammar::T_D, Grammar::T_C);
-                        } elseif ($this->getToken(1) === Grammar::T_M) {
-                            $this
-                                ->setState(self::STATE_D)
-                                ->addPosition(2)
-                                ->addTokenValue(Grammar::T_M, Grammar::T_C);
-                        } else {
-                            $this->setState(self::STATE_E);
-                        }
-                    } else {
-                        $this->setState(self::STATE_E);
-                    }
+                    $this->doTransitionFromF();
                     break;
 
                 case self::STATE_E:
-                    if ($this->getToken() === Grammar::T_C) {
-                        if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_C) {
-                            if ($this->hasToken(2) && $this->getToken(2) === Grammar::T_C) {
-                                $this
-                                    ->setState(self::STATE_D)
-                                    ->addPosition(3)
-                                    ->addTokenValue(Grammar::T_C, null, 3);
-                            } else {
-                                $this
-                                    ->setState(self::STATE_D)
-                                    ->addPosition(2)
-                                    ->addTokenValue(Grammar::T_C, null, 2);
-                            }
-                        } else {
-                            $this
-                                ->setState(self::STATE_D)
-                                ->addPosition(1)
-                                ->addTokenValue(Grammar::T_C);
-                        }
-                    } else {
-                        $this->setState(self::STATE_D);
-                    }
+                    $this->doTransitionFromE();
                     break;
 
                 case self::STATE_D:
-                    if ($this->getToken() === Grammar::T_L) {
-                        $this
-                            ->setState(self::STATE_C)
-                            ->addPosition(1)
-                            ->addTokenValue(Grammar::T_L);
-                    } elseif ($this->getToken() === Grammar::T_X && $this->hasToken(1)) {
-                        if ($this->getToken(1) === Grammar::T_L) {
-                            $this
-                                ->setState(self::STATE_B)
-                                ->addPosition(2)
-                                ->addTokenValue(Grammar::T_L, Grammar::T_X);
-                        } elseif ($this->getToken(1) === Grammar::T_C) {
-                            $this
-                                ->setState(self::STATE_B)
-                                ->addPosition(2)
-                                ->addTokenValue(Grammar::T_C, Grammar::T_X);
-                        } else {
-                            $this->setState(self::STATE_C);
-                        }
-                    } else {
-                        $this->setState(self::STATE_C);
-                    }
+                    $this->doTransitionFromD();
                     break;
 
                 case self::STATE_C:
-                    if ($this->getToken() === Grammar::T_X) {
-                        if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_X) {
-                            if ($this->hasToken(2) && $this->getToken(2) === Grammar::T_X) {
-                                $this
-                                    ->setState(self::STATE_B)
-                                    ->addPosition(3)
-                                    ->addTokenValue(Grammar::T_X, null, 3);
-                            } else {
-                                $this
-                                    ->setState(self::STATE_B)
-                                    ->addPosition(2)
-                                    ->addTokenValue(Grammar::T_X, null, 2);
-                            }
-                        } else {
-                            $this
-                                ->setState(self::STATE_B)
-                                ->addPosition(1)
-                                ->addTokenValue(Grammar::T_X);
-                        }
-                    } else {
-                        $this->setState(self::STATE_B);
-                    }
+                    $this->doTransitionFromC();
                     break;
 
                 case self::STATE_B:
-                    if ($this->getToken() === Grammar::T_V) {
-                        $this
-                            ->setState(self::STATE_A)
-                            ->addPosition(1)
-                            ->addTokenValue(Grammar::T_V);
-                    } elseif ($this->getToken() === Grammar::T_I && $this->hasToken(1)) {
-                        if ($this->getToken(1) === Grammar::T_V) {
-                            $this
-                                ->setState(self::STATE_H)
-                                ->addPosition(2)
-                                ->addTokenValue(Grammar::T_V, Grammar::T_I);
-                        } elseif ($this->getToken(1) === Grammar::T_X) {
-                            $this
-                                ->setState(self::STATE_H)
-                                ->addPosition(2)
-                                ->addTokenValue(Grammar::T_X, Grammar::T_I);
-                        } else {
-                            $this->setState(self::STATE_A);
-                        }
-                    } else {
-                        $this->setState(self::STATE_A);
-                    }
+                    $this->doTransitionFromB();
                     break;
 
                 case self::STATE_A:
-                    if ($this->getToken() === Grammar::T_I) {
-                        if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_I) {
-                            if ($this->hasToken(2) && $this->getToken(2) === Grammar::T_I) {
-                                $this
-                                    ->setState(self::STATE_H)
-                                    ->addPosition(3)
-                                    ->addTokenValue(Grammar::T_I, null, 3);
-                            } else {
-                                $this
-                                    ->setState(self::STATE_H)
-                                    ->addPosition(2)
-                                    ->addTokenValue(Grammar::T_I, null, 2);
-                            }
-                        } else {
-                            $this
-                                ->setState(self::STATE_H)
-                                ->addPosition(1)
-                                ->addTokenValue(Grammar::T_I);
-                        }
-                    } else {
-                        $this->setState(self::STATE_H);
-                    }
+                    $this->doTransitionFromA();
                     break;
 
                 case self::STATE_H:
