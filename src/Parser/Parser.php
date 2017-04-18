@@ -34,7 +34,6 @@ class Parser
      */
     public function parse(array $tokens) : int
     {
-        $values          = $this->getGrammar()->getValues();
         $tokensAvailable = array_flip($this->getGrammar()->getTokens());
 
         $length = count($tokens);
