@@ -19,37 +19,34 @@ class GrammarTest extends TestCase
         $this->grammar = new Grammar();
 
         $this->tokens = [
-            'T_N'  => 'N',
-            'T_I'  => 'I',
-            'T_IV' => 'IV',
-            'T_V'  => 'V',
-            'T_IX' => 'IX',
-            'T_X'  => 'X',
-            'T_XL' => 'XL',
-            'T_L'  => 'L',
-            'T_XC' => 'XC',
-            'T_C'  => 'C',
-            'T_CD' => 'CD',
-            'T_D'  => 'D',
-            'T_CM' => 'CM',
-            'T_M'  => 'M',
+            'T_N' => 'N',
+            'T_I' => 'I',
+            'T_V' => 'V',
+            'T_X' => 'X',
+            'T_L' => 'L',
+            'T_C' => 'C',
+            'T_D' => 'D',
+            'T_M' => 'M',
         ];
 
         $this->values = [
-            'T_N'  => 0,
-            'T_I'  => 1,
-            'T_IV' => 4,
-            'T_V'  => 5,
-            'T_IX' => 9,
-            'T_X'  => 10,
-            'T_XL' => 40,
-            'T_L'  => 50,
-            'T_XC' => 90,
-            'T_C'  => 100,
-            'T_CD' => 400,
-            'T_D'  => 500,
-            'T_CM' => 900,
-            'T_M'  => 1000,
+            'T_N' => 0,
+            'T_I' => 1,
+            'T_V' => 5,
+            'T_X' => 10,
+            'T_L' => 50,
+            'T_C' => 100,
+            'T_D' => 500,
+            'T_M' => 1000,
+        ];
+
+        $this->modifiers = [
+            4   => ['T_I', 'T_V'],
+            9   => ['T_I', 'T_X'],
+            40  => ['T_X', 'T_L'],
+            90  => ['T_X', 'T_C'],
+            400 => ['T_C', 'T_D'],
+            900 => ['T_C', 'T_M'],
         ];
     }
 
@@ -75,10 +72,34 @@ class GrammarTest extends TestCase
     }
 
     /**
+     * Test Modifiers
+     */
+    public function testModifiers()
+    {
+        $this->assertSame($this->modifiers, $this->grammar->getModifiers());
+    }
+
+    /**
      * Test Values
      */
     public function testValues()
     {
         $this->assertSame($this->values, $this->grammar->getValues());
+    }
+
+    /**
+     * Test Values with Modifiers
+     */
+    public function testValuesWithModifiers()
+    {
+        $values = array_map(function ($value) {
+            return [$value];
+        }, array_flip($this->values));
+
+        $valuesWithModifiers = $values + $this->modifiers; // merge and keep keys
+
+        ksort($valuesWithModifiers);
+
+        $this->assertSame($valuesWithModifiers, $this->grammar->getValuesWithModifiers());
     }
 }

@@ -34,12 +34,9 @@ class Parser
      */
     public function parse(array $tokens) : int
     {
-        $values          = $this->getGrammar()->getValues();
         $tokensAvailable = array_flip($this->getGrammar()->getTokens());
 
-        $result    = 0;
-        $lastValue = null;
-        $length    = count($tokens);
+        $length = count($tokens);
 
         if ($length === 0) {
             throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
@@ -69,23 +66,8 @@ class Parser
 
                 throw $exception;
             }
-
-            $value = $values[$tokensAvailable[$token]];
-
-            // $value === 0 && $length === 1? One Token with Nulla
-
-            if ($value === 0 && $length !== 1) {
-                throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
-            }
-
-            if (isset($lastValue) && $lastValue < $value) {
-                throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
-            }
-
-            $result    = $result + $value;
-            $lastValue = $value;
         }
 
-        return $result;
+        return (new Automaton($this->getGrammar()))->read($tokens)->getValue();
     }
 }

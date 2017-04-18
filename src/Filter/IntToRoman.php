@@ -39,20 +39,25 @@ class IntToRoman
         }
 
         $tokens = $this->getGrammar()->getTokens();
-        $values = array_reverse($this->getGrammar()->getValues());
-
-        if ($value === 0) {
-            $token = array_search(0, $values);
-
-            return $tokens[$token];
-        }
-
+        $values = array_reverse($this->getGrammar()->getValuesWithModifiers(), true /* preserve keys */);
         $result = '';
 
-        foreach ($values as $token => $current) {
-            while ($current > 0 && $value >= $current) {
-                $value  = $value - $current;
+        if ($value === 0) {
+            $dataset = $values[0];
+
+            foreach ($dataset as $token) {
                 $result = $result . $tokens[$token];
+            }
+
+            return $result;
+        }
+
+        foreach ($values as $current => $dataset) {
+            while ($current > 0 && $value >= $current) {
+                $value = $value - $current;
+                foreach ($dataset as $token) {
+                    $result = $result . $tokens[$token];
+                }
             }
         }
 

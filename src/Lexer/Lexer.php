@@ -57,15 +57,6 @@ class Lexer
                 throw $exception;
             }
 
-            // Lookahead
-            if ($position + 1 < $length) {
-                $next = $content[$position + 1];
-                if (isset($numerals[$current . $next])) {
-                    $current  = $current . $next;
-                    $position = $position + 1;
-                }
-            }
-
             $result[] = $current;
             $position = $position + 1;
         }

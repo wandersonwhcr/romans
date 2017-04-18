@@ -63,12 +63,12 @@ class ParserTest extends TestCase
     }
 
     /**
-     * Test Parse with Lookahead Tokens
+     * Test Parse with Lookahead Removal Tokens
      */
-    public function testParseWithLookaheadTokens()
+    public function testParseWithLookaheadRemovalTokens()
     {
-        $this->assertSame(9, $this->parser->parse([Grammar::T_IX]));
-        $this->assertSame(99, $this->parser->parse([Grammar::T_XC, Grammar::T_IX]));
+        $this->assertSame(9, $this->parser->parse([Grammar::T_I, Grammar::T_X]));
+        $this->assertSame(99, $this->parser->parse([Grammar::T_X, Grammar::T_C, Grammar::T_I, Grammar::T_X]));
     }
 
     /**
@@ -195,5 +195,57 @@ class ParserTest extends TestCase
         $this->expectExceptionMessage('Invalid token type "integer" at position 0');
 
         $this->parser->parse([0]);
+    }
+
+    /**
+     * Test Parse with Two Tokens with Lookahead Removal
+     */
+    public function testParseWithTwoTokensWithLookaheadRemoval()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+        $this->expectExceptionCode(ParserException::INVALID_ROMAN);
+
+        $this->parser->parse([Grammar::T_I, Grammar::T_X, Grammar::T_I, Grammar::T_X]);
+    }
+
+    /**
+     * Test Parse with One Lookahead Removal Token and One Simple Token
+     */
+    public function testParseWithOneLookaheadTokenAndOneSimpleToken()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+        $this->expectExceptionCode(ParserException::INVALID_ROMAN);
+
+        $this->parser->parse([Grammar::T_I, Grammar::T_X, Grammar::T_V]);
+    }
+
+    /**
+     * Test Parse with Four Simple Tokens in Sequence
+     */
+    public function testParseWithFourSimpleTokensInSequence()
+    {
+        $this->expectException(ParserException::class);
+        $this->expectExceptionMessage('Invalid Roman');
+        $this->expectExceptionCode(ParserException::INVALID_ROMAN);
+
+        $this->parser->parse([Grammar::T_I, Grammar::T_I, Grammar::T_I, Grammar::T_I]);
+    }
+
+    /**
+     * Test Parse with Tokens in Sequence for Thousands
+     */
+    public function testParseWithTokensInSequenceForThousands()
+    {
+        $this->assertSame(4000, $this->parser->parse([Grammar::T_M, Grammar::T_M, Grammar::T_M, Grammar::T_M]));
+
+        $this->assertSame(5000, $this->parser->parse([
+            Grammar::T_M,
+            Grammar::T_M,
+            Grammar::T_M,
+            Grammar::T_M,
+            Grammar::T_M,
+        ]));
     }
 }

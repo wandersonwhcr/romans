@@ -92,22 +92,36 @@ class LexerTest extends TestCase
     }
 
     /**
-     * Test Tokenize with Lookahead
+     * Test Tokenize with Lookahead Removal
      */
-    public function testTokenizeWithLookahead()
+    public function testTokenizeWithLookaheadRemoval()
     {
-        $this->assertSame([Grammar::T_IV], $this->lexer->tokenize('IV'));
-        $this->assertSame([Grammar::T_IX], $this->lexer->tokenize('IX'));
+        $this->assertSame([Grammar::T_I, Grammar::T_V], $this->lexer->tokenize('IV'));
+        $this->assertSame([Grammar::T_I, Grammar::T_X], $this->lexer->tokenize('IX'));
 
-        $this->assertSame([Grammar::T_CD, Grammar::T_XC, Grammar::T_IX], $this->lexer->tokenize('CDXCIX'));
+        $this->assertSame([
+            Grammar::T_C,
+            Grammar::T_D,
+            Grammar::T_X,
+            Grammar::T_C,
+            Grammar::T_I,
+            Grammar::T_X,
+        ], $this->lexer->tokenize('CDXCIX'));
     }
 
     /**
-     * Test Tokenize With Simple And Lookahead
+     * Test Tokenize With Simple And Lookahead Removal
      */
-    public function testTokenizeWithSimpleAndLookahead()
+    public function testTokenizeWithSimpleAndLookaheadRemoval()
     {
-        $this->assertSame([Grammar::T_CD, Grammar::T_L, Grammar::T_X, Grammar::T_IX], $this->lexer->tokenize('CDLXIX'));
+        $this->assertSame([
+            Grammar::T_C,
+            Grammar::T_D,
+            Grammar::T_L,
+            Grammar::T_X,
+            Grammar::T_I,
+            Grammar::T_X,
+        ], $this->lexer->tokenize('CDLXIX'));
     }
 
     /**

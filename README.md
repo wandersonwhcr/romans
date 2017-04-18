@@ -42,8 +42,9 @@ stable version.
 
 ## Advanced Usage
 
-The `Romans` package uses a Lexer-Parser approach to convert Roman number to
-Integer, using a Grammar Token library.
+The `Romans` package uses a Lexer-Parser approach and a Deterministic Finite
+Automaton (DFA) to convert Roman number to Integer, using a Grammar Token
+library.
 
 ```php
 use Romans\Grammar\Grammar;
@@ -58,10 +59,13 @@ $tokens = $lexer->tokenize('MCMXCIX');
 
 /*
 $tokens = [
-    0 => 'M',  // Grammar::T_M
-    1 => 'CM', // Grammar::T_CM
-    2 => 'XC', // Grammar::T_XC
-    3 => 'IX', // Grammar::T_IX
+    0 => 'M'  // Grammar::T_M
+    1 => 'C', // Grammar::T_C
+    2 => 'M', // Grammar::T_M
+    3 => 'X', // Grammar::T_X
+    4 => 'C', // Grammar::T_C
+    5 => 'I', // Grammar::T_I
+    6 => 'X', // Grammar::T_X
 ];
 */
 
@@ -125,10 +129,42 @@ $filter = new IntToRoman();
 $result = $filter->filter(0); // N
 ```
 
+## Techniques
+
+This section describes some techniques this package uses to convert Roman
+numbers into integer and vice-versa.
+
+### Deterministic Finite Automaton (DFA)
+
+A DFA was developed to check if a string with Roman number is valid. This
+technique was choiced because some implementations simply convert the `$input`
+without checking some rules, like four chars sequentially.
+
+The current automaton definition is declared below.
+
+```plain
+M  = (Q, Σ, δ, q0, F)
+Q  = { a, b, c, d, e, f, g, y, z }
+Σ  = { I, V, X, L, C, D, M, N }
+q0 = g
+F  = { z }
+
+z -> ε
+y -> $z
+a -> y | Iy  | IIy | IIIy
+b -> a | IVy | Va  | IXy
+c -> b | Xb  | XXb | XXXb
+d -> c | XLb | Lc  | XCb
+e -> d | Cd  | CCd | CCCd
+f -> e | CDd | De  | CMd
+g -> f | Nz  | Mg
+```
+
 ## References
 
 * Rapid Tables: [How to Convert Roman Numerals to Numbers](http://www.rapidtables.com/convert/number/how-roman-numerals-to-number.htm)
 * Wikipedia: [Zero in Roman Numerals](https://en.wikipedia.org/wiki/Roman_numerals#Zero)
+* Wikipedia: [Deterministic Finite Automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)
 
 ## License
 
