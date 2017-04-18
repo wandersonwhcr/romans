@@ -129,6 +129,11 @@ $filter = new IntToRoman();
 $result = $filter->filter(0); // N
 ```
 
+## Techniques
+
+This section describes some techniques this package uses to convert Roman
+numbers into integer and vice-versa.
+
 ### Deterministic Finite Automaton (DFA)
 
 A DFA was developed to check if a string with Roman number is valid. This
