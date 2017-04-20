@@ -142,6 +142,24 @@ $result = $filter->filter(0); // N
 This section describes some techniques this package uses to convert Roman
 numbers into integer and vice-versa.
 
+### Lexer-Parser
+
+A Lexer-Parser approach was chosen because the validating and reading of Roman
+numbers are more simplified: the Lexer is responsible for reading and transform
+the input into tokens, validating content at char level; and the Parser is
+responsible for transform tokens into numbers, validating content at position
+level and converting to `int` through a DFA.
+
+Wikipedia says that "lexical analysis is the process of converting a sequence of
+characters into a sequence of tokens", that "is a structure representing a
+lexeme that explicity indicates its categorization for the purpose of parsing".
+Even, Wikipedia says that "parsing or syntax analysis is the process of
+analysing symbols conforming to the rules of a formal grammar".
+
+This structure makes easier the development of a structure responsible to read
+an input `string`, converting it to another structure according to specific
+`char` set and your position inside input.
+
 ### Deterministic Finite Automaton (DFA)
 
 A DFA was developed to check if a string with Roman number is valid. This
@@ -172,6 +190,8 @@ g -> f | Nz  | Mg
 
 * Rapid Tables: [How to Convert Roman Numerals to Numbers](http://www.rapidtables.com/convert/number/how-roman-numerals-to-number.htm)
 * Wikipedia: [Zero in Roman Numerals](https://en.wikipedia.org/wiki/Roman_numerals#Zero)
+* Wikipedia: [Lexical Analysis](https://en.wikipedia.org/wiki/Lexical_analysis)
+* Wikipedia: [Parsing](https://en.wikipedia.org/wiki/Parsing)
 * Wikipedia: [Deterministic Finite Automaton](https://en.wikipedia.org/wiki/Deterministic_finite_automaton)
 
 ## License
