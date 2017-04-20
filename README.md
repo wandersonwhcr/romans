@@ -40,6 +40,14 @@ stable version.
 }
 ```
 
+## Integrations
+
+This library can be used as dependency for other projects, making integrations
+with other libraries or frameworks easier. If you want to add more items in this
+list, please, open an issue or create a pull request.
+
+* [Zend Romans](https://github.com/wandersonwhcr/zend-romans): Zend Framework Romans Integration
+
 ## Advanced Usage
 
 The `Romans` package uses a Lexer-Parser approach and a Deterministic Finite
