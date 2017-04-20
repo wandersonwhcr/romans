@@ -4,7 +4,7 @@ php:
     - 7.1
 
 install:
-    - make install
+    - composer install
 
 script:
-    - make test
+    - composer test
