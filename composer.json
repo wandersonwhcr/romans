@@ -24,6 +24,11 @@
         "sebastian/phpcpd": "3.0.*",
         "squizlabs/php_codesniffer": "2.8.*"
     },
+    "scripts": {
+        "optimize": [
+            "composer install --no-dev --optimize-autoloader --classmap-authoritative"
+        ]
+    },
     "extra": {
         "branch-alias": {
             "dev-develop": "1.0.x-dev"
