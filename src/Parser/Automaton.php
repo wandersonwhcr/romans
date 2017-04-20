@@ -239,11 +239,11 @@ class Automaton
     }
 
     /**
-     * Do Transition from H
+     * Do Transition from Y
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromH() : self
+    private function doTransitionFromY() : self
     {
         if ($this->getToken() !== '$') {
             throw (new Exception('Invalid Roman', Exception::INVALID_ROMAN))
@@ -529,7 +529,7 @@ class Automaton
                 break;
 
             case self::STATE_Y:
-                $this->doTransitionFromH();
+                $this->doTransitionFromY();
                 break;
         }
 
