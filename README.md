@@ -46,6 +46,7 @@ This library can be used as dependency for other projects, making integrations
 with other libraries or frameworks easier. If you want to add more items in this
 list, please, open an issue or create a pull request.
 
+* [Illuminate Romans](https://github.com/wandersonwhcr/illuminate-romans): Laravel Romans Integration
 * [Zend Romans](https://github.com/wandersonwhcr/zend-romans): Zend Framework Romans Integration
 
 ## Advanced Usage
