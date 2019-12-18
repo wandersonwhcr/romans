@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Romans\Parser;
 
@@ -26,24 +27,24 @@ class Automaton
 
     /**
      * State
-     * @type string
      */
-    private $state;
+    private string $state;
 
     /**
      * Position
-     * @type int
      */
-    private $position;
+    private int $position;
 
     /**
      * Value
-     * @type int
      */
-    private $value;
+    private int $value;
 
     /**
      * Tokens
+     *
+     * TODO Unpacking String Array
+     *
      * @type string[]
      */
     private $tokens;
@@ -51,9 +52,9 @@ class Automaton
     /**
      * Default Constructor
      *
-     * @param Grammar $grammar Grammar Object
+     * @param $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
         if (! isset($grammar)) {
             $grammar = new Grammar();
@@ -67,8 +68,8 @@ class Automaton
     /**
      * Set State
      *
-     * @param  string $state State Value
-     * @return self   Fluent Interface
+     * @param  $state State Value
+     * @return Fluent Interface
      */
     protected function setState(string $state) : self
     {
@@ -79,7 +80,7 @@ class Automaton
     /**
      * Get State
      *
-     * @return string State Value
+     * @return State Value
      */
     public function getState() : string
     {
@@ -89,8 +90,8 @@ class Automaton
     /**
      * Set Position
      *
-     * @param  int  $value Position Value
-     * @return self Fluent Interface
+     * @param  $value Position Value
+     * @return Fluent Interface
      */
     protected function setPosition(int $position) : self
     {
@@ -101,7 +102,7 @@ class Automaton
     /**
      * Get Position
      *
-     * @return int Position Value
+     * @return Position Value
      */
     public function getPosition() : int
     {
@@ -111,8 +112,8 @@ class Automaton
     /**
      * Add Position
      *
-     * @param  int  $offset Offset Value
-     * @return self Fluent Interface
+     * @param  $offset Offset Value
+     * @return Fluent Interface
      */
     protected function addPosition(int $offset) : self
     {
@@ -123,8 +124,8 @@ class Automaton
     /**
      * Set Value
      *
-     * @param  int  $value Value
-     * @return self Fluent Interface
+     * @param  $value Value
+     * @return Fluent Interface
      */
     protected function setValue(int $value) : self
     {
@@ -135,7 +136,7 @@ class Automaton
     /**
      * Get Value
      *
-     * @return int Value
+     * @return Value
      */
     public function getValue() : int
     {
@@ -145,8 +146,8 @@ class Automaton
     /**
      * Add Value
      *
-     * @param  int  $offset Offset Value
-     * @return self Fluent Interface
+     * @param  $offset Offset Value
+     * @return Fluent Interface
      */
     protected function addValue(int $offset) : self
     {
@@ -157,10 +158,10 @@ class Automaton
     /**
      * Add Token Value
      *
-     * @param  string $token    Token
-     * @param  string $modifier Modifier Token
-     * @param  int    $quantity Quantity
-     * @return self   Fluent Interface
+     * @param  $token    Token
+     * @param  $modifier Modifier Token
+     * @param  $quantity Quantity
+     * @return Fluent Interface
      */
     protected function addTokenValue(string $token, string $modifier = null, int $quantity = 1) : self
     {
@@ -182,6 +183,8 @@ class Automaton
     /**
      * Set Tokens
      *
+     * TODO Unpacking String Array
+     *
      * @param  string[] $tokens Token Values
      * @return self     Fluent Interface
      */
@@ -194,6 +197,8 @@ class Automaton
     /**
      * Get Tokens
      *
+     * TODO Unpacking String Array
+     *
      * @return string[] Token Values
      */
     public function getTokens() : array
@@ -204,8 +209,8 @@ class Automaton
     /**
      * Get Token
      *
-     * @param  int    $offset Position Offset
-     * @return string Token
+     * @param  $offset Position Offset
+     * @return Token
      */
     protected function getToken(int $offset = 0) : string
     {
@@ -215,8 +220,8 @@ class Automaton
     /**
      * Has Token?
      *
-     * @param  int  $offset Position Offset
-     * @return bool Confirmation
+     * @param  $offset Position Offset
+     * @return Confirmation
      */
     protected function hasToken(int $offset = 0) : bool
     {
@@ -226,7 +231,7 @@ class Automaton
     /**
      * Reset Counters
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     protected function reset() : self
     {
@@ -241,7 +246,7 @@ class Automaton
     /**
      * Do Transition from Y
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransitionFromY() : self
     {
@@ -259,7 +264,7 @@ class Automaton
     /**
      * Do Transition from G
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransitionFromG() : self
     {
@@ -285,7 +290,7 @@ class Automaton
     /**
      * Do Transition from F
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransitionFromF() : self
     {
@@ -320,7 +325,7 @@ class Automaton
     /**
      * Do Transition from E
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransitionFromE() : self
     {
@@ -355,7 +360,7 @@ class Automaton
     /**
      * Do Transition from D
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransitionFromD() : self
     {
@@ -390,7 +395,7 @@ class Automaton
     /**
      * Do Transition from C
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransitionFromC() : self
     {
@@ -425,7 +430,7 @@ class Automaton
     /**
      * Do Transition from B
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransitionFromB() : self
     {
@@ -460,7 +465,7 @@ class Automaton
     /**
      * Do Transition From A
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransitionFromA() : self
     {
@@ -495,7 +500,7 @@ class Automaton
     /**
      * Do Transition
      *
-     * @return self Fluent Interface
+     * @return Fluent Interface
      */
     private function doTransition() : self
     {
@@ -538,6 +543,8 @@ class Automaton
 
     /**
      * Read
+     *
+     * TODO Unpacking String Array
      *
      * @param  string[] $tokens Tokens
      * @return self     Fluent Interface
