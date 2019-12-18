@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Romans\Grammar;
 
@@ -19,7 +20,7 @@ class Grammar
     /**
      * Get Tokens
      *
-     * @return array Tokens Available
+     * @return Tokens Available
      */
     public function getTokens() : array
     {
@@ -38,9 +39,9 @@ class Grammar
     /**
      * Get Values
      *
-     * @return array Values Available
+     * @return Values Available
      */
-    public function getValues()
+    public function getValues() : array
     {
         return [
             'T_N' => 0,
@@ -57,9 +58,9 @@ class Grammar
     /**
      * Get Modifiers
      *
-     * @return array Modifiers Available
+     * @return Modifiers Available
      */
-    public function getModifiers()
+    public function getModifiers() : array
     {
         return [
             4   => ['T_I', 'T_V'],
@@ -74,9 +75,9 @@ class Grammar
     /**
      * Get Values with Modifiers
      *
-     * @return array Values with Modifiers Available
+     * @return Values with Modifiers Available
      */
-    public function getValuesWithModifiers()
+    public function getValuesWithModifiers() : array
     {
         $values = array_map(function ($value) {
             return [$value];
