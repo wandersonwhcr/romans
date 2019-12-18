@@ -22,7 +22,7 @@
         "phpmd/phpmd": "2.6.*",
         "phpunit/phpunit": "6.1.*",
         "sebastian/phpcpd": "3.0.*",
-        "squizlabs/php_codesniffer": "2.8.*"
+        "squizlabs/php_codesniffer": "3.5.*"
     },
     "config": {
         "preferred-install": {
