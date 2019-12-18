@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Romans\Parser;
 
@@ -15,9 +16,9 @@ class Parser
     /**
      * Default Constructor
      *
-     * @param Grammar $grammar Grammar Object
+     * @param $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
         if (! isset($grammar)) {
             $grammar = new Grammar();
@@ -28,6 +29,8 @@ class Parser
 
     /**
      * Parse Tokens
+     *
+     * TODO Unpacking String Array
      *
      * @param  string[] $tokens Grammar Tokens
      * @return int      Corresponding Decimal
