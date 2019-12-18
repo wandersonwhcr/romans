@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Romans\Filter;
 
@@ -15,9 +16,9 @@ class IntToRoman
     /**
      * Default Constructor
      *
-     * @param Grammar $grammar Grammar Object
+     * @param $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
         if (! isset($grammar)) {
             $grammar = new Grammar();
@@ -29,8 +30,8 @@ class IntToRoman
     /**
      * Filter Integer to Roman Number
      *
-     * @param  int    Integer
-     * @return string Roman Number Result
+     * @param  Integer
+     * @return Roman Number Result
      */
     public function filter(int $value) : string
     {
