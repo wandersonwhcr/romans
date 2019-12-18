@@ -2,9 +2,9 @@
 
 namespace RomansTest\Parser;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Romans\Parser\Exception;
+use TypeError;
 
 /**
  * Exception Test
@@ -48,9 +48,9 @@ class ExceptionTest extends TestCase
      */
     public function testTokenWithInvalidType()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(TypeError::class);
 
-        $this->exception->setToken(0);
+        $this->exception->setToken([]);
     }
 
     /**
@@ -76,7 +76,7 @@ class ExceptionTest extends TestCase
      */
     public function testPositionWithInvalidType()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(TypeError::class);
 
         $this->exception->setPosition('FOOBAR');
     }
