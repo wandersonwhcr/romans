@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Romans\Lexer;
 
@@ -15,9 +16,9 @@ class Lexer
     /**
      * Default Constructor
      *
-     * @param Grammar $grammar Grammar Object
+     * @param $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
         if (! isset($grammar)) {
             $grammar = new Grammar();
@@ -29,8 +30,8 @@ class Lexer
     /**
      * Tokenize Content
      *
-     * @param  string $content Input Content
-     * @return array  Result Token Set
+     * @param  $content Input Content
+     * @return Result Token Set
      */
     public function tokenize(string $content) : array
     {
