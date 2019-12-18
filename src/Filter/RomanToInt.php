@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Romans\Filter;
 
@@ -13,22 +14,20 @@ class RomanToInt
 {
     /**
      * Lexer
-     * @type Lexer
      */
-    private $lexer;
+    private Lexer $lexer;
 
     /**
      * Parser
-     * @type Parser
      */
-    private $parser;
+    private Parser $parser;
 
     /**
      * Default Constructor
      *
-     * @param Grammar $grammar Grammar Object
+     * @param $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
         if (! isset($grammar)) {
             $grammar = new Grammar();
@@ -42,8 +41,8 @@ class RomanToInt
     /**
      * Set Lexer
      *
-     * @param  Lexer $lexer Lexer Object
-     * @return self  Fluent Interface
+     * @param  $lexer Lexer Object
+     * @return Fluent Interface
      */
     public function setLexer(Lexer $lexer) : self
     {
@@ -54,7 +53,7 @@ class RomanToInt
     /**
      * Get Lexer
      *
-     * @return Lexer Lexer Object
+     * @return Lexer Object
      */
     public function getLexer() : Lexer
     {
@@ -64,8 +63,8 @@ class RomanToInt
     /**
      * Set Parser
      *
-     * @param  Parser $parser Parser Object
-     * @return self   Fluent Interface
+     * @param  $parser Parser Object
+     * @return Fluent Interface
      */
     public function setParser(Parser $parser) : self
     {
@@ -76,7 +75,7 @@ class RomanToInt
     /**
      * Get Parser
      *
-     * @return Parser Parser Object
+     * @return Parser Object
      */
     public function getParser() : Parser
     {
@@ -86,8 +85,8 @@ class RomanToInt
     /**
      * Filter Roman Number to Integer
      *
-     * @param  string $value Roman Number
-     * @return int    Integer Result
+     * @param  $value Roman Number
+     * @return Integer Result
      */
     public function filter(string $value) : int
     {
