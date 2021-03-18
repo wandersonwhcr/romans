@@ -15,7 +15,7 @@ class LexerTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->lexer = new Lexer();
     }

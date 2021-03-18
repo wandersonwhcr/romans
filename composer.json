@@ -15,14 +15,14 @@
         }
     },
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.4"
     },
     "require-dev": {
-        "jakub-onderka/php-parallel-lint": "1.0.*",
         "phpmd/phpmd": "2.6.*",
-        "phpunit/phpunit": "6.1.*",
-        "sebastian/phpcpd": "3.0.*",
-        "squizlabs/php_codesniffer": "3.5.*"
+        "phpunit/phpunit": "9.5.*",
+        "sebastian/phpcpd": "6.0.3",
+        "squizlabs/php_codesniffer": "3.5.*",
+        "php-parallel-lint/php-parallel-lint": "1.2.*"
     },
     "config": {
         "preferred-install": {
@@ -40,10 +40,5 @@
             "phpmd src text phpmd.xml",
             "phpcs"
         ]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-develop": "1.2.x-dev"
-        }
     }
 }
