@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RomansTest\Filter;
 
 use PHPUnit\Framework\TestCase;

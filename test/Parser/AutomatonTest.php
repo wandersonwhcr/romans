@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RomansTest\Parser;
 
 use PHPUnit\Framework\TestCase;

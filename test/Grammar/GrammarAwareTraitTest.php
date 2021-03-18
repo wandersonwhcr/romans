@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RomansTest\Grammar;
 
 use PHPUnit\Framework\TestCase;
