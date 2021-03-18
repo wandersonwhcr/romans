@@ -72,7 +72,7 @@ class Automaton
      * @param  string $state State Value
      * @return self   Fluent Interface
      */
-    protected function setState(string $state) : self
+    protected function setState(string $state): self
     {
         $this->state = $state;
         return $this;
@@ -83,7 +83,7 @@ class Automaton
      *
      * @return string State Value
      */
-    public function getState() : string
+    public function getState(): string
     {
         return $this->state;
     }
@@ -94,7 +94,7 @@ class Automaton
      * @param  int  $value Position Value
      * @return self Fluent Interface
      */
-    protected function setPosition(int $position) : self
+    protected function setPosition(int $position): self
     {
         $this->position = $position;
         return $this;
@@ -105,7 +105,7 @@ class Automaton
      *
      * @return int Position Value
      */
-    public function getPosition() : int
+    public function getPosition(): int
     {
         return $this->position;
     }
@@ -116,7 +116,7 @@ class Automaton
      * @param  int  $offset Offset Value
      * @return self Fluent Interface
      */
-    protected function addPosition(int $offset) : self
+    protected function addPosition(int $offset): self
     {
         $this->setPosition($this->getPosition() + $offset);
         return $this;
@@ -128,7 +128,7 @@ class Automaton
      * @param  int  $value Value
      * @return self Fluent Interface
      */
-    protected function setValue(int $value) : self
+    protected function setValue(int $value): self
     {
         $this->value = $value;
         return $this;
@@ -139,7 +139,7 @@ class Automaton
      *
      * @return int Value
      */
-    public function getValue() : int
+    public function getValue(): int
     {
         return $this->value;
     }
@@ -150,7 +150,7 @@ class Automaton
      * @param  int  $offset Offset Value
      * @return self Fluent Interface
      */
-    protected function addValue(int $offset) : self
+    protected function addValue(int $offset): self
     {
         $this->setValue($this->getValue() + $offset);
         return $this;
@@ -164,7 +164,7 @@ class Automaton
      * @param  int    $quantity Quantity
      * @return self   Fluent Interface
      */
-    protected function addTokenValue(string $token, string $modifier = null, int $quantity = 1) : self
+    protected function addTokenValue(string $token, string $modifier = null, int $quantity = 1): self
     {
         $tokens   = array_flip($this->getGrammar()->getTokens());
         $values   = $this->getGrammar()->getValuesWithModifiers();
@@ -187,7 +187,7 @@ class Automaton
      * @param  string[] $tokens Token Values
      * @return self     Fluent Interface
      */
-    protected function setTokens(array $tokens) : self
+    protected function setTokens(array $tokens): self
     {
         $this->tokens = $tokens;
         return $this;
@@ -198,7 +198,7 @@ class Automaton
      *
      * @return string[] Token Values
      */
-    public function getTokens() : array
+    public function getTokens(): array
     {
         return $this->tokens;
     }
@@ -209,7 +209,7 @@ class Automaton
      * @param  int    $offset Position Offset
      * @return string Token
      */
-    protected function getToken(int $offset = 0) : string
+    protected function getToken(int $offset = 0): string
     {
         return $this->getTokens()[$this->getPosition() + $offset];
     }
@@ -220,7 +220,7 @@ class Automaton
      * @param  int  $offset Position Offset
      * @return bool Confirmation
      */
-    protected function hasToken(int $offset = 0) : bool
+    protected function hasToken(int $offset = 0): bool
     {
         return $this->getPosition() + $offset < count($this->getTokens());
     }
@@ -230,7 +230,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    protected function reset() : self
+    protected function reset(): self
     {
         $this
             ->setState(self::STATE_G)
@@ -245,7 +245,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromY() : self
+    private function doTransitionFromY(): self
     {
         if ($this->getToken() !== '$') {
             throw (new Exception('Invalid Roman', Exception::INVALID_ROMAN))
@@ -263,7 +263,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromG() : self
+    private function doTransitionFromG(): self
     {
         if ($this->getToken() === Grammar::T_N) {
             $this
@@ -289,7 +289,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromF() : self
+    private function doTransitionFromF(): self
     {
         if ($this->getToken() === Grammar::T_D) {
             $this
@@ -324,7 +324,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromE() : self
+    private function doTransitionFromE(): self
     {
         if ($this->getToken() === Grammar::T_C) {
             if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_C) {
@@ -359,7 +359,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromD() : self
+    private function doTransitionFromD(): self
     {
         if ($this->getToken() === Grammar::T_L) {
             $this
@@ -394,7 +394,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromC() : self
+    private function doTransitionFromC(): self
     {
         if ($this->getToken() === Grammar::T_X) {
             if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_X) {
@@ -429,7 +429,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromB() : self
+    private function doTransitionFromB(): self
     {
         if ($this->getToken() === Grammar::T_V) {
             $this
@@ -464,7 +464,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransitionFromA() : self
+    private function doTransitionFromA(): self
     {
         if ($this->getToken() === Grammar::T_I) {
             if ($this->hasToken(1) && $this->getToken(1) === Grammar::T_I) {
@@ -499,7 +499,7 @@ class Automaton
      *
      * @return self Fluent Interface
      */
-    private function doTransition() : self
+    private function doTransition(): self
     {
         switch ($this->getState()) {
             case self::STATE_G:
@@ -544,7 +544,7 @@ class Automaton
      * @param  string[] $tokens Tokens
      * @return self     Fluent Interface
      */
-    public function read(array $tokens) : self
+    public function read(array $tokens): self
     {
         array_push($tokens, '$');
 

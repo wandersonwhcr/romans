@@ -21,7 +21,7 @@ trait GrammarAwareTrait
      * @param  Grammar $grammar Grammar Object
      * @return self    Fluent Interface
      */
-    public function setGrammar(Grammar $grammar) : self
+    public function setGrammar(Grammar $grammar): self
     {
         $this->grammar = $grammar;
         return $this;
@@ -32,7 +32,7 @@ trait GrammarAwareTrait
      *
      * @return Grammar Grammar Object
      */
-    public function getGrammar() : Grammar
+    public function getGrammar(): Grammar
     {
         return $this->grammar;
     }

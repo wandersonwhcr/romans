@@ -34,7 +34,7 @@ class Exception extends BaseException
      * @param  string|null $token Token Value
      * @return self        Fluent Interface
      */
-    public function setToken($token) : self
+    public function setToken($token): self
     {
         if (! (is_string($token) || is_null($token))) {
             throw new InvalidArgumentException(
@@ -62,7 +62,7 @@ class Exception extends BaseException
      * @param  int|null $position Position Value
      * @return self     Fluent Interface
      */
-    public function setPosition($position) : self
+    public function setPosition($position): self
     {
         if (! (is_int($position) || is_null($position))) {
             throw new InvalidArgumentException(

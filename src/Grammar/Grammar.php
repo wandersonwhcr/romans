@@ -23,7 +23,7 @@ class Grammar
      *
      * @return array Tokens Available
      */
-    public function getTokens() : array
+    public function getTokens(): array
     {
         return [
             'T_N' => self::T_N,

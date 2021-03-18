@@ -47,7 +47,7 @@ class RomanToInt
      * @param  Lexer $lexer Lexer Object
      * @return self  Fluent Interface
      */
-    public function setLexer(Lexer $lexer) : self
+    public function setLexer(Lexer $lexer): self
     {
         $this->lexer = $lexer;
         return $this;
@@ -58,7 +58,7 @@ class RomanToInt
      *
      * @return Lexer Lexer Object
      */
-    public function getLexer() : Lexer
+    public function getLexer(): Lexer
     {
         return $this->lexer;
     }
@@ -69,7 +69,7 @@ class RomanToInt
      * @param  Parser $parser Parser Object
      * @return self   Fluent Interface
      */
-    public function setParser(Parser $parser) : self
+    public function setParser(Parser $parser): self
     {
         $this->parser = $parser;
         return $this;
@@ -80,7 +80,7 @@ class RomanToInt
      *
      * @return Parser Parser Object
      */
-    public function getParser() : Parser
+    public function getParser(): Parser
     {
         return $this->parser;
     }
@@ -91,7 +91,7 @@ class RomanToInt
      * @param  string $value Roman Number
      * @return int    Integer Result
      */
-    public function filter(string $value) : int
+    public function filter(string $value): int
     {
         return $this->getParser()->parse($this->getLexer()->tokenize($value));
     }

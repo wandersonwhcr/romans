@@ -34,7 +34,7 @@ class IntToRoman
      * @param  int    Integer
      * @return string Roman Number Result
      */
-    public function filter(int $value) : string
+    public function filter(int $value): string
     {
         if ($value < 0) {
             throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);

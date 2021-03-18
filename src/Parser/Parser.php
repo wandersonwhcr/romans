@@ -34,7 +34,7 @@ class Parser
      * @param  string[] $tokens Grammar Tokens
      * @return int      Corresponding Decimal
      */
-    public function parse(array $tokens) : int
+    public function parse(array $tokens): int
     {
         $tokensAvailable = array_flip($this->getGrammar()->getTokens());
 

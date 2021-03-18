@@ -34,7 +34,7 @@ class Lexer
      * @param  string $content Input Content
      * @return array  Result Token Set
      */
-    public function tokenize(string $content) : array
+    public function tokenize(string $content): array
     {
         $tokens   = $this->getGrammar()->getTokens();
         $numerals = array_flip($tokens);
