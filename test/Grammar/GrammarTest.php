@@ -14,7 +14,7 @@ class GrammarTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->grammar = new Grammar();
 
