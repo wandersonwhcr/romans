@@ -138,6 +138,25 @@ $filter = new IntToRoman();
 $result = $filter->filter(0); // N
 ```
 
+## Development
+
+You can use Docker to build an image and run a container to develop and test
+this package.
+
+```bash
+docker build . --tag wandersonwhcr/romans
+
+docker run --rm --interactive --tty \
+    --volume `pwd`:/app \
+    --user `id -u`:`id -g` \
+    wandersonwhcr/romans composer install
+
+docker run --rm --interactive --tty \
+    --volume `pwd`:/app \
+    --user `id -u`:`id -g` \
+    wandersonwhcr/romans composer test
+```
+
 ## Techniques
 
 This section describes some techniques this package uses to convert Roman
