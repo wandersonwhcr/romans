@@ -6,6 +6,7 @@
     <arg name="extensions" value="php" />
 
     <file>src</file>
+    <file>test</file>
 
     <rule ref="PSR1" />
     <rule ref="PSR2" />
