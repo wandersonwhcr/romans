@@ -2,7 +2,7 @@
 
 A Simple PHP Roman Numerals Library
 
-[![Build Status](https://travis-ci.org/wandersonwhcr/romans.svg?branch=master)](https://travis-ci.org/wandersonwhcr/romans)
+[![Build Status](https://github.com/wandersonwhcr/romans/actions/workflows/test.yml/badge.svg?branch=main)](https://travis-ci.org/wandersonwhcr/romans)
 [![Latest Stable Version](https://poser.pugx.org/wandersonwhcr/romans/v/stable?format=flat)](https://packagist.org/packages/wandersonwhcr/romans)
 [![License](https://poser.pugx.org/wandersonwhcr/romans/license?format=flat)](https://packagist.org/packages/wandersonwhcr/romans)
 
@@ -217,4 +217,4 @@ g -> f | Nz  | Mg
 ## License
 
 This package is opensource and available under license MIT described in
-[LICENSE](https://github.com/wandersonwhcr/romans/blob/master/LICENSE).
+[LICENSE](https://github.com/wandersonwhcr/romans/blob/main/LICENSE).
