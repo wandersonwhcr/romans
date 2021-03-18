@@ -1,8 +1,9 @@
+/.dockerignore export-ignore
 /.gitattributes export-ignore
+/.github
 /.gitignore export-ignore
+/Dockerfile export-ignore
 /phpcs.xml.dist export-ignore
 /phpmd.xml export-ignore
 /phpunit.xml.dist export-ignore
-/puppet export-ignore
 /test export-ignore
-/Vagrantfile export-ignore
