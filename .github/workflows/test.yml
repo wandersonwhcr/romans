@@ -7,15 +7,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php_version:
+          - 7.4
+          - 8.0
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install
         uses: php-actions/composer@v5
         with:
-          php_version: 7.4
+          php_version: ${{ matrix.php_version }}
       - name: Test
         uses: php-actions/composer@v5
         with:
-          php_version: 7.4
+          php_version: ${{ matrix.php_version }}
           command: test
