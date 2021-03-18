@@ -40,8 +40,9 @@
     <rule ref="Generic.PHP.LowerCaseKeyword" />
     <rule ref="Generic.PHP.NoSilencedErrors" />
     <rule ref="Generic.Strings.UnnecessaryStringConcat" />
-    <rule ref="Generic.WhiteSpace.ScopeIndent" />
     <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
+    <rule ref="Generic.WhiteSpace.ScopeIndent" />
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint" />
     <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing" />
 
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
