@@ -15,7 +15,7 @@
         }
     },
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.4"
     },
     "require-dev": {
         "phpmd/phpmd": "2.6.*",
