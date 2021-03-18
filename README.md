@@ -217,4 +217,4 @@ g -> f | Nz  | Mg
 ## License
 
 This package is opensource and available under license MIT described in
-[LICENSE](https://github.com/wandersonwhcr/romans/blob/master/LICENSE).
+[LICENSE](https://github.com/wandersonwhcr/romans/blob/main/LICENSE).
