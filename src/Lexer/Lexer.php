@@ -31,8 +31,8 @@ class Lexer
     /**
      * Tokenize Content
      *
-     * @param  string $content Input Content
-     * @return array  Result Token Set
+     * @param  string   $content Input Content
+     * @return string[] Result Token Set
      */
     public function tokenize(string $content): array
     {

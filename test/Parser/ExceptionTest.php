@@ -24,7 +24,7 @@ class ExceptionTest extends TestCase
     /**
      * Test Code
      */
-    public function testCode()
+    public function testCode(): void
     {
         $this->assertSame(1, Exception::UNKNOWN_TOKEN);
         $this->assertSame(2, Exception::INVALID_TOKEN_TYPE);
@@ -34,7 +34,7 @@ class ExceptionTest extends TestCase
     /**
      * Test Token
      */
-    public function testToken()
+    public function testToken(): void
     {
         $this->assertNull($this->exception->getToken());
 
@@ -48,7 +48,7 @@ class ExceptionTest extends TestCase
     /**
      * Test Token with Invalid Type
      */
-    public function testTokenWithInvalidType()
+    public function testTokenWithInvalidType(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -58,7 +58,7 @@ class ExceptionTest extends TestCase
     /**
      * Test Position
      */
-    public function testPosition()
+    public function testPosition(): void
     {
         $this->assertNull($this->exception->getPosition());
 
@@ -76,7 +76,7 @@ class ExceptionTest extends TestCase
     /**
      * Test Position with Invalid Type
      */
-    public function testPositionWithInvalidType()
+    public function testPositionWithInvalidType(): void
     {
         $this->expectException(InvalidArgumentException::class);
 

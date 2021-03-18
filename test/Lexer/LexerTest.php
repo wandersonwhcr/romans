@@ -25,7 +25,7 @@ class LexerTest extends TestCase
     /**
      * Test Constructor
      */
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $grammar = new Grammar();
         $lexer   = new Lexer($grammar);
@@ -36,7 +36,7 @@ class LexerTest extends TestCase
     /**
      * Test Grammar
      */
-    public function testGrammar()
+    public function testGrammar(): void
     {
         $grammar = new Grammar();
 
@@ -47,7 +47,7 @@ class LexerTest extends TestCase
     /**
      * Test Tokenize
      */
-    public function testTokenize()
+    public function testTokenize(): void
     {
         $this->assertSame([Grammar::T_I], $this->lexer->tokenize('I'));
         $this->assertSame([Grammar::T_V], $this->lexer->tokenize('V'));
@@ -57,7 +57,7 @@ class LexerTest extends TestCase
     /**
      * Test Invalid Token
      */
-    public function testInvalidToken()
+    public function testInvalidToken(): void
     {
         $this->expectException(LexerException::class);
         $this->expectExceptionCode(LexerException::UNKNOWN_TOKEN);
@@ -68,7 +68,7 @@ class LexerTest extends TestCase
     /**
      * Test Tokenize with Multiple Tokens
      */
-    public function testTokenizeWithMultipleTokens()
+    public function testTokenizeWithMultipleTokens(): void
     {
         $this->assertSame([Grammar::T_I, Grammar::T_I], $this->lexer->tokenize('II'));
         $this->assertSame([Grammar::T_V, Grammar::T_I, Grammar::T_I], $this->lexer->tokenize('VII'));
@@ -78,7 +78,7 @@ class LexerTest extends TestCase
     /**
      * Test Invalid Token Message
      */
-    public function testInvalidTokenMessage()
+    public function testInvalidTokenMessage(): void
     {
         $this->expectException(LexerException::class);
         $this->expectExceptionMessage('Unknown token "." at position 2');
@@ -96,7 +96,7 @@ class LexerTest extends TestCase
     /**
      * Test Tokenize with Lookahead Removal
      */
-    public function testTokenizeWithLookaheadRemoval()
+    public function testTokenizeWithLookaheadRemoval(): void
     {
         $this->assertSame([Grammar::T_I, Grammar::T_V], $this->lexer->tokenize('IV'));
         $this->assertSame([Grammar::T_I, Grammar::T_X], $this->lexer->tokenize('IX'));
@@ -114,7 +114,7 @@ class LexerTest extends TestCase
     /**
      * Test Tokenize With Simple And Lookahead Removal
      */
-    public function testTokenizeWithSimpleAndLookaheadRemoval()
+    public function testTokenizeWithSimpleAndLookaheadRemoval(): void
     {
         $this->assertSame([
             Grammar::T_C,
@@ -129,7 +129,7 @@ class LexerTest extends TestCase
     /**
      * Test Tokenize With Empty Input
      */
-    public function testTokenizeWithEmptyInput()
+    public function testTokenizeWithEmptyInput(): void
     {
         $this->assertSame([], $this->lexer->tokenize(''));
     }
@@ -137,7 +137,7 @@ class LexerTest extends TestCase
     /**
      * Test Tokenize with Zero
      */
-    public function testTokenizeWithZero()
+    public function testTokenizeWithZero(): void
     {
         $this->assertSame([Grammar::T_N], $this->lexer->tokenize('N'));
     }

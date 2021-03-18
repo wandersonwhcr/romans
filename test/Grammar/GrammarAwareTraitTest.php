@@ -16,7 +16,7 @@ class GrammarAwareTraitTest extends TestCase
     /**
      * Test Grammar
      */
-    public function testGrammar()
+    public function testGrammar(): void
     {
         $grammar = new Grammar();
         $element = $this->getMockForTrait(GrammarAwareTrait::class);

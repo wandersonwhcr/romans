@@ -25,7 +25,7 @@ class IntToRomanTest extends TestCase
     /**
      * Test Constructor
      */
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $grammar = new Grammar();
         $filter  = new IntToRoman($grammar);
@@ -36,7 +36,7 @@ class IntToRomanTest extends TestCase
     /**
      * Test Filter
      */
-    public function testFilter()
+    public function testFilter(): void
     {
         $this->assertSame('I', $this->filter->filter(1));
         $this->assertSame('V', $this->filter->filter(5));
@@ -46,7 +46,7 @@ class IntToRomanTest extends TestCase
     /**
      * Test Filter with Multiple Tokens Result
      */
-    public function testFilterWithMultipleTokensResult()
+    public function testFilterWithMultipleTokensResult(): void
     {
         $this->assertSame('III', $this->filter->filter(3));
         $this->assertSame('DLV', $this->filter->filter(555));
@@ -55,7 +55,7 @@ class IntToRomanTest extends TestCase
     /**
      * Test Filter with Lookahead
      */
-    public function testFilterWithLookahead()
+    public function testFilterWithLookahead(): void
     {
         $this->assertSame('CDLXIX', $this->filter->filter(469));
         $this->assertSame('MCMXCIX', $this->filter->filter(1999));
@@ -64,7 +64,7 @@ class IntToRomanTest extends TestCase
     /**
      * Test Filter with Zero
      */
-    public function testFilterWithZero()
+    public function testFilterWithZero(): void
     {
         $this->assertSame('N', $this->filter->filter(0));
     }
@@ -72,7 +72,7 @@ class IntToRomanTest extends TestCase
     /**
      * Test Filter with Negative
      */
-    public function testFilterWithNegative()
+    public function testFilterWithNegative(): void
     {
         $this->expectException(FilterException::class);
         $this->expectExceptionMessage('Invalid integer: -1');

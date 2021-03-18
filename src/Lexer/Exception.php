@@ -49,7 +49,7 @@ class Exception extends BaseException
      *
      * @return string|null Token Value
      */
-    public function getToken()
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -77,7 +77,7 @@ class Exception extends BaseException
      *
      * @return int|null Position Value
      */
-    public function getPosition()
+    public function getPosition(): ?int
     {
         return $this->position;
     }

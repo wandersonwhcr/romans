@@ -15,7 +15,7 @@ class ExceptionTest extends TestCase
     /**
      * Test Code
      */
-    public function testCode()
+    public function testCode(): void
     {
         $this->assertSame(1, Exception::INVALID_INTEGER);
     }

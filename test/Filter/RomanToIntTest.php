@@ -26,7 +26,7 @@ class RomanToIntTest extends TestCase
     /**
      * Test Constructor
      */
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $grammar = new Grammar();
         $filter  = new RomanToInt($grammar);
@@ -41,7 +41,7 @@ class RomanToIntTest extends TestCase
     /**
      * Test Filter
      */
-    public function testFilter()
+    public function testFilter(): void
     {
         $this->assertSame(1, $this->filter->filter('I'));
         $this->assertSame(5, $this->filter->filter('V'));
@@ -51,7 +51,7 @@ class RomanToIntTest extends TestCase
     /**
      * Test Filter with Multiple
      */
-    public function testFilterWithMultiple()
+    public function testFilterWithMultiple(): void
     {
         $this->assertSame(68, $this->filter->filter('LXVIII'));
         $this->assertSame(1537, $this->filter->filter('MDXXXVII'));
@@ -60,7 +60,7 @@ class RomanToIntTest extends TestCase
     /**
      * Test Filter with Lookahead
      */
-    public function testFilterWithLookahead()
+    public function testFilterWithLookahead(): void
     {
         $this->assertSame(4, $this->filter->filter('IV'));
         $this->assertSame(9, $this->filter->filter('IX'));
@@ -70,7 +70,7 @@ class RomanToIntTest extends TestCase
     /**
      * Test Filter with Multiple Lookahead
      */
-    public function testFilterWithMultipleLookahead()
+    public function testFilterWithMultipleLookahead(): void
     {
         $this->assertSame(469, $this->filter->filter('CDLXIX'));
         $this->assertSame(1999, $this->filter->filter('MCMXCIX'));
@@ -79,7 +79,7 @@ class RomanToIntTest extends TestCase
     /**
      * Test Filter with Zero
      */
-    public function testFilterWithZero()
+    public function testFilterWithZero(): void
     {
         $this->assertSame(0, $this->filter->filter('N'));
     }
