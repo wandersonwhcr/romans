@@ -41,6 +41,7 @@
     <rule ref="Generic.Strings.UnnecessaryStringConcat" />
     <rule ref="Generic.WhiteSpace.ScopeIndent" />
     <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing" />
 
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
         <properties>
