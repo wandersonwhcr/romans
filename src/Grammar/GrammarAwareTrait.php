@@ -13,7 +13,7 @@ trait GrammarAwareTrait
      * Grammar
      * @type Grammar
      */
-    private $grammar;
+    private ?Grammar $grammar;
 
     /**
      * Set Grammar

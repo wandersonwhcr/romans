@@ -20,13 +20,13 @@ class Exception extends BaseException
      * Token
      * @type string|null
      */
-    private $token;
+    private ?string $token = null;
 
     /**
      * Position
      * @type int|null
      */
-    private $position;
+    private ?int $position = null;
 
     /**
      * Set Token

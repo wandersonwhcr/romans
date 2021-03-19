@@ -17,13 +17,13 @@ class RomanToInt
      * Lexer
      * @type Lexer
      */
-    private $lexer;
+    private ?Lexer $lexer;
 
     /**
      * Parser
      * @type Parser
      */
-    private $parser;
+    private ?Parser $parser;
 
     /**
      * Default Constructor

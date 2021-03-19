@@ -30,25 +30,25 @@ class Automaton
      * State
      * @type string
      */
-    private $state;
+    private string $state;
 
     /**
      * Position
      * @type int
      */
-    private $position;
+    private int $position;
 
     /**
      * Value
      * @type int
      */
-    private $value;
+    private int $value;
 
     /**
      * Tokens
-     * @type string[]
+     * @var string[]
      */
-    private $tokens;
+    private array $tokens;
 
     /**
      * Default Constructor
