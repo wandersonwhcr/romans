@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Romans\Lexer;
 
 use Exception as BaseException;
-use InvalidArgumentException;
 
 /**
  * Lexer Exception

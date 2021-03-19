@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Romans\Parser;
 
 use Exception as BaseException;
-use InvalidArgumentException;
 
 /**
  * Parser Exception
