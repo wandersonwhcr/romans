@@ -18,13 +18,11 @@ class Exception extends BaseException
 
     /**
      * Token
-     * @type string|null
      */
     private ?string $token = null;
 
     /**
      * Position
-     * @type int|null
      */
     private ?int $position = null;
 

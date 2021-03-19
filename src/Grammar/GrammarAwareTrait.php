@@ -11,7 +11,6 @@ trait GrammarAwareTrait
 {
     /**
      * Grammar
-     * @type Grammar
      */
     private ?Grammar $grammar;
 

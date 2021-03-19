@@ -15,13 +15,11 @@ class RomanToInt
 {
     /**
      * Lexer
-     * @type Lexer
      */
     private ?Lexer $lexer;
 
     /**
      * Parser
-     * @type Parser
      */
     private ?Parser $parser;
 

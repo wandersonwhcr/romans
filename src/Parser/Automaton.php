@@ -28,19 +28,16 @@ class Automaton
 
     /**
      * State
-     * @type string
      */
     private string $state;
 
     /**
      * Position
-     * @type int
      */
     private int $position;
 
     /**
      * Value
-     * @type int
      */
     private int $value;
 
