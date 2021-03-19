@@ -94,9 +94,7 @@ class GrammarTest extends TestCase
      */
     public function testValuesWithModifiers(): void
     {
-        $values = array_map(function ($value) {
-            return [$value];
-        }, array_flip($this->values));
+        $values = array_map(fn($value) => [$value], array_flip($this->values));
 
         $valuesWithModifiers = $values + $this->modifiers; // merge and keep keys
 

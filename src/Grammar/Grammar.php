@@ -80,9 +80,7 @@ class Grammar
      */
     public function getValuesWithModifiers(): array
     {
-        $values = array_map(function ($value) {
-            return [$value];
-        }, array_flip($this->getValues()));
+        $values = array_map(fn($value) => [$value], array_flip($this->getValues()));
 
         $valuesWithModifiers = $values + $this->getModifiers(); // merge and keep keys (append)
 
