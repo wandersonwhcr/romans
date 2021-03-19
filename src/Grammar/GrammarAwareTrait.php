@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romans\Grammar;
 
 /**
@@ -9,9 +11,8 @@ trait GrammarAwareTrait
 {
     /**
      * Grammar
-     * @type Grammar
      */
-    private $grammar;
+    private Grammar $grammar;
 
     /**
      * Set Grammar
@@ -19,7 +20,7 @@ trait GrammarAwareTrait
      * @param  Grammar $grammar Grammar Object
      * @return self    Fluent Interface
      */
-    public function setGrammar(Grammar $grammar) : self
+    public function setGrammar(Grammar $grammar): self
     {
         $this->grammar = $grammar;
         return $this;
@@ -30,7 +31,7 @@ trait GrammarAwareTrait
      *
      * @return Grammar Grammar Object
      */
-    public function getGrammar() : Grammar
+    public function getGrammar(): Grammar
     {
         return $this->grammar;
     }

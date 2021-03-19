@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RomansTest\Parser;
 
 use PHPUnit\Framework\TestCase;
@@ -23,7 +25,7 @@ class ParserTest extends TestCase
     /**
      * Test Constructor
      */
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $grammar = new Grammar();
         $parser  = new Parser($grammar);
@@ -34,7 +36,7 @@ class ParserTest extends TestCase
     /**
      * Test Grammar
      */
-    public function testGrammar()
+    public function testGrammar(): void
     {
         $grammar = new Grammar();
 
@@ -45,7 +47,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse
      */
-    public function testParse()
+    public function testParse(): void
     {
         $this->assertSame(1, $this->parser->parse([Grammar::T_I]));
         $this->assertSame(5, $this->parser->parse([Grammar::T_V]));
@@ -55,7 +57,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with Multiple Tokens
      */
-    public function testParseWithMultipleTokens()
+    public function testParseWithMultipleTokens(): void
     {
         $this->assertSame(6, $this->parser->parse([Grammar::T_V, Grammar::T_I]));
         $this->assertSame(13, $this->parser->parse([Grammar::T_X, Grammar::T_I, Grammar::T_I, Grammar::T_I]));
@@ -65,7 +67,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with Lookahead Removal Tokens
      */
-    public function testParseWithLookaheadRemovalTokens()
+    public function testParseWithLookaheadRemovalTokens(): void
     {
         $this->assertSame(9, $this->parser->parse([Grammar::T_I, Grammar::T_X]));
         $this->assertSame(99, $this->parser->parse([Grammar::T_X, Grammar::T_C, Grammar::T_I, Grammar::T_X]));
@@ -74,7 +76,7 @@ class ParserTest extends TestCase
     /**
      * Test Invalid Tokens
      */
-    public function testInvalidToken()
+    public function testInvalidToken(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid token type "integer" at position 1');
@@ -92,7 +94,7 @@ class ParserTest extends TestCase
     /**
      * Test Unknown Token
      */
-    public function testUnknownToken()
+    public function testUnknownToken(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Unknown token "." at position 1');
@@ -110,7 +112,7 @@ class ParserTest extends TestCase
     /**
      * Test Invalid Syntax
      */
-    public function testInvalidSyntax()
+    public function testInvalidSyntax(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid Roman');
@@ -122,7 +124,7 @@ class ParserTest extends TestCase
     /**
      * Test Another Invalid Syntax
      */
-    public function testAnotherInvalidSyntax()
+    public function testAnotherInvalidSyntax(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid Roman');
@@ -134,7 +136,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with Zero
      */
-    public function testParseWithZero()
+    public function testParseWithZero(): void
     {
         $this->assertSame(0, $this->parser->parse([Grammar::T_N]));
     }
@@ -142,7 +144,7 @@ class ParserTest extends TestCase
     /**
      * Test Invalid Syntax with Zero
      */
-    public function testInvalidSyntaxWithZero()
+    public function testInvalidSyntaxWithZero(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid Roman');
@@ -154,7 +156,7 @@ class ParserTest extends TestCase
     /**
      * Test Invalid Syntax with Empty
      */
-    public function testInvalidSyntaxWithEmpty()
+    public function testInvalidSyntaxWithEmpty(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid Roman');
@@ -166,7 +168,7 @@ class ParserTest extends TestCase
     /**
      * Test Another Invalid Syntax with Zero
      */
-    public function testAnotherInvalidSyntaxWithZero()
+    public function testAnotherInvalidSyntaxWithZero(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid Roman');
@@ -178,7 +180,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with One Unknown Token
      */
-    public function testParseWithOneUnknownToken()
+    public function testParseWithOneUnknownToken(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Unknown token "." at position 0');
@@ -189,7 +191,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with One Invalid Token
      */
-    public function testParseWithOneInvalidToken()
+    public function testParseWithOneInvalidToken(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid token type "integer" at position 0');
@@ -200,7 +202,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with Two Tokens with Lookahead Removal
      */
-    public function testParseWithTwoTokensWithLookaheadRemoval()
+    public function testParseWithTwoTokensWithLookaheadRemoval(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid Roman');
@@ -212,7 +214,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with One Lookahead Removal Token and One Simple Token
      */
-    public function testParseWithOneLookaheadTokenAndOneSimpleToken()
+    public function testParseWithOneLookaheadTokenAndOneSimpleToken(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid Roman');
@@ -224,7 +226,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with Four Simple Tokens in Sequence
      */
-    public function testParseWithFourSimpleTokensInSequence()
+    public function testParseWithFourSimpleTokensInSequence(): void
     {
         $this->expectException(ParserException::class);
         $this->expectExceptionMessage('Invalid Roman');
@@ -236,7 +238,7 @@ class ParserTest extends TestCase
     /**
      * Test Parse with Tokens in Sequence for Thousands
      */
-    public function testParseWithTokensInSequenceForThousands()
+    public function testParseWithTokensInSequenceForThousands(): void
     {
         $this->assertSame(4000, $this->parser->parse([Grammar::T_M, Grammar::T_M, Grammar::T_M, Grammar::T_M]));
 

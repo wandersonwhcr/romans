@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romans\Lexer;
 
 use Exception as BaseException;
-use InvalidArgumentException;
 
 /**
  * Lexer Exception
@@ -14,15 +15,13 @@ class Exception extends BaseException
 
     /**
      * Token
-     * @type string|null
      */
-    private $token;
+    private ?string $token = null;
 
     /**
      * Position
-     * @type int|null
      */
-    private $position;
+    private ?int $position = null;
 
     /**
      * Set Token
@@ -30,14 +29,8 @@ class Exception extends BaseException
      * @param  string|null $token Token Value
      * @return self        Fluent Interface
      */
-    public function setToken($token) : self
+    public function setToken(?string $token): self
     {
-        if (! (is_string($token) || is_null($token))) {
-            throw new InvalidArgumentException(
-                sprintf('Invalid $token type: "%s". Must be "string" or "null"', gettype($token))
-            );
-        }
-
         $this->token = $token;
         return $this;
     }
@@ -47,7 +40,7 @@ class Exception extends BaseException
      *
      * @return string|null Token Value
      */
-    public function getToken()
+    public function getToken(): ?string
     {
         return $this->token;
     }
@@ -58,14 +51,8 @@ class Exception extends BaseException
      * @param  int|null $position Position Value
      * @return self     Fluent Interface
      */
-    public function setPosition($position) : self
+    public function setPosition(?int $position): self
     {
-        if (! (is_int($position) || is_null($position))) {
-            throw new InvalidArgumentException(
-                sprintf('Invalid $position type: "%s". Must be "int" or "null"', gettype($position))
-            );
-        }
-
         $this->position = $position;
         return $this;
     }
@@ -75,7 +62,7 @@ class Exception extends BaseException
      *
      * @return int|null Position Value
      */
-    public function getPosition()
+    public function getPosition(): ?int
     {
         return $this->position;
     }

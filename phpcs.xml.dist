@@ -6,6 +6,7 @@
     <arg name="extensions" value="php" />
 
     <file>src</file>
+    <file>test</file>
 
     <rule ref="PSR1" />
     <rule ref="PSR2" />
@@ -39,8 +40,18 @@
     <rule ref="Generic.PHP.LowerCaseKeyword" />
     <rule ref="Generic.PHP.NoSilencedErrors" />
     <rule ref="Generic.Strings.UnnecessaryStringConcat" />
-    <rule ref="Generic.WhiteSpace.ScopeIndent" />
     <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
+    <rule ref="Generic.WhiteSpace.ScopeIndent" />
+    <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceEqualOperator" />
+    <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction" />
+    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses" />
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses" />
+    <rule ref="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue" />
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint" />
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint" />
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing" />
+    <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint" />
 
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
         <properties>
@@ -53,4 +64,20 @@
             <property name="absoluteLineLimit" value="120" />
         </properties>
     </rule>
+
+    <rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
+        <properties>
+            <property name="forbiddenAnnotations" type="array">
+                <element value="@type" />
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="spacesCountAroundEqualsSign" value="0" />
+            <property name="newlinesCountBetweenOpenTagAndDeclare" value="2" />
+        </properties>
+    </rule>
+
 </ruleset>

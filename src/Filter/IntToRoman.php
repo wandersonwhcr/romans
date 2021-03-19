@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romans\Filter;
 
 use Romans\Grammar\Grammar;
@@ -17,13 +19,9 @@ class IntToRoman
      *
      * @param Grammar $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
-        if (! isset($grammar)) {
-            $grammar = new Grammar();
-        }
-
-        $this->setGrammar($grammar);
+        $this->setGrammar($grammar ?? new Grammar());
     }
 
     /**
@@ -32,7 +30,7 @@ class IntToRoman
      * @param  int    Integer
      * @return string Roman Number Result
      */
-    public function filter(int $value) : string
+    public function filter(int $value): string
     {
         if ($value < 0) {
             throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);

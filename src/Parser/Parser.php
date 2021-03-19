@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romans\Parser;
 
 use Romans\Grammar\Grammar;
@@ -17,13 +19,9 @@ class Parser
      *
      * @param Grammar $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
-        if (! isset($grammar)) {
-            $grammar = new Grammar();
-        }
-
-        $this->setGrammar($grammar);
+        $this->setGrammar($grammar ?? new Grammar());
     }
 
     /**
@@ -32,7 +30,7 @@ class Parser
      * @param  string[] $tokens Grammar Tokens
      * @return int      Corresponding Decimal
      */
-    public function parse(array $tokens) : int
+    public function parse(array $tokens): int
     {
         $tokensAvailable = array_flip($this->getGrammar()->getTokens());
 

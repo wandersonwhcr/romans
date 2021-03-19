@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RomansTest\Grammar;
 
 use PHPUnit\Framework\TestCase;
@@ -53,7 +55,7 @@ class GrammarTest extends TestCase
     /**
      * Test Tokens
      */
-    public function testTokens()
+    public function testTokens(): void
     {
         $reflection = new ReflectionClass(Grammar::class);
 
@@ -66,7 +68,7 @@ class GrammarTest extends TestCase
     /**
      * Test Available Tokens
      */
-    public function testAvailableTokens()
+    public function testAvailableTokens(): void
     {
         $this->assertSame($this->tokens, $this->grammar->getTokens());
     }
@@ -74,7 +76,7 @@ class GrammarTest extends TestCase
     /**
      * Test Modifiers
      */
-    public function testModifiers()
+    public function testModifiers(): void
     {
         $this->assertSame($this->modifiers, $this->grammar->getModifiers());
     }
@@ -82,7 +84,7 @@ class GrammarTest extends TestCase
     /**
      * Test Values
      */
-    public function testValues()
+    public function testValues(): void
     {
         $this->assertSame($this->values, $this->grammar->getValues());
     }
@@ -90,11 +92,9 @@ class GrammarTest extends TestCase
     /**
      * Test Values with Modifiers
      */
-    public function testValuesWithModifiers()
+    public function testValuesWithModifiers(): void
     {
-        $values = array_map(function ($value) {
-            return [$value];
-        }, array_flip($this->values));
+        $values = array_map(fn($value) => [$value], array_flip($this->values));
 
         $valuesWithModifiers = $values + $this->modifiers; // merge and keep keys
 

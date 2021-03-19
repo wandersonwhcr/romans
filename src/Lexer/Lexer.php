@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Romans\Lexer;
 
 use Romans\Grammar\Grammar;
@@ -17,22 +19,18 @@ class Lexer
      *
      * @param Grammar $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
-        if (! isset($grammar)) {
-            $grammar = new Grammar();
-        }
-
-        $this->setGrammar($grammar);
+        $this->setGrammar($grammar ?? new Grammar());
     }
 
     /**
      * Tokenize Content
      *
-     * @param  string $content Input Content
-     * @return array  Result Token Set
+     * @param  string   $content Input Content
+     * @return string[] Result Token Set
      */
-    public function tokenize(string $content) : array
+    public function tokenize(string $content): array
     {
         $tokens   = $this->getGrammar()->getTokens();
         $numerals = array_flip($tokens);

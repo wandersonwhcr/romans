@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RomansTest\Filter;
 
 use PHPUnit\Framework\TestCase;
@@ -13,7 +15,7 @@ class ExceptionTest extends TestCase
     /**
      * Test Code
      */
-    public function testCode()
+    public function testCode(): void
     {
         $this->assertSame(1, Exception::INVALID_INTEGER);
     }
