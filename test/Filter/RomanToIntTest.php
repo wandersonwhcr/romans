@@ -9,6 +9,7 @@ use Romans\Filter\RomanToInt;
 use Romans\Grammar\Grammar;
 use Romans\Lexer\Lexer;
 use Romans\Parser\Parser;
+use TypeError;
 
 /**
  * Roman to Int Test
@@ -36,6 +37,26 @@ class RomanToIntTest extends TestCase
 
         $this->assertSame($grammar, $filter->getLexer()->getGrammar());
         $this->assertSame($grammar, $filter->getParser()->getGrammar());
+    }
+
+    /**
+     * Test Nullable Lexer
+     */
+    public function testNullableLexer(): void
+    {
+        $this->expectException(TypeError::class);
+
+        $this->filter->setLexer(null);
+    }
+
+    /**
+     * Test Nullable Parser
+     */
+    public function testNullableParser(): void
+    {
+        $this->expectException(TypeError::class);
+
+        $this->filter->setParser(null);
     }
 
     /**

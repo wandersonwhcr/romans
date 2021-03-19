@@ -16,12 +16,12 @@ class RomanToInt
     /**
      * Lexer
      */
-    private ?Lexer $lexer;
+    private Lexer $lexer;
 
     /**
      * Parser
      */
-    private ?Parser $parser;
+    private Parser $parser;
 
     /**
      * Default Constructor

@@ -12,7 +12,7 @@ trait GrammarAwareTrait
     /**
      * Grammar
      */
-    private ?Grammar $grammar;
+    private Grammar $grammar;
 
     /**
      * Set Grammar
