@@ -21,11 +21,7 @@ class Parser
      */
     public function __construct(Grammar $grammar = null)
     {
-        if (! isset($grammar)) {
-            $grammar = new Grammar();
-        }
-
-        $this->setGrammar($grammar);
+        $this->setGrammar($grammar ?? new Grammar());
     }
 
     /**

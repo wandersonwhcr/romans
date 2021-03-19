@@ -30,9 +30,7 @@ class RomanToInt
      */
     public function __construct(Grammar $grammar = null)
     {
-        if (! isset($grammar)) {
-            $grammar = new Grammar();
-        }
+        $grammar = $grammar ?? new Grammar();
 
         $this
             ->setLexer(new Lexer($grammar))

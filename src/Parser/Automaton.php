@@ -54,12 +54,8 @@ class Automaton
      */
     public function __construct(Grammar $grammar = null)
     {
-        if (! isset($grammar)) {
-            $grammar = new Grammar();
-        }
-
         $this
-            ->setGrammar($grammar)
+            ->setGrammar($grammar ?? new Grammar())
             ->reset();
     }
 
