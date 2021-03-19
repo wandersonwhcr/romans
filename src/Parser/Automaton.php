@@ -52,7 +52,7 @@ class Automaton
      *
      * @param Grammar $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
         $this
             ->setGrammar($grammar ?? new Grammar())
@@ -157,7 +157,7 @@ class Automaton
      * @param  int    $quantity Quantity
      * @return self   Fluent Interface
      */
-    protected function addTokenValue(string $token, string $modifier = null, int $quantity = 1): self
+    protected function addTokenValue(string $token, ?string $modifier = null, int $quantity = 1): self
     {
         $tokens   = array_flip($this->getGrammar()->getTokens());
         $values   = $this->getGrammar()->getValuesWithModifiers();

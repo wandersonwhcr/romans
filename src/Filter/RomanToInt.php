@@ -28,7 +28,7 @@ class RomanToInt
      *
      * @param Grammar $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
         $grammar = $grammar ?? new Grammar();
 

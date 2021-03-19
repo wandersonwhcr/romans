@@ -19,7 +19,7 @@ class Lexer
      *
      * @param Grammar $grammar Grammar Object
      */
-    public function __construct(Grammar $grammar = null)
+    public function __construct(?Grammar $grammar = null)
     {
         $this->setGrammar($grammar ?? new Grammar());
     }
