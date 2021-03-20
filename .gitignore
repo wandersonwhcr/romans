@@ -1,2 +1,3 @@
+.env
 .phpunit.result.cache
 /vendor
