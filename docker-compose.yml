@@ -6,5 +6,5 @@ services:
     build: "./docker-compose"
     volumes:
     - ".:/app"
-    user: "${UID}:${GID}"
+    user: "${UID:-1000}:${GID:-1000}"
     command: ["tail", "-f", "/dev/null"]
