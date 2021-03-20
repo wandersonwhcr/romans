@@ -5,7 +5,7 @@ ENV COMPOSER_CACHE_DIR /tmp
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir /usr/bin --filename composer \
     && php -r "unlink('composer-setup.php');" \
-    && docker-php-source delete \
+    && find /usr/src -type f -name 'php.tar*' -delete \
     && apk add unzip
 
 VOLUME /app
