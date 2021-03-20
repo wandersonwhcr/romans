@@ -140,21 +140,15 @@ $result = $filter->filter(0); // N
 
 ## Development
 
-You can use Docker to build an image and run a container to develop and test
-this package.
+You can use Docker Compose to build an image and run a container to develop and
+test this package.
 
 ```bash
-docker build . --tag wandersonwhcr/romans
+docker-compose up --detach
 
-docker run --rm --interactive --tty \
-    --volume `pwd`:/app \
-    --user `id -u`:`id -g` \
-    wandersonwhcr/romans composer install
+docker-compose exec romans composer install
 
-docker run --rm --interactive --tty \
-    --volume `pwd`:/app \
-    --user `id -u`:`id -g` \
-    wandersonwhcr/romans composer test
+docker-compose exec romans composer test
 ```
 
 ## Techniques

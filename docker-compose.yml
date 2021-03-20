@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+
+  romans:
+    build: "./docker-compose"
+    volumes:
+    - ".:/app"
+    user: "${UID:-1000}:${GID:-1000}"
+    command: ["tail", "-f", "/dev/null"]

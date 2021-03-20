@@ -1,8 +1,10 @@
 /.dockerignore export-ignore
+/.env export-ignore
 /.gitattributes export-ignore
 /.github export-ignore
 /.gitignore export-ignore
-/Dockerfile export-ignore
+/docker-compose export-ignore
+/docker-compose.yml export-ignore
 /phpcs.xml.dist export-ignore
 /phpmd.xml export-ignore
 /phpunit.xml.dist export-ignore
