@@ -25,7 +25,9 @@ jobs:
           PHP_VERSION: ${{ matrix.php_version }}
       - name: Install
         run: docker-compose run romans composer install
-      - name: Check
+      - name: Check Dependencies
+        run: docker-compose run romans composer outdated
+      - name: Check Direct
         run: docker-compose run romans composer outdated --direct --strict
       - name: Clean
         run: docker-compose down
