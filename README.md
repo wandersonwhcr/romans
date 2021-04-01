@@ -145,11 +145,9 @@ You can use Docker Compose to build an image and run a container to develop and
 test this package.
 
 ```bash
-docker-compose up --detach
-
-docker-compose exec romans composer install
-
-docker-compose exec romans composer test
+docker-compose build
+docker-compose run romans composer install
+docker-compose run romans composer test
 ```
 
 ## Techniques
