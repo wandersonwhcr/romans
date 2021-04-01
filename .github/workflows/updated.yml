@@ -35,12 +35,10 @@ jobs:
       - name: Check Dependencies Direct
         run: docker-compose run romans composer outdated --direct --strict
 
-      - name: Update Dependencies
-        run: docker-compose run romans composer update
-        if: ${{ failure() }}
-
-      - name: Test
-        run: docker-compose run romans composer test
+      - name: Update Dependencies and Test
+        run: |
+          docker-compose run romans composer update
+          docker-compose run romans composer test
         if: ${{ failure() }}
 
       - name: Clean
