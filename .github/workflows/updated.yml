@@ -39,7 +39,7 @@ jobs:
         run: |
           docker-compose run romans composer update
           docker-compose run romans composer test
-        if: ${{ failure() }}
+        if: ${{ always() }}
 
       - name: Clean
         run: docker-compose down
