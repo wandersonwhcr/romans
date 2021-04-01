@@ -17,17 +17,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Prepare
         run: |
           echo UID=`id -u` >> $GITHUB_ENV
           echo GID=`id -g` >> $GITHUB_ENV
+
       - name: Build
         run: docker-compose build
         env:
           PHP_VERSION: ${{ matrix.php_version }}
+
       - name: Install
         run: docker-compose run romans composer install
+
       - name: Test
         run: docker-compose run romans composer test
+
       - name: Clean
         run: docker-compose down
+        if: ${{ always() }}
