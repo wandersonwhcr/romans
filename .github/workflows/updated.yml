@@ -1,0 +1,31 @@
+name: Updated
+
+on:
+  push:
+    branches: ["feature/updated"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php_version:
+          - 7.4
+          - 8.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Prepare
+        run: |
+          echo UID=`id -u` >> $GITHUB_ENV
+          echo GID=`id -g` >> $GITHUB_ENV
+      - name: Build
+        run: docker-compose build
+        env:
+          PHP_VERSION: ${{ matrix.php_version }}
+      - name: Install
+        run: docker-compose run romans composer install
+      - name: Check
+        run: docker-compose run romans composer outdated --direct --strict
+      - name: Clean
+        run: docker-compose down
