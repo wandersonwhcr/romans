@@ -1,8 +1,8 @@
 name: Updated
 
 on:
-  push:
-    branches: ["feature/updated"]
+  schedule:
+  - cron: '30 11 * * 1'
 
 jobs:
   test:
