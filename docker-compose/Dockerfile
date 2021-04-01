@@ -1,4 +1,6 @@
-FROM php:8.0-cli-alpine
+ARG PHP_VERSION
+
+FROM php:${PHP_VERSION}-cli-alpine
 
 ENV COMPOSER_CACHE_DIR /tmp
 
