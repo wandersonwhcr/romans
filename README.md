@@ -49,6 +49,7 @@ list, please, open an issue or create a pull request.
 
 * [Illuminate Romans](https://github.com/wandersonwhcr/illuminate-romans): Laravel Illuminate Romans Integration
 * [Laminas Romans](https://github.com/wandersonwhcr/laminas-romans): Laminas Project Romans Integration
+* [Twig Roman Numerals Extension](https://github.com/EmilMassey/twig-roman-numerals): Twig Extension (Symfony, WordPress + Timber)
 * ~~[Zend Romans](https://github.com/wandersonwhcr/zend-romans): Zend Framework Romans Integration~~ **DEPRECATED**
 
 ## Advanced Usage
