@@ -36,7 +36,7 @@
         ],
         "test": [
             "parallel-lint src",
-            "phpunit",
+            "phpunit $COVERAGE_OPTIONS",
             "phpcpd src",
             "phpmd src text phpmd.xml",
             "phpcs"

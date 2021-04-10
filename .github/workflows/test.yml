@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         php_version:
-          - 7.4
-          - 8.0
+          - "7.4"
+          - "8.0"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -32,7 +32,15 @@ jobs:
         run: docker-compose run romans composer install
 
       - name: Test
-        run: docker-compose run romans composer test
+        run: docker-compose run -e COVERAGE_OPTIONS romans composer test
+        env:
+          COVERAGE_OPTIONS: --coverage-text --coverage-html build/coverage
+
+      - name: Archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: php-${{ matrix.php_version }}_coverage
+          path: build/coverage/
 
       - name: Clean
         run: docker-compose down
