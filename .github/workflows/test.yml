@@ -36,6 +36,12 @@ jobs:
         env:
           COVERAGE_OPTIONS: --coverage-text --coverage-html build/coverage
 
+      - name: Archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: build/coverage/
+
       - name: Clean
         run: docker-compose down
         if: ${{ always() }}
