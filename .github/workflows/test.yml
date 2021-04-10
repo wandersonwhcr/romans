@@ -39,7 +39,7 @@ jobs:
       - name: Archive
         uses: actions/upload-artifact@v2
         with:
-          name: coverage
+          name: php-${{ matrix.php_version }}_coverage
           path: build/coverage/
 
       - name: Clean
