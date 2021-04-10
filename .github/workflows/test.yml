@@ -32,7 +32,9 @@ jobs:
         run: docker-compose run romans composer install
 
       - name: Test
-        run: docker-compose run romans composer test
+        run: docker-compose run romans -e COVERAGE_OPTIONS composer test
+        env:
+          COVERAGE_OPTIONS: --coverage-text
 
       - name: Clean
         run: docker-compose down
