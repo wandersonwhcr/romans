@@ -34,7 +34,7 @@ jobs:
       - name: Test
         run: docker-compose run -e COVERAGE_OPTIONS romans composer test
         env:
-          COVERAGE_OPTIONS: --coverage-text
+          COVERAGE_OPTIONS: --coverage-text --coverage-html build/coverage
 
       - name: Clean
         run: docker-compose down
