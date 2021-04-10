@@ -36,11 +36,20 @@ jobs:
         env:
           COVERAGE_OPTIONS: --coverage-text --coverage-html build/coverage
 
-      - name: Archive
+      - name: Package
+        run: docker-compose run romans composer archive --dir build --format zip --file package
+
+      - name: Archive Coverage
         uses: actions/upload-artifact@v2
         with:
           name: php-${{ matrix.php_version }}_coverage
           path: build/coverage/
+
+      - name: Archive Package
+        uses: actions/upload-artifact@v2
+        with:
+          name: package
+          path: build/package.zip
 
       - name: Clean
         run: docker-compose down
