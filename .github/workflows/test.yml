@@ -59,4 +59,4 @@ jobs:
 
       - name: Clean
         run: docker-compose down
-        if: ${{ always() }}
+        if: always()
