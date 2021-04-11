@@ -7,7 +7,23 @@ on:
     branches: ["main"]
 
 jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Zip
+        run: zip -r repository.zip .
+
+      - name: Repository
+        uses: actions/upload-artifact@v2
+        with:
+          name: repository
+          path: repository.zip
+
   test:
+    needs: checkout
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,7 +32,12 @@ jobs:
           - "8.0"
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/download-artifact@v2
+        with:
+          name: repository
+
+      - name: Unzip
+        run: unzip repository.zip && rm -f repository
 
       - name: Prepare
         run: |
@@ -36,29 +57,59 @@ jobs:
         env:
           COVERAGE_OPTIONS: --coverage-text --coverage-html build/coverage --coverage-clover build/coverage.xml
 
-      - name: Archive Coverage
+      - name: Package
+        run: docker-compose run romans composer archive --dir build --format zip --file package
+
+      - name: Clean
+        run: docker-compose down
+        if: always()
+
+      - name: Zip
+        run: zip -r repository.zip .
+        if: matrix.php_version == '8.0'
+
+      - name: Repository
+        uses: actions/upload-artifact@v2
+        if: matrix.php_version == '8.0'
+        with:
+          name: repository
+          path: repository.zip
+
+  reports:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/download-artifact@v2
+        with:
+          name: repository
+
+      - name: Unzip
+        run: unzip repository.zip && rm -f repository.zip
+
+      - name: Coverage
         uses: actions/upload-artifact@v2
         with:
-          name: php-${{ matrix.php_version }}_coverage
+          name: coverage
           path: build/coverage/
 
       - name: Package
-        run: docker-compose run romans composer archive --dir build --format zip --file package
-        if: matrix.php_version == '8.0'
-
-      - name: Package Artifact
         uses: actions/upload-artifact@v2
-        if: matrix.php_version == '8.0'
         with:
           name: package
           path: build/package.zip
 
       - name: Codecov
         run: bash <(curl -s https://codecov.io/bash) -f build/coverage.xml
-        if: github.ref == 'refs/heads/main' && matrix.php_version == '8.0'
+        if: github.ref == 'refs/heads/main'
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
+  clean:
+    needs: reports
+    runs-on: ubuntu-latest
+    steps:
       - name: Clean
-        run: docker-compose down
-        if: always()
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: repository
