@@ -13,11 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Zip
+        run: zip -r repository.zip .
+
       - name: Repository
         uses: actions/upload-artifact@v2
         with:
           name: repository
-          path: ./
+          path: repository.zip
 
   test:
     needs: checkout
@@ -32,6 +35,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: repository
+
+      - name: Unzip
+        run: unzip repository.zip
 
       - name: Prepare
         run: |
@@ -58,12 +64,16 @@ jobs:
         run: docker-compose down
         if: always()
 
-      - name: Artifact
+      - name: Zip
+        run: zip -r repository.zip .
+        if: matrix.php_version == '8.0'
+
+      - name: Repository
         uses: actions/upload-artifact@v2
         if: matrix.php_version == '8.0'
         with:
           name: repository
-          path: ./
+          path: repository.zip
 
   reports:
     needs: test
@@ -73,6 +83,9 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: repository
+
+      - name: Unzip
+        run: unzip repository.zip
 
       - name: Coverage
         uses: actions/upload-artifact@v2
