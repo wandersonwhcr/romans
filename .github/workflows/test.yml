@@ -44,18 +44,18 @@ jobs:
 
       - name: Package
         run: docker-compose run romans composer archive --dir build --format zip --file package
-        if: matrix.php_version == "8.0"
+        if: matrix.php_version == '8.0'
 
       - name: Package Artifact
         uses: actions/upload-artifact@v2
-        if: matrix.php_version == "8.0"
+        if: matrix.php_version == '8.0'
         with:
           name: package
           path: build/package.zip
 
       - name: Codecov
         run: bash <(curl -s https://codecov.io/bash) -f build/coverage.xml
-        if: github.ref == "refs/heads/main" && matrix.php_version == "8.0"
+        if: github.ref == 'refs/heads/main' && matrix.php_version == '8.0'
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
