@@ -37,7 +37,7 @@ jobs:
           name: repository
 
       - name: Unzip
-        run: unzip repository.zip
+        run: unzip repository.zip && rm -f repository
 
       - name: Prepare
         run: |
@@ -85,7 +85,7 @@ jobs:
           name: repository
 
       - name: Unzip
-        run: unzip repository.zip
+        run: unzip repository.zip && rm -f repository.zip
 
       - name: Coverage
         uses: actions/upload-artifact@v2
