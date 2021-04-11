@@ -104,3 +104,12 @@ jobs:
         if: github.ref == 'refs/heads/main'
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  clean:
+    needs: reports
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clean
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: repository
