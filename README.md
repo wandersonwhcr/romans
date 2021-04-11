@@ -5,6 +5,7 @@ A Simple PHP Roman Numerals Library
 [![Build Status](https://github.com/wandersonwhcr/romans/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/wandersonwhcr/romans/actions/workflows/test.yml?query=branch%3Amain)
 [![Updated](https://github.com/wandersonwhcr/romans/actions/workflows/updated.yml/badge.svg)](https://github.com/wandersonwhcr/romans/actions/workflows/updated.yml)
 [![Latest Stable Version](https://poser.pugx.org/wandersonwhcr/romans/v/stable?format=flat)](https://packagist.org/packages/wandersonwhcr/romans)
+[![codecov](https://codecov.io/gh/wandersonwhcr/romans/branch/main/graph/badge.svg)](https://codecov.io/gh/wandersonwhcr/romans)
 [![License](https://poser.pugx.org/wandersonwhcr/romans/license?format=flat)](https://packagist.org/packages/wandersonwhcr/romans)
 
 ## Usage
