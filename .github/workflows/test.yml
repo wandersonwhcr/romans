@@ -53,7 +53,7 @@ jobs:
 
       - name: Codecov
         run: bash <(curl -s https://codecov.io/bash) -f build/coverage.xml
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == "refs/heads/main" && matrix.php_version == "8.0"
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
