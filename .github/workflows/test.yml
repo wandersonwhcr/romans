@@ -51,6 +51,12 @@ jobs:
           name: package
           path: build/package.zip
 
+      - name: Codecov
+        run: bash <(curl -s https://codecov.io/bash) -f build/coverage.xml
+        if: github.ref == 'refs/heads/main'
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Clean
         run: docker-compose down
         if: ${{ always() }}
