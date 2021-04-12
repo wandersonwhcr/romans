@@ -37,7 +37,7 @@ jobs:
           name: repository
 
       - name: Unzip
-        run: unzip repository.zip && rm -f repository
+        run: unzip repository.zip && rm -f repository.zip
 
       - name: Prepare
         run: |
