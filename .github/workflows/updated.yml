@@ -2,7 +2,7 @@ name: Updated
 
 on:
   schedule:
-  - cron: '30 11 * * 1'
+  - cron: '30 11 * * 1' # 11h30 UTC (08h30 BRT) on Mondays
 
 jobs:
   test:
