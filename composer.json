@@ -26,6 +26,7 @@
         "slevomat/coding-standard": "^6.4"
     },
     "config": {
+        "sort-packages": true,
         "preferred-install": {
             "*": "dist"
         }
