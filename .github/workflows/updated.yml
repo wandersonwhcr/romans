@@ -5,7 +5,23 @@ on:
   - cron: '30 11 * * 1' # 11h30 UTC (08h30 BRT) on Mondays
 
 jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Zip
+        run: zip -r repository.zip .
+
+      - name: Repository
+        uses: actions/upload-artifact@v2
+        with:
+          name: repository
+          path: repository.zip
+
   test:
+    needs: checkout
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,7 +30,12 @@ jobs:
           - "8.0"
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/download-artifact@v2
+        with:
+          name: repository
+
+      - name: Unzip
+        run: unzip repository.zip && rm -f repository.zip
 
       - name: Prepare
         run: |
@@ -39,8 +60,17 @@ jobs:
         run: |
           docker-compose run romans composer update
           docker-compose run romans composer test
-        if: ${{ always() }}
+        if: always()
 
       - name: Clean
         run: docker-compose down
-        if: ${{ always() }}
+        if: always()
+
+  clean:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clean
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: repository
