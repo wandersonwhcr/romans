@@ -22,7 +22,7 @@
         "phpmd/phpmd": "2.9.*",
         "phpunit/phpunit": "9.5.*",
         "sebastian/phpcpd": "6.0.3",
-        "slevomat/coding-standard": "^6.4",
+        "slevomat/coding-standard": "7.0.*",
         "squizlabs/php_codesniffer": "3.6.*"
     },
     "config": {
