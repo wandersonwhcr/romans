@@ -49,6 +49,7 @@ with other libraries or frameworks easier. If you want to add more items in this
 list, please, open an issue or create a pull request.
 
 * [Illuminate Romans](https://github.com/wandersonwhcr/illuminate-romans): Laravel Illuminate Romans Integration
+* [Kirby Romans](https://github.com/moevbiz/k3-romans): Kirby CMS Integration
 * [Laminas Romans](https://github.com/wandersonwhcr/laminas-romans): Laminas Project Romans Integration
 * [Plates Romans Extension](https://github.com/wandersonwhcr/plates-romans): Plates Extension
 * [Twig Roman Numerals Extension](https://github.com/EmilMassey/twig-roman-numerals): Twig Extension (Symfony, WordPress + Timber)
