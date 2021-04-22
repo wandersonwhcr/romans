@@ -201,7 +201,7 @@ c -> b | Xb  | XXb | XXXb
 d -> c | XLb | Lc  | XCb
 e -> d | Cd  | CCd | CCCd
 f -> e | CDd | De  | CMd
-g -> f | Nz  | Mg
+g -> f | Ny  | Mg
 ```
 
 ## References
