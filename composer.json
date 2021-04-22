@@ -1,46 +1,60 @@
 {
-    "name": "wandersonwhcr/romans",
-    "description": "A Simple PHP Roman Numerals Library",
-    "license": "MIT",
-    "type": "library",
-    "keywords": ["filter", "validator", "roman", "roman-number", "roman-numeral", "converter", "format"],
-    "autoload": {
-        "psr-4": {
-            "Romans\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "RomansTest\\": "test"
-        }
-    },
-    "require": {
-        "php": ">=7.4"
-    },
-    "require-dev": {
-        "php-parallel-lint/php-parallel-lint": "1.3.*",
-        "phpmd/phpmd": "2.9.*",
-        "phpunit/phpunit": "9.5.*",
-        "sebastian/phpcpd": "6.0.*",
-        "slevomat/coding-standard": "7.0.*",
-        "squizlabs/php_codesniffer": "3.6.*"
-    },
-    "config": {
-        "sort-packages": true,
-        "preferred-install": {
-            "*": "dist"
-        }
-    },
-    "scripts": {
-        "optimize": [
-            "composer install --no-dev --optimize-autoloader --classmap-authoritative"
-        ],
-        "test": [
-            "parallel-lint src",
-            "phpunit $COVERAGE_OPTIONS",
-            "phpcpd src",
-            "phpmd src text phpmd.xml",
-            "phpcs"
-        ]
+  "name": "wandersonwhcr/romans",
+  "description": "A Simple PHP Roman Numerals Library",
+  "license": "MIT",
+  "type": "library",
+  "keywords": [
+    "roman",
+    "roman-number",
+    "roman-numeral",
+    "filter",
+    "validator",
+    "converter",
+    "format"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Romans\\": "src"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "RomansTest\\": "test"
+    }
+  },
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "php-parallel-lint/php-parallel-lint": "1.3.*",
+    "phpmd/phpmd": "2.9.*",
+    "phpunit/phpunit": "9.5.*",
+    "sebastian/phpcpd": "6.0.*",
+    "slevomat/coding-standard": "7.0.*",
+    "squizlabs/php_codesniffer": "3.6.*"
+  },
+  "config": {
+    "sort-packages": true,
+    "preferred-install": {
+      "*": "dist"
+    }
+  },
+  "scripts": {
+    "optimize": [
+      "composer install --no-dev --optimize-autoloader --classmap-authoritative"
+    ],
+    "test": [
+      "parallel-lint src",
+      "phpunit $COVERAGE_OPTIONS",
+      "phpcpd src",
+      "phpmd src text phpmd.xml",
+      "phpcs"
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "1.4.x-dev",
+      "dev-release": "1.3.x-dev"
+    }
+  }
 }
