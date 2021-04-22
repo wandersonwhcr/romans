@@ -151,8 +151,8 @@ test this package.
 
 ```bash
 docker-compose build
-docker-compose run romans composer install
-docker-compose run romans composer test
+docker-compose run --rm romans composer install
+docker-compose run --rm romans composer test
 ```
 
 ## Techniques
