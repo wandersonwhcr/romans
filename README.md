@@ -91,8 +91,8 @@ $result = $parser->parse($tokens); // 1999
 ### Exception Handling
 
 The filter `RomanToInt` uses Lexer to tokenize the input and Parser to build the
-Integer number. When some error is found, the Lexer or Parser throw Exceptions
-to notify the problem with specific code.
+Integer number. When errors are found, the Lexer or Parser throw Exceptions to
+notify the problem with specific code.
 
 ```php
 use Romans\Filter\RomanToInt;
@@ -158,8 +158,8 @@ docker-compose run romans composer test
 
 ## Techniques
 
-This section describes some techniques this package uses to convert Roman
-numbers into integer and vice-versa.
+This section describes techniques used by this package to convert Roman numbers
+into integer and vice-versa.
 
 ### Lexer-Parser
 
@@ -182,8 +182,8 @@ an input `string`, converting it to another structure according to specific
 ### Deterministic Finite Automaton (DFA)
 
 A DFA was developed to check if a string with Roman number is valid. This
-technique was choiced because some implementations simply convert the `$input`
-without checking some rules, like four chars sequentially.
+technique was choiced because other implementations simply convert the `$input`
+without checking rules, like four chars sequentially.
 
 The current automaton definition is declared below.
 
