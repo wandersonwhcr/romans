@@ -44,9 +44,10 @@ stable version.
 
 ## Integrations
 
-This library can be used as dependency for other projects, making integrations
-with other libraries or frameworks easier. If you want to add more items in this
-list, please, open an issue or create a pull request.
+This library can be used as dependency for projects, making integrations with
+libraries or frameworks easier. If you want to add more items in this list,
+please, open an issue or create a pull request, adding your project
+alphabetically.
 
 * [Illuminate Romans](https://github.com/wandersonwhcr/illuminate-romans): Laravel Illuminate Romans Integration
 * [Kirby Romans](https://github.com/moevbiz/k3-romans): Kirby CMS Integration
