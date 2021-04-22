@@ -4,11 +4,11 @@
   "license": "MIT",
   "type": "library",
   "keywords": [
-    "filter",
-    "validator",
     "roman",
     "roman-number",
     "roman-numeral",
+    "filter",
+    "validator",
     "converter",
     "format"
   ],
