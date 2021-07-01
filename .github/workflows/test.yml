@@ -26,6 +26,7 @@ jobs:
     needs: checkout
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         php_version:
           - "7.4"
