@@ -26,10 +26,15 @@ jobs:
     needs: checkout
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         php_version:
           - "7.4"
           - "8.0"
+          - "8.1.0beta1"
+        include:
+          - php_version: "8.1.0beta1"
+            experimental: true
     steps:
       - name: Checkout
         uses: actions/download-artifact@v2
@@ -48,17 +53,21 @@ jobs:
         run: docker-compose build
         env:
           PHP_VERSION: ${{ matrix.php_version }}
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Install
         run: docker-compose run romans composer install
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Test
         run: docker-compose run -e COVERAGE_OPTIONS romans composer test
         env:
           COVERAGE_OPTIONS: --coverage-text --coverage-html build/coverage --coverage-clover build/coverage.xml
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Package
         run: docker-compose run romans composer archive --dir build --format zip --file package
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Clean
         run: docker-compose down
