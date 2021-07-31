@@ -61,6 +61,7 @@ jobs:
         run: |
           docker-compose run romans composer config platform.php ${{ matrix.composer_platform_php }}
           docker-compose run romans composer update --lock --no-install
+          git diff
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Install
