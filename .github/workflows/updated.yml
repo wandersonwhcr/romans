@@ -35,6 +35,7 @@ jobs:
         include:
           - php_version: "8.1.0beta1"
             experimental: true
+            composer_platform_php: "8.0"
     steps:
       - name: Checkout
         uses: actions/download-artifact@v2
@@ -53,6 +54,13 @@ jobs:
         run: docker-compose build
         env:
           PHP_VERSION: ${{ matrix.php_version }}
+        continue-on-error: ${{ matrix.experimental }}
+
+      - name: PHP Experimental
+        if: ${{ matrix.experimental }}
+        run: |
+          docker-compose run romans composer config platform.php ${{ matrix.composer_platform_php }}
+          docker-compose run romans composer update --lock --no-install
         continue-on-error: ${{ matrix.experimental }}
 
       - name: Install
