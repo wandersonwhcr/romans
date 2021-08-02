@@ -54,34 +54,34 @@ jobs:
         run: docker-compose build
         env:
           PHP_VERSION: ${{ matrix.php_version }}
-        continue-on-error: ${{ matrix.experimental }}
+        continue-on-error: ${{ matrix.experimental == true }}
 
       - name: PHP Experimental
-        if: ${{ matrix.experimental }}
+        if: ${{ matrix.experimental == true }}
         run: |
           docker-compose run romans composer config platform.php ${{ matrix.composer_platform_php }}
           docker-compose run romans composer update --lock --no-install
           git diff
-        continue-on-error: ${{ matrix.experimental }}
+        continue-on-error: ${{ matrix.experimental == true }}
 
       - name: Install
         run: docker-compose run romans composer install
-        continue-on-error: ${{ matrix.experimental }}
+        continue-on-error: ${{ matrix.experimental == true }}
 
       - name: Check Dependencies
         run: docker-compose run romans composer outdated
-        continue-on-error: ${{ matrix.experimental }}
+        continue-on-error: ${{ matrix.experimental == true }}
 
       - name: Check Dependencies Direct
         run: docker-compose run romans composer outdated --direct --strict
-        continue-on-error: ${{ matrix.experimental }}
+        continue-on-error: ${{ matrix.experimental == true }}
 
       - name: Update Dependencies and Test
         run: |
           docker-compose run romans composer update
           docker-compose run romans composer test
         if: always()
-        continue-on-error: ${{ matrix.experimental }}
+        continue-on-error: ${{ matrix.experimental == true }}
 
       - name: Clean
         run: docker-compose down
