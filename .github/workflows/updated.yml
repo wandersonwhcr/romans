@@ -56,13 +56,6 @@ jobs:
           PHP_VERSION: ${{ matrix.php_version }}
         continue-on-error: ${{ matrix.experimental == true }}
 
-      - name: PHP 7.4 PHPMD -> PSR Log Support
-        if: ${{ matrix.php_version == '7.4' }}
-        run: |
-          docker-compose run romans composer require psr/log:1.1.* --dev --no-install
-          git diff
-        continue-on-error: ${{ matrix.experimental == true }}
-
       - name: PHP Experimental
         if: ${{ matrix.experimental == true }}
         run: |
