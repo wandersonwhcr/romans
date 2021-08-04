@@ -11,7 +11,7 @@ A Simple PHP Roman Numerals Library
 ## Usage
 
 This library includes a simple couple of filters to convert a `string` with
-Roman number to an `int` that represents the input as decimal, and decimal `int`
+Roman number to an `int` that represents the input as decimal and decimal `int`
 to a `string` with Roman number as result.
 
 ```php
