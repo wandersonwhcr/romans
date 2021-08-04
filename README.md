@@ -30,15 +30,16 @@ $result = $filter->filter(1999); // MCMXCIX
 
 ## Installation
 
-This package uses Composer as default repository. You can install it adding the
-name of package in `require` section of `composer.json`, pointing to the last
-stable version.
+This package uses
+[Composer](https://packagist.org/packages/wandersonwhcr/romans) as default
+repository. You can install it adding the name of package in `require` section
+of `composer.json`, pointing to the last stable version.
 
 ```json
 {
-    "require": {
-        "wandersonwhcr/romans": "^1.0"
-    }
+  "require": {
+    "wandersonwhcr/romans": "^1.0"
+  }
 }
 ```
 
