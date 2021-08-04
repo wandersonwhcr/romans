@@ -46,10 +46,11 @@ of `composer.json`, pointing to the last stable version.
 Also, Romans uses Semantic Versioning. The following package versions support
 these PHP releases:
 
-* Romans `1.0.*`: PHP `^7.0`
-* Romans `1.1.*`: PHP `^7.0`
-* Romans `1.2.*`: PHP `>=7.4`
-* Romans `1.3.*`: PHP `>=8.1`
+* Romans `1.0.*`: PHP `^7.0` (Augustus)
+* Romans `1.1.*`: PHP `^7.0` (Tiberius)
+* Romans `1.2.*`: PHP `>=7.4` (Caligula)
+* Romans `1.3.*`: PHP `>=7.4` (Claudius)
+* Romans `1.4.*`: PHP `>=8.1` (Nero)
 
 ## Integrations
 
