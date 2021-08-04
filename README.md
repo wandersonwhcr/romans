@@ -11,7 +11,7 @@ A Simple PHP Roman Numerals Library
 ## Usage
 
 This library includes a simple couple of filters to convert a `string` with
-Roman number to an `int` that represents the input as decimal, and decimal `int`
+Roman number to an `int` that represents the input as decimal and decimal `int`
 to a `string` with Roman number as result.
 
 ```php
@@ -30,17 +30,27 @@ $result = $filter->filter(1999); // MCMXCIX
 
 ## Installation
 
-This package uses Composer as default repository. You can install it adding the
-name of package in `require` section of `composer.json`, pointing to the last
-stable version.
+This package uses
+[Composer](https://packagist.org/packages/wandersonwhcr/romans) as default
+repository. You can install it adding the name of package in `require` section
+of `composer.json`, pointing to the last stable version.
 
 ```json
 {
-    "require": {
-        "wandersonwhcr/romans": "^1.0"
-    }
+  "require": {
+    "wandersonwhcr/romans": "^1.0"
+  }
 }
 ```
+
+Also, Romans uses Semantic Versioning. The following package versions support
+these PHP releases:
+
+* Romans `1.0.*`: PHP `^7.0` (Augustus)
+* Romans `1.1.*`: PHP `^7.0` (Tiberius)
+* Romans `1.2.*`: PHP `>=7.4` (Caligula)
+* Romans `1.3.*`: PHP `>=7.4` (Claudius)
+* Romans `1.4.*`: PHP `>=8.1` (Nero)
 
 ## Integrations
 
@@ -59,8 +69,7 @@ alphabetically.
 ## Advanced Usage
 
 The `Romans` package uses a Lexer-Parser approach and a Deterministic Finite
-Automaton (DFA) to convert Roman number to Integer, using a Grammar Token
-library.
+Automaton (DFA) to convert Roman number to `int`, using a Grammar Token library.
 
 ```php
 use Romans\Grammar\Grammar;
@@ -91,8 +100,8 @@ $result = $parser->parse($tokens); // 1999
 ### Exception Handling
 
 The filter `RomanToInt` uses Lexer to tokenize the input and Parser to build the
-Integer number. When errors are found, the Lexer or Parser throw Exceptions to
-notify the problem with specific code.
+`int` number. When errors are found, the Lexer or Parser throw Exceptions to
+notify the problem with a specific code.
 
 ```php
 use Romans\Filter\RomanToInt;
@@ -113,8 +122,8 @@ try {
 ```
 
 You can use this structure to validate Roman numbers, adding a _try..catch_
-block to check if `$input` is valid. Also, you can validate if an Integer can be
-filtered to Roman using a `IntToRoman` filter.
+block to check if `$input` is valid. Also, you can validate if an `int` can be
+filtered to Roman using an `IntToRoman` filter.
 
 ```php
 use Romans\Filter\IntToRoman;
@@ -131,7 +140,7 @@ try {
 
 ### Zero
 
-The zero value is represented as `string` `"N"`, the initial of _nulla_ or of
+The zero value is represented as `string` `"N"`, the initial of _nulla_ or
 _nihil_, the Latin word for "nothing" (see references).
 
 ```php
@@ -159,7 +168,7 @@ docker-compose run --rm romans composer test
 ## Techniques
 
 This section describes techniques used by this package to convert Roman numbers
-into integer and vice-versa.
+into `int` and vice-versa.
 
 ### Lexer-Parser
 
@@ -177,12 +186,12 @@ analysing symbols conforming to the rules of a formal grammar".
 
 This structure makes easier the development of a structure responsible to read
 an input `string`, converting it to another structure according to specific
-`char` set and your position inside input.
+charset and its position inside input.
 
 ### Deterministic Finite Automaton (DFA)
 
-A DFA was developed to check if a string with Roman number is valid. This
-technique was choiced because other implementations simply convert the `$input`
+A DFA was developed to check if a `string` with Roman number is valid. This
+technique was choiced because other implementations simply convert the input
 without checking rules, like four chars sequentially.
 
 The current automaton definition is declared below.
@@ -215,5 +224,5 @@ g -> f | Ny  | Mg
 
 ## License
 
-This package is opensource and available under license MIT described in
+This package is opensource and available under MIT license described in
 [LICENSE](https://github.com/wandersonwhcr/romans/blob/main/LICENSE).
