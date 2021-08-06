@@ -31,9 +31,9 @@ jobs:
         php_version:
           - "7.4"
           - "8.0"
-          - "8.1.0beta1"
+          - "8.1.0beta2"
         include:
-          - php_version: "8.1.0beta1"
+          - php_version: "8.1.0beta2"
             experimental: true
             composer_platform_php: "8.0"
     steps:
