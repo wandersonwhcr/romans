@@ -156,14 +156,21 @@ class RomanToIntTest extends TestCase
      */
     public function testCacheNotFound(): void
     {
+        $item  = $this->createMock(CacheItemInterface::class);
         $cache = $this->createMock(CacheInterface::class);
+
+        $item->expects($this->once())
+            ->method('set')
+            ->with($this->equalTo(1))
+            ->willReturnSelf();
 
         $cache->method('hasItem')
             ->with($this->equalTo('I'))
             ->willReturn(false);
 
-        $cache->expects($this->never())
-            ->method('getItem');
+        $cache->expects($this->once())
+            ->method('getItem')
+            ->willReturn($item);
 
         $this->filter->setCache($cache);
 

@@ -131,6 +131,12 @@ class RomanToInt
             return $this->getCache()->getItem($value)->get();
         }
 
-        return $this->getParser()->parse($this->getLexer()->tokenize($value));
+        $result = $this->getParser()->parse($this->getLexer()->tokenize($value));
+
+        if ($this->hasCache()) {
+            $this->getCache()->getItem($value)->set($result);
+        }
+
+        return $result;
     }
 }
