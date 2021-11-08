@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RomansTest\Filter;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Cache\CacheItemPoolInterface as CacheInterface;
 use Romans\Filter\RomanToInt;
 use Romans\Grammar\Grammar;
 use Romans\Lexer\Lexer;
@@ -37,6 +38,25 @@ class RomanToIntTest extends TestCase
 
         $this->assertSame($grammar, $filter->getLexer()->getGrammar());
         $this->assertSame($grammar, $filter->getParser()->getGrammar());
+    }
+
+    /**
+     * Test Cache
+     */
+    public function testCache(): void
+    {
+        $cache = $this->createMock(CacheInterface::class);
+
+        $this->assertNull($this->filter->getCache());
+
+        $this->assertFalse($this->filter->hasCache());
+        $this->assertSame($this->filter, $this->filter->setCache($cache));
+        $this->assertSame($cache, $this->filter->getCache());
+        $this->assertTrue($this->filter->hasCache());
+
+        $this->filter->setCache(null);
+
+        $this->assertNull($this->filter->getCache());
     }
 
     /**

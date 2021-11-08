@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Romans\Filter;
 
+use Psr\Cache\CacheItemPoolInterface as CacheInterface;
 use Romans\Grammar\Grammar;
 use Romans\Lexer\Lexer;
 use Romans\Parser\Parser;
@@ -22,6 +23,11 @@ class RomanToInt
      * Parser
      */
     private Parser $parser;
+
+    /**
+     * Cache
+     */
+    private ?CacheInterface $cache = null;
 
     /**
      * Default Constructor
@@ -79,6 +85,38 @@ class RomanToInt
     public function getParser(): Parser
     {
         return $this->parser;
+    }
+
+    /**
+     * Has Cache?
+     *
+     * @return bool Cache Exists
+     */
+    public function hasCache(): bool
+    {
+        return $this->cache !== null;
+    }
+
+    /**
+     * Set Cache
+     *
+     * @param ?CacheInterface $cache Cache Object
+     * @param self            Fluent Interface
+     */
+    public function setCache(?CacheInterface $cache): self
+    {
+        $this->cache = $cache;
+        return $this;
+    }
+
+    /**
+     * Get Cache
+     *
+     * @return ?CacheInterface Cache Object
+     */
+    public function getCache(): ?CacheInterface
+    {
+        return $this->cache;
     }
 
     /**
