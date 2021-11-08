@@ -127,6 +127,10 @@ class RomanToInt
      */
     public function filter(string $value): int
     {
+        if ($this->hasCache() && $this->getCache()->hasItem($value)) {
+            return $this->getCache()->getItem($value)->get();
+        }
+
         return $this->getParser()->parse($this->getLexer()->tokenize($value));
     }
 }

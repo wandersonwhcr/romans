@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RomansTest\Filter;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Cache\CacheItemInterface as CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface as CacheInterface;
 use Romans\Filter\RomanToInt;
 use Romans\Grammar\Grammar;
@@ -123,5 +124,30 @@ class RomanToIntTest extends TestCase
     public function testFilterWithZero(): void
     {
         $this->assertSame(0, $this->filter->filter('N'));
+    }
+
+    /**
+     * Test Cache Found
+     */
+    public function testCacheFound(): void
+    {
+        $item  = $this->createMock(CacheItemInterface::class);
+        $cache = $this->createMock(CacheInterface::class);
+
+        $item->expects($this->once())
+            ->method('get')
+            ->willReturn(1);
+
+        $cache->method('hasItem')
+            ->with($this->equalTo('I'))
+            ->willReturn(true);
+
+        $cache->expects($this->once())
+            ->method('getItem')
+            ->willReturn($item);
+
+        $this->filter->setCache($cache);
+
+        $this->assertSame(1, $this->filter->filter('I'));
     }
 }
