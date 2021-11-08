@@ -118,10 +118,12 @@ jobs:
           path: build/package.zip
 
       - name: Codecov
-        run: bash <(curl -s https://codecov.io/bash) -f build/coverage.xml
+        run: |
+          curl https://uploader.codecov.io/latest/linux/codecov \
+            --silent --remote-name
+          chmod +x codecov
+          ./codecov --token "${{ secrets.CODECOV_TOKEN }}"
         if: github.ref == 'refs/heads/main'
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   clean:
     needs: reports
