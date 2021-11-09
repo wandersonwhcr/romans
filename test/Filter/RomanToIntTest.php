@@ -42,25 +42,6 @@ class RomanToIntTest extends TestCase
     }
 
     /**
-     * Test Cache
-     */
-    public function testCache(): void
-    {
-        $cache = $this->createMock(CacheInterface::class);
-
-        $this->assertNull($this->filter->getCache());
-
-        $this->assertFalse($this->filter->hasCache());
-        $this->assertSame($this->filter, $this->filter->setCache($cache));
-        $this->assertSame($cache, $this->filter->getCache());
-        $this->assertTrue($this->filter->hasCache());
-
-        $this->filter->setCache(null);
-
-        $this->assertNull($this->filter->getCache());
-    }
-
-    /**
      * Test Nullable Lexer
      */
     public function testNullableLexer(): void
