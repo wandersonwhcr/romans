@@ -25,6 +25,9 @@
   "require": {
     "php": ">=7.4"
   },
+  "suggest": {
+    "symfony/cache": "Cache results to improve performance (or any PSR-6 implementation"
+  },
   "require-dev": {
     "php-parallel-lint/php-parallel-lint": "1.3.*",
     "phpmd/phpmd": "2.10.*",
