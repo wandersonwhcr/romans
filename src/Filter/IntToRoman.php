@@ -47,18 +47,15 @@ class IntToRoman
 
         if ($value === 0) {
             $dataset = $values[0];
+            $result  = array_reduce($dataset, fn($result, $token) => $result . $tokens[$token], $result);
 
-            return array_reduce($dataset, function ($result, $token) use ($tokens) {
-                return $result . $tokens[$token];
-            }, '');
+            return $result;
         }
 
         foreach ($values as $current => $dataset) {
             while ($current > 0 && $value >= $current) {
                 $value  = $value - $current;
-                $result = array_reduce($dataset, function ($result, $token) use ($tokens) {
-                    return $result . $tokens[$token];
-                }, $result);
+                $result = array_reduce($dataset, fn($result, $token) => $result . $tokens[$token], $result);
             }
         }
 
