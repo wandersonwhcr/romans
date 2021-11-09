@@ -61,7 +61,8 @@ class IntToRoman
         }
 
         if ($this->hasCache()) {
-            $this->getCache()->getItem($value)->set($result);
+            $item = $this->getCache()->getItem($value)->set($result);
+            $this->getCache()->save($item);
         }
 
         return $result;

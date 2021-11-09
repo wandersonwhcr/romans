@@ -99,7 +99,8 @@ class RomanToInt
         $result = $this->getParser()->parse($this->getLexer()->tokenize($value));
 
         if ($this->hasCache()) {
-            $this->getCache()->getItem($value)->set($result);
+            $item = $this->getCache()->getItem($value)->set($result);
+            $this->getCache()->save($item);
         }
 
         return $result;

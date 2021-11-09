@@ -153,6 +153,11 @@ class RomanToIntTest extends TestCase
             ->method('getItem')
             ->willReturn($item);
 
+        $cache->expects($this->once())
+            ->method('save')
+            ->with($this->equalTo($item))
+            ->willReturn(true);
+
         $this->filter->setCache($cache);
 
         $this->assertSame(1, $this->filter->filter('I'));
