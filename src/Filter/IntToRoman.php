@@ -12,6 +12,7 @@ use Romans\Grammar\GrammarAwareTrait;
  */
 class IntToRoman
 {
+    use CacheAwareTrait;
     use GrammarAwareTrait;
 
     /**
@@ -36,6 +37,10 @@ class IntToRoman
             throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);
         }
 
+        if ($this->hasCache() && $this->getCache()->hasItem($value)) {
+            return $this->getCache()->getItem($value)->get();
+        }
+
         $tokens = $this->getGrammar()->getTokens();
         $values = array_reverse($this->getGrammar()->getValuesWithModifiers(), true /* preserve keys */);
         $result = '';
@@ -57,6 +62,10 @@ class IntToRoman
                     $result = $result . $tokens[$token];
                 }
             }
+        }
+
+        if ($this->hasCache()) {
+            $this->getCache()->getItem($value)->set($result);
         }
 
         return $result;
