@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Romans\Filter;
+namespace Romans\Cache;
 
 use Psr\Cache\CacheItemPoolInterface as CacheInterface;
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Romans\Filter;
 
+use Romans\Cache\CacheAwareTrait;
 use Romans\Grammar\Grammar;
 use Romans\Lexer\Lexer;
 use Romans\Parser\Parser;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RomansTest\Filter;
+namespace RomansTest\Cache;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemPoolInterface as CacheInterface;
-use Romans\Filter\CacheAwareTrait;
+use Romans\Cache\CacheAwareTrait;
 
 /**
  * Cache Aware Trait Test
