@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Romans\Filter;
 
+use Romans\Cache\CacheAwareTrait;
 use Romans\Grammar\Grammar;
 use Romans\Lexer\Lexer;
 use Romans\Parser\Parser;
@@ -13,6 +14,8 @@ use Romans\Parser\Parser;
  */
 class RomanToInt
 {
+    use CacheAwareTrait;
+
     /**
      * Lexer
      */
@@ -89,6 +92,17 @@ class RomanToInt
      */
     public function filter(string $value): int
     {
-        return $this->getParser()->parse($this->getLexer()->tokenize($value));
+        if ($this->hasCache() && $this->getCache()->hasItem($value)) {
+            return $this->getCache()->getItem($value)->get();
+        }
+
+        $result = $this->getParser()->parse($this->getLexer()->tokenize($value));
+
+        if ($this->hasCache()) {
+            $item = $this->getCache()->getItem($value)->set($result);
+            $this->getCache()->save($item);
+        }
+
+        return $result;
     }
 }

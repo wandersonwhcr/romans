@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Romans\Filter;
 
+use Romans\Cache\CacheAwareTrait;
 use Romans\Grammar\Grammar;
 use Romans\Grammar\GrammarAwareTrait;
 
@@ -12,6 +13,7 @@ use Romans\Grammar\GrammarAwareTrait;
  */
 class IntToRoman
 {
+    use CacheAwareTrait;
     use GrammarAwareTrait;
 
     /**
@@ -22,6 +24,20 @@ class IntToRoman
     public function __construct(?Grammar $grammar = null)
     {
         $this->setGrammar($grammar ?? new Grammar());
+    }
+
+    /**
+     * Helper to Cache a Result from Value
+     *
+     * @param int    $value Integer
+     * @param string Roman Number Result
+     */
+    private function cache(int $value, string $result): void
+    {
+        if ($this->hasCache()) {
+            $item = $this->getCache()->getItem($value)->set($result);
+            $this->getCache()->save($item);
+        }
     }
 
     /**
@@ -36,28 +52,31 @@ class IntToRoman
             throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);
         }
 
+        if ($this->hasCache() && $this->getCache()->hasItem($value)) {
+            return $this->getCache()->getItem($value)->get();
+        }
+
         $tokens = $this->getGrammar()->getTokens();
         $values = array_reverse($this->getGrammar()->getValuesWithModifiers(), true /* preserve keys */);
         $result = '';
 
         if ($value === 0) {
             $dataset = $values[0];
+            $result  = array_reduce($dataset, fn($result, $token) => $result . $tokens[$token], $result);
 
-            foreach ($dataset as $token) {
-                $result = $result . $tokens[$token];
-            }
+            $this->cache($value, $result);
 
             return $result;
         }
 
         foreach ($values as $current => $dataset) {
             while ($current > 0 && $value >= $current) {
-                $value = $value - $current;
-                foreach ($dataset as $token) {
-                    $result = $result . $tokens[$token];
-                }
+                $value  = $value - $current;
+                $result = array_reduce($dataset, fn($result, $token) => $result . $tokens[$token], $result);
             }
         }
+
+        $this->cache($value, $result);
 
         return $result;
     }

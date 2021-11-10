@@ -50,7 +50,8 @@ these PHP releases:
 * Romans `1.1.*`: PHP `^7.0` (Tiberius)
 * Romans `1.2.*`: PHP `>=7.4` (Caligula)
 * Romans `1.3.*`: PHP `>=7.4` (Claudius)
-* Romans `1.4.*`: PHP `>=8.1` (Nero)
+* Romans `1.4.*`: PHP `>=7.4` (Nero)
+* Romans `1.5.*`: PHP `>=8.0` (Galba)
 
 ## Integrations
 
@@ -152,6 +153,31 @@ $result = $filter->filter('N'); // 0 (Zero)
 
 $filter = new IntToRoman();
 $result = $filter->filter(0); // N
+```
+
+### Cache
+
+This package uses [PSR-6 Caching Interface](https://www.php-fig.org/psr/psr-6)
+to improve execution, mainly over loops (like `while` or `foreach`) using cache
+libraries. Any PSR-6 implementation can be used and we suggest
+[Symfony Cache](https://packagist.org/packages/symfony/cache) package.
+
+```php
+use Romans\Filter\IntToRoman;
+use Romans\Filter\RomanToInt;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+
+$cache = new ArrayAdapter();
+
+$filter = new RomanToInt();
+$filter->setCache($cache);
+$result = $filter->filter('MCMXCIX'); // 1999
+$result = $filter->filter('MCMXCIX'); // 1999 (from cache)
+
+$filter = new IntToRoman();
+$filter->setCache($cache);
+$result = $filter->filter(1999); // MCMXCIX
+$result = $filter->filter(1999); // MCMXCIX (from cache)
 ```
 
 ## Development

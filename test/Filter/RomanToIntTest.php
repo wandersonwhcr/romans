@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace RomansTest\Filter;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Cache\CacheItemInterface as CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface as CacheInterface;
 use Romans\Filter\RomanToInt;
 use Romans\Grammar\Grammar;
 use Romans\Lexer\Lexer;
@@ -103,5 +105,61 @@ class RomanToIntTest extends TestCase
     public function testFilterWithZero(): void
     {
         $this->assertSame(0, $this->filter->filter('N'));
+    }
+
+    /**
+     * Test Cache Found
+     */
+    public function testCacheFound(): void
+    {
+        $item  = $this->createMock(CacheItemInterface::class);
+        $cache = $this->createMock(CacheInterface::class);
+
+        $item->expects($this->once())
+            ->method('get')
+            ->willReturn(1);
+
+        $cache->method('hasItem')
+            ->with($this->equalTo('I'))
+            ->willReturn(true);
+
+        $cache->expects($this->once())
+            ->method('getItem')
+            ->willReturn($item);
+
+        $this->filter->setCache($cache);
+
+        $this->assertSame(1, $this->filter->filter('I'));
+    }
+
+    /**
+     * Test Cache not Found
+     */
+    public function testCacheNotFound(): void
+    {
+        $item  = $this->createMock(CacheItemInterface::class);
+        $cache = $this->createMock(CacheInterface::class);
+
+        $item->expects($this->once())
+            ->method('set')
+            ->with($this->equalTo(1))
+            ->willReturnSelf();
+
+        $cache->method('hasItem')
+            ->with($this->equalTo('I'))
+            ->willReturn(false);
+
+        $cache->expects($this->once())
+            ->method('getItem')
+            ->willReturn($item);
+
+        $cache->expects($this->once())
+            ->method('save')
+            ->with($this->equalTo($item))
+            ->willReturn(true);
+
+        $this->filter->setCache($cache);
+
+        $this->assertSame(1, $this->filter->filter('I'));
     }
 }
