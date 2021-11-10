@@ -27,6 +27,20 @@ class IntToRoman
     }
 
     /**
+     * Helper to Cache a Result from Value
+     *
+     * @param int    $value Integer
+     * @param string Roman Number Result
+     */
+    private function cache(int $value, string $result): void
+    {
+        if ($this->hasCache()) {
+            $item = $this->getCache()->getItem($value)->set($result);
+            $this->getCache()->save($item);
+        }
+    }
+
+    /**
      * Filter Integer to Roman Number
      *
      * @param  int    Integer
@@ -50,6 +64,8 @@ class IntToRoman
             $dataset = $values[0];
             $result  = array_reduce($dataset, fn($result, $token) => $result . $tokens[$token], $result);
 
+            $this->cache($value, $result);
+
             return $result;
         }
 
@@ -60,10 +76,7 @@ class IntToRoman
             }
         }
 
-        if ($this->hasCache()) {
-            $item = $this->getCache()->getItem($value)->set($result);
-            $this->getCache()->save($item);
-        }
+        $this->cache($value, $result);
 
         return $result;
     }
