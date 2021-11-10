@@ -162,6 +162,24 @@ to improve execution using cache libraries. Any PSR-6 implementation can be used
 and you can use [Symfony Cache](https://packagist.org/packages/symfony/cache)
 package.
 
+```php
+use Romans\Filter\IntToRoman;
+use Romans\Filter\RomanToInt;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+
+$cache = new ArrayAdapter();
+
+$filter = new RomanToInt();
+$filter->setCache($cache);
+$result = $filter->filter('MCMXCIX'); // 1999
+$result = $filter->filter('MCMXCIX'); // 1999 (from cache)
+
+$filter = new IntToRoman();
+$filter->setCache($cache);
+$result = $filter->filter(1999); // MCMXCIX
+$result = $filter->filter(1999); // MCMXCIX (from cache)
+```
+
 ## Development
 
 You can use Docker Compose to build an image and run a container to develop and
