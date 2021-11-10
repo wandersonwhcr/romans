@@ -155,6 +155,13 @@ $filter = new IntToRoman();
 $result = $filter->filter(0); // N
 ```
 
+### Cache
+
+This package uses [PSR-6 Caching Interface](https://www.php-fig.org/psr/psr-6)
+to improve execution using cache libraries. Any PSR-6 implementation can be used
+and you can use [Symfony Cache](https://packagist.org/packages/symfony/cache)
+package.
+
 ## Development
 
 You can use Docker Compose to build an image and run a container to develop and
