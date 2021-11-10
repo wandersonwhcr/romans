@@ -50,7 +50,8 @@ these PHP releases:
 * Romans `1.1.*`: PHP `^7.0` (Tiberius)
 * Romans `1.2.*`: PHP `>=7.4` (Caligula)
 * Romans `1.3.*`: PHP `>=7.4` (Claudius)
-* Romans `1.4.*`: PHP `>=8.1` (Nero)
+* Romans `1.4.*`: PHP `>=7.4` (Nero)
+* Romans `1.5.*`: PHP `>=8.0` (Galba)
 
 ## Integrations
 
