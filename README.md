@@ -158,9 +158,9 @@ $result = $filter->filter(0); // N
 ### Cache
 
 This package uses [PSR-6 Caching Interface](https://www.php-fig.org/psr/psr-6)
-to improve execution using cache libraries. Any PSR-6 implementation can be used
-and you can use [Symfony Cache](https://packagist.org/packages/symfony/cache)
-package.
+to improve execution over loops (like `while` or `foreach`) using cache
+libraries. Any PSR-6 implementation can be used and we suggest
+[Symfony Cache](https://packagist.org/packages/symfony/cache) package.
 
 ```php
 use Romans\Filter\IntToRoman;
