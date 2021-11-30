@@ -35,7 +35,7 @@ class IntToRoman
     private function cache(int $value, string $result): void
     {
         if ($this->hasCache()) {
-            $item = $this->getCache()->getItem($value)->set($result);
+            $item = $this->getCache()->getItem((string) $value)->set($result);
             $this->getCache()->save($item);
         }
     }
@@ -52,8 +52,8 @@ class IntToRoman
             throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);
         }
 
-        if ($this->hasCache() && $this->getCache()->hasItem($value)) {
-            return $this->getCache()->getItem($value)->get();
+        if ($this->hasCache() && $this->getCache()->hasItem((string) $value)) {
+            return $this->getCache()->getItem((string) $value)->get();
         }
 
         $tokens = $this->getGrammar()->getTokens();
