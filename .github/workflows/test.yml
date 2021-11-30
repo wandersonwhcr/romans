@@ -31,7 +31,9 @@ jobs:
         php_version:
           - "8.0"
           - "8.1"
-        # include:
+        include:
+            - php_version: "8.0"
+              artifact: true
         #   - php_version: "8.1.0RC6"
         #     experimental: true
         #     composer_platform_php: "8.0"
@@ -83,11 +85,11 @@ jobs:
 
       - name: Zip
         run: zip -r repository.zip .
-        if: matrix.php_version == '8.0'
+        if: matrix.artifact == true
 
       - name: Repository
         uses: actions/upload-artifact@v2
-        if: matrix.php_version == '8.0'
+        if: matrix.artifact == true
         with:
           name: repository
           path: repository.zip
