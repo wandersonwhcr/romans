@@ -23,7 +23,7 @@
     }
   },
   "require": {
-    "php": ">=7.4"
+    "php": ">=8.0"
   },
   "suggest": {
     "symfony/cache": "Cache results to improve performance (or any PSR-6 implementation)"
