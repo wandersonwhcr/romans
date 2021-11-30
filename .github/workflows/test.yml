@@ -58,7 +58,7 @@ jobs:
         continue-on-error: ${{ matrix.experimental == true }}
 
       - name: PHP Experimental
-        if: ${{ matrix.experimental == true }}
+        if: matrix.experimental == true
         run: |
           docker-compose run romans composer config platform.php ${{ matrix.composer_platform_php }}
           docker-compose run romans composer update --lock --no-install
