@@ -32,13 +32,10 @@ class Parser
      */
     public function parse(array $tokens): int
     {
+        (count($tokens) === 0)
+            && throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
+
         $tokensAvailable = array_flip($this->getGrammar()->getTokens());
-
-        $length = count($tokens);
-
-        if ($length === 0) {
-            throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
-        }
 
         foreach ($tokens as $position => $token) {
             if (! is_string($token)) {

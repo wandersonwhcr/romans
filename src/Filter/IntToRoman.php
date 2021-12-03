@@ -48,9 +48,8 @@ class IntToRoman
      */
     public function filter(int $value): string
     {
-        if ($value < 0) {
-            throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);
-        }
+        ($value < 0)
+            && throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);
 
         if ($this->hasCache() && $this->getCache()->hasItem((string) $value)) {
             return $this->getCache()->getItem((string) $value)->get();
