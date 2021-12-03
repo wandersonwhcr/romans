@@ -56,7 +56,7 @@ class IntToRoman
         }
 
         $tokens = $this->getGrammar()->getTokens();
-        $values = array_reverse($this->getGrammar()->getValuesWithModifiers(), true /* preserve keys */);
+        $values = array_reverse($this->getGrammar()->getValuesWithModifiers(), preserve_keys: true);
         $result = '';
 
         if ($value === 0) {
