@@ -32,6 +32,15 @@ class ExceptionTest extends TestCase
     }
 
     /**
+     * Test Bitwise
+     */
+    public function testBitwise(): void
+    {
+        $this->assertSame(3, Exception::UNKNOWN_TOKEN | Exception::INVALID_TOKEN_TYPE);
+        $this->assertSame(6, Exception::INVALID_TOKEN_TYPE | Exception::INVALID_ROMAN);
+    }
+
+    /**
      * Test Token
      */
     public function testToken(): void

@@ -11,5 +11,5 @@ use Exception as BaseException;
  */
 class Exception extends BaseException
 {
-    const INVALID_INTEGER = 1;
+    const INVALID_INTEGER = 1<<0;
 }

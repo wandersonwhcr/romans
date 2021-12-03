@@ -11,7 +11,7 @@ use Exception as BaseException;
  */
 class Exception extends BaseException
 {
-    const UNKNOWN_TOKEN = 1;
+    const UNKNOWN_TOKEN = 1<<0;
 
     /**
      * Token
