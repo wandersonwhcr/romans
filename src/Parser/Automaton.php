@@ -494,39 +494,16 @@ class Automaton
      */
     private function doTransition(): self
     {
-        switch ($this->getState()) {
-            case self::STATE_G:
-                $this->doTransitionFromG();
-                break;
-
-            case self::STATE_F:
-                $this->doTransitionFromF();
-                break;
-
-            case self::STATE_E:
-                $this->doTransitionFromE();
-                break;
-
-            case self::STATE_D:
-                $this->doTransitionFromD();
-                break;
-
-            case self::STATE_C:
-                $this->doTransitionFromC();
-                break;
-
-            case self::STATE_B:
-                $this->doTransitionFromB();
-                break;
-
-            case self::STATE_A:
-                $this->doTransitionFromA();
-                break;
-
-            case self::STATE_Y:
-                $this->doTransitionFromY();
-                break;
-        }
+        match ($this->getState()) {
+            self::STATE_G => $this->doTransitionFromG(),
+            self::STATE_F => $this->doTransitionFromF(),
+            self::STATE_E => $this->doTransitionFromE(),
+            self::STATE_D => $this->doTransitionFromD(),
+            self::STATE_C => $this->doTransitionFromC(),
+            self::STATE_B => $this->doTransitionFromB(),
+            self::STATE_A => $this->doTransitionFromA(),
+            self::STATE_Y => $this->doTransitionFromY(),
+        };
 
         return $this;
     }
