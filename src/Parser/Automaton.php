@@ -215,7 +215,7 @@ class Automaton
      */
     protected function hasToken(int $offset = 0): bool
     {
-        return $this->getPosition() + $offset < count($this->getTokens());
+        return ($this->getPosition() + $offset) < count($this->getTokens());
     }
 
     /**
