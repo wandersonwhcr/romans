@@ -102,4 +102,23 @@ class GrammarTest extends TestCase
 
         $this->assertSame($valuesWithModifiers, $this->grammar->getValuesWithModifiers());
     }
+
+    /**
+     * Test Values with Modifiers Calculate Once
+     */
+    public function testValuesWithModifiersCalculateOnce(): void
+    {
+        $grammar = $this->getMockBuilder(Grammar::class)
+            ->onlyMethods(['getValues', 'getModifiers'])
+            ->getMock();
+
+        $grammar->expects($this->once())
+            ->method('getValues');
+
+        $grammar->expects($this->once())
+            ->method('getModifiers');
+
+        $grammar->getValuesWithModifiers();
+        $grammar->getValuesWithModifiers();
+    }
 }
