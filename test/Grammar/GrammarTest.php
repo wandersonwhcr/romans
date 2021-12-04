@@ -121,4 +121,17 @@ class GrammarTest extends TestCase
         $grammar->getValuesWithModifiers();
         $grammar->getValuesWithModifiers();
     }
+
+    /**
+     * Test Values with Modifiers Initialization
+     */
+    public function testValuesWithModifiersInitialization(): void
+    {
+        $reflection = new ReflectionClass(Grammar::class);
+        $property   = $reflection->getProperty('valuesWithModifiers');
+
+        $property->setAccessible(true);
+
+        $this->assertNull($property->getValue($this->grammar));
+    }
 }

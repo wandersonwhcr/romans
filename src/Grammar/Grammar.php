@@ -19,9 +19,9 @@ class Grammar
     const T_M = 'M';
 
     /**
-     * @var array<int,string[]>
+     * @var array<int,string[]>|null
      */
-    private array $valuesWithModifiers;
+    private ?array $valuesWithModifiers = null;
 
     /**
      * Get Tokens
