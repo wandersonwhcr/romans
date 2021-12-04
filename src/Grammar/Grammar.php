@@ -19,6 +19,11 @@ class Grammar
     const T_M = 'M';
 
     /**
+     * @var array<int,string[]>|null
+     */
+    private ?array $valuesWithModifiers = null;
+
+    /**
      * Get Tokens
      *
      * @return array<string,int> Tokens Available
@@ -80,12 +85,18 @@ class Grammar
      */
     public function getValuesWithModifiers(): array
     {
+        if (isset($this->valuesWithModifiers)) {
+            return $this->valuesWithModifiers;
+        }
+
         $values = array_map(fn($value) => [$value], array_flip($this->getValues()));
 
         $valuesWithModifiers = $values + $this->getModifiers(); // merge and keep keys (append)
 
         ksort($valuesWithModifiers);
 
-        return $valuesWithModifiers;
+        $this->valuesWithModifiers = $valuesWithModifiers;
+
+        return $this->valuesWithModifiers;
     }
 }
