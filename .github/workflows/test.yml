@@ -79,6 +79,10 @@ jobs:
         run: docker-compose run romans composer archive --dir build --format zip --file package
         continue-on-error: ${{ matrix.experimental == true }}
 
+      - name: Package Check
+        run: ./.github/bin/package-check.sh
+        continue-on-error: ${{ matrix.experimental == true }}
+
       - name: Clean
         run: docker-compose down
         if: always()
