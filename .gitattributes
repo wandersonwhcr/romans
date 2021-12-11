@@ -6,6 +6,7 @@
 /build export-ignore
 /docker-compose export-ignore
 /docker-compose.yml export-ignore
+/Dockerfile export-ignore
 /phpcs.xml.dist export-ignore
 /phpmd.xml export-ignore
 /phpunit.xml.dist export-ignore
