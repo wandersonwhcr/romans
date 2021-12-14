@@ -1,8 +1,6 @@
 name: Updated
 
 on:
-  push:
-    branches: ["main"]
   schedule:
   - cron: '30 11 * * 1' # 11h30 UTC (08h30 BRT) on Mondays
 
