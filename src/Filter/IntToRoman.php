@@ -48,16 +48,15 @@ class IntToRoman
      */
     public function filter(int $value): string
     {
-        if ($value < 0) {
-            throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);
-        }
+        ($value < 0)
+            && throw new Exception(sprintf('Invalid integer: %d', $value), Exception::INVALID_INTEGER);
 
         if ($this->hasCache() && $this->getCache()->hasItem((string) $value)) {
             return $this->getCache()->getItem((string) $value)->get();
         }
 
         $tokens = $this->getGrammar()->getTokens();
-        $values = array_reverse($this->getGrammar()->getValuesWithModifiers(), true /* preserve keys */);
+        $values = array_reverse($this->getGrammar()->getValuesWithModifiers(), preserve_keys: true);
         $result = '';
 
         if ($value === 0) {

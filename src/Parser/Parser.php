@@ -32,19 +32,16 @@ class Parser
      */
     public function parse(array $tokens): int
     {
+        (count($tokens) === 0)
+            && throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
+
         $tokensAvailable = array_flip($this->getGrammar()->getTokens());
-
-        $length = count($tokens);
-
-        if ($length === 0) {
-            throw new Exception('Invalid Roman', Exception::INVALID_ROMAN);
-        }
 
         foreach ($tokens as $position => $token) {
             if (! is_string($token)) {
                 $exception = new Exception(
                     sprintf('Invalid token type "%s" at position %d', gettype($token), $position),
-                    Exception::INVALID_TOKEN_TYPE
+                    Exception::INVALID_TOKEN_TYPE,
                 );
 
                 $exception->setPosition($position);
@@ -55,7 +52,7 @@ class Parser
             if (! isset($tokensAvailable[$token])) {
                 $exception = new Exception(
                     sprintf('Unknown token "%s" at position %d', $token, $position),
-                    Exception::UNKNOWN_TOKEN
+                    Exception::UNKNOWN_TOKEN,
                 );
 
                 $exception

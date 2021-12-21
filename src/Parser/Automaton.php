@@ -215,7 +215,7 @@ class Automaton
      */
     protected function hasToken(int $offset = 0): bool
     {
-        return $this->getPosition() + $offset < count($this->getTokens());
+        return ($this->getPosition() + $offset) < count($this->getTokens());
     }
 
     /**
@@ -325,14 +325,14 @@ class Automaton
                     $this
                         ->setState(self::STATE_D)
                         ->addPosition(3)
-                        ->addTokenValue(Grammar::T_C, null, 3);
+                        ->addTokenValue(Grammar::T_C, quantity: 3);
                     return $this;
                 }
 
                 $this
                     ->setState(self::STATE_D)
                     ->addPosition(2)
-                    ->addTokenValue(Grammar::T_C, null, 2);
+                    ->addTokenValue(Grammar::T_C, quantity: 2);
                 return $this;
             }
 
@@ -395,14 +395,14 @@ class Automaton
                     $this
                         ->setState(self::STATE_B)
                         ->addPosition(3)
-                        ->addTokenValue(Grammar::T_X, null, 3);
+                        ->addTokenValue(Grammar::T_X, quantity: 3);
                     return $this;
                 }
 
                 $this
                     ->setState(self::STATE_B)
                     ->addPosition(2)
-                    ->addTokenValue(Grammar::T_X, null, 2);
+                    ->addTokenValue(Grammar::T_X, quantity: 2);
                 return $this;
             }
 
@@ -465,14 +465,14 @@ class Automaton
                     $this
                         ->setState(self::STATE_Y)
                         ->addPosition(3)
-                        ->addTokenValue(Grammar::T_I, null, 3);
+                        ->addTokenValue(Grammar::T_I, quantity: 3);
                     return $this;
                 }
 
                 $this
                     ->setState(self::STATE_Y)
                     ->addPosition(2)
-                    ->addTokenValue(Grammar::T_I, null, 2);
+                    ->addTokenValue(Grammar::T_I, quantity: 2);
                 return $this;
             }
 
@@ -494,39 +494,16 @@ class Automaton
      */
     private function doTransition(): self
     {
-        switch ($this->getState()) {
-            case self::STATE_G:
-                $this->doTransitionFromG();
-                break;
-
-            case self::STATE_F:
-                $this->doTransitionFromF();
-                break;
-
-            case self::STATE_E:
-                $this->doTransitionFromE();
-                break;
-
-            case self::STATE_D:
-                $this->doTransitionFromD();
-                break;
-
-            case self::STATE_C:
-                $this->doTransitionFromC();
-                break;
-
-            case self::STATE_B:
-                $this->doTransitionFromB();
-                break;
-
-            case self::STATE_A:
-                $this->doTransitionFromA();
-                break;
-
-            case self::STATE_Y:
-                $this->doTransitionFromY();
-                break;
-        }
+        match ($this->getState()) {
+            self::STATE_G => $this->doTransitionFromG(),
+            self::STATE_F => $this->doTransitionFromF(),
+            self::STATE_E => $this->doTransitionFromE(),
+            self::STATE_D => $this->doTransitionFromD(),
+            self::STATE_C => $this->doTransitionFromC(),
+            self::STATE_B => $this->doTransitionFromB(),
+            self::STATE_A => $this->doTransitionFromA(),
+            self::STATE_Y => $this->doTransitionFromY(),
+        };
 
         return $this;
     }

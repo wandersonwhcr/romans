@@ -11,9 +11,9 @@ use Exception as BaseException;
  */
 class Exception extends BaseException
 {
-    const UNKNOWN_TOKEN      = 1;
-    const INVALID_TOKEN_TYPE = 2;
-    const INVALID_ROMAN      = 4;
+    const UNKNOWN_TOKEN      = 1<<0;
+    const INVALID_TOKEN_TYPE = 1<<1;
+    const INVALID_ROMAN      = 1<<2;
 
     /**
      * Token
