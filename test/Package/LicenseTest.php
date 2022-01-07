@@ -27,6 +27,6 @@ class LicenseTest extends TestCase
         $currentYear = date('Y');
         $copyright   = "Copyright (c) $currentYear https://github.com/wandersonwhcr/romans";
 
-        $this->assertStringContainsString($copyright, $this->content, 'Invalid Current Year on Licence Copyright');
+        $this->assertStringContainsString($copyright, $this->content, 'Invalid Current Year on LICENSE Copyright');
     }
 }
