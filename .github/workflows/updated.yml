@@ -3,7 +3,7 @@ name: Updated
 on:
   workflow_dispatch:
   schedule:
-  - cron: '30 11 * * 1' # 11h30 UTC (08h30 BRT) on Mondays
+  - cron: '00 11 * * 1' # 11h00 UTC (08h00 BRT) on Mondays
 
 jobs:
   checkout:
