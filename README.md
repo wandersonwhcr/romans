@@ -7,6 +7,7 @@ A Simple PHP Roman Numerals Library
 [![Latest Stable Version](https://poser.pugx.org/wandersonwhcr/romans/v/stable?format=flat)](https://packagist.org/packages/wandersonwhcr/romans)
 [![codecov](https://codecov.io/gh/wandersonwhcr/romans/branch/main/graph/badge.svg)](https://codecov.io/gh/wandersonwhcr/romans)
 [![License](https://poser.pugx.org/wandersonwhcr/romans/license?format=flat)](https://packagist.org/packages/wandersonwhcr/romans)
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
 ## Usage
 
