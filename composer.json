@@ -34,7 +34,7 @@
     "phpunit/phpunit": "9.5.*",
     "psr/cache": "3.0.*",
     "sebastian/phpcpd": "6.0.*",
-    "slevomat/coding-standard": "7.0.*",
+    "slevomat/coding-standard": "7.1.*",
     "squizlabs/php_codesniffer": "3.6.*"
   },
   "config": {
