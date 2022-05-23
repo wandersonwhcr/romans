@@ -3,6 +3,8 @@
 /.gitattributes export-ignore
 /.github export-ignore
 /.gitignore export-ignore
+/.phpunit.cache export-ignore
+/.phpunit.result.cache export-ignore
 /build export-ignore
 /docker-compose export-ignore
 /docker-compose.yml export-ignore
@@ -11,3 +13,4 @@
 /phpmd.xml export-ignore
 /phpunit.xml.dist export-ignore
 /test export-ignore
+/vendor export-ignore
