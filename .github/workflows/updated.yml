@@ -6,7 +6,9 @@ on:
     - cron: '00 11 * * 1' # 11h00 UTC (08h00 BRT) on Mondays
   push:
     branches: ["main"]
-    paths: ["composer.lock"]
+    paths:
+      - 'composer.lock'
+      - '.github/workflows/updated.yml'
 
 jobs:
   checkout:
@@ -33,10 +35,11 @@ jobs:
         php_version:
           - "8.0"
           - "8.1"
-        # include:
-        #   - php_version: "8.1.0RC6"
-        #     experimental: true
-        #     composer_platform_php: "8.0"
+          - "8.2.0alpha1"
+        include:
+          - php_version: "8.2.0alpha1"
+            experimental: true
+            composer_platform_php: "8.0.20" # Use Latest PHP 8.0
     steps:
       - name: Checkout
         uses: actions/download-artifact@v2

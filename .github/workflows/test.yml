@@ -31,12 +31,13 @@ jobs:
         php_version:
           - "8.0"
           - "8.1"
+          - "8.2.0alpha1"
         include:
-            - php_version: "8.0"
-              artifact: true
-        #   - php_version: "8.1.0RC6"
-        #     experimental: true
-        #     composer_platform_php: "8.0"
+          - php_version: "8.0"
+            artifact: true
+          - php_version: "8.2.0alpha1"
+            experimental: true
+            composer_platform_php: "8.0.20" # Use Latest PHP 8.0
     steps:
       - name: Checkout
         uses: actions/download-artifact@v2
