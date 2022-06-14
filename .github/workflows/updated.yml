@@ -6,7 +6,9 @@ on:
     - cron: '00 11 * * 1' # 11h00 UTC (08h00 BRT) on Mondays
   push:
     branches: ["main"]
-    paths: ["composer.lock"]
+    paths:
+      - 'composer.lock'
+      - '.github/workflows/updated.yml'
 
 jobs:
   checkout:
