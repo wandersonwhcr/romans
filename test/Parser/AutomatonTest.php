@@ -15,6 +15,11 @@ use Romans\Parser\Exception as ParserException;
 class AutomatonTest extends TestCase
 {
     /**
+     * Automaton
+     */
+    private Automaton $automaton;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void

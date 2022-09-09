@@ -12,6 +12,11 @@ use PHPUnit\Framework\TestCase;
 class LicenseTest extends TestCase
 {
     /**
+     * Content
+     */
+    private string $content;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void

@@ -14,6 +14,26 @@ use Romans\Grammar\Grammar;
 class GrammarTest extends TestCase
 {
     /**
+     * Grammar
+     */
+    private Grammar $grammar;
+
+    /**
+     * Tokens
+     */
+    private array $tokens;
+
+    /**
+     * Values
+     */
+    private array $values;
+
+    /**
+     * Modifiers
+     */
+    private array $modifiers;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void

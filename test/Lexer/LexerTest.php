@@ -15,6 +15,11 @@ use Romans\Lexer\Lexer;
 class LexerTest extends TestCase
 {
     /**
+     * Lexer
+     */
+    private Lexer $lexer;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void
