@@ -20,16 +20,19 @@ class GrammarTest extends TestCase
 
     /**
      * Tokens
+     * @var array<string,string>
      */
     private array $tokens;
 
     /**
      * Values
+     * @var array<string,int>
      */
     private array $values;
 
     /**
      * Modifiers
+     * @var array<int,string[]>
      */
     private array $modifiers;
 
