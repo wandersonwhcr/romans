@@ -14,6 +14,11 @@ use TypeError;
 class ExceptionTest extends TestCase
 {
     /**
+     * Exception
+     */
+    private Exception $exception;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void

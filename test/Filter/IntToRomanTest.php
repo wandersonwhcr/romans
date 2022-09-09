@@ -17,6 +17,11 @@ use Romans\Grammar\Grammar;
 class IntToRomanTest extends TestCase
 {
     /**
+     * Int to Roman Filter
+     */
+    private IntToRoman $filter;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void

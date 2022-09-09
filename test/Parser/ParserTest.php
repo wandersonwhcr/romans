@@ -15,6 +15,11 @@ use Romans\Parser\Parser;
 class ParserTest extends TestCase
 {
     /**
+     * Parser
+     */
+    private Parser $parser;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void

@@ -19,6 +19,11 @@ use TypeError;
 class RomanToIntTest extends TestCase
 {
     /**
+     * Roman to Int Filter
+     */
+    private RomanToInt $filter;
+
+    /**
      * {@inheritdoc}
      */
     protected function setUp(): void
